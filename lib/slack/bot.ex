@@ -181,7 +181,8 @@ defmodule Slack.Bot do
     binstring
     |> :binary.split(<<0>>)
     |> List.first()
-    |> Jason.decode!(keys: :atoms)
+    |> JSON.decode!()
+    |> Slack.JSON.atomize_keys()
   end
 
   defp handle_exception(e) do

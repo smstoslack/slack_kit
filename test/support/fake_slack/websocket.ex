@@ -20,7 +20,7 @@ defmodule Slack.FakeSlack.Websocket do
 
   def websocket_handle({:text, message}, state) do
     pid = Application.get_env(:slack, :test_pid)
-    send(pid, {:bot_message, Jason.decode!(message)})
+    send(pid, {:bot_message, JSON.decode!(message)})
 
     {:ok, state}
   end

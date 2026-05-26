@@ -10,7 +10,7 @@ defmodule Slack.Web do
     Enum.reduce(files, %{}, fn file, module_names ->
       json =
         File.read!("#{__DIR__}/docs/#{file}")
-        |> Jason.decode!(%{})
+        |> JSON.decode!()
 
       doc = Slack.Web.Documentation.new(json, file)
 

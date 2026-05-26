@@ -75,7 +75,7 @@ defmodule UpdateSlackApi do
   defp write_doc({name, url}) do
     try do
       data = url |> fetch!() |> parse_method_page()
-      json = Jason.encode!(data, pretty: true) <> "\n"
+      json = (data |> :json.format() |> IO.iodata_to_binary()) <> "\n"
       File.write!(Path.join(@out_dir, "#{name}.json"), json)
       {:ok, name}
     rescue

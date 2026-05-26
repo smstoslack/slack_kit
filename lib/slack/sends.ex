@@ -42,7 +42,7 @@ defmodule Slack.Sends do
       text: text,
       channel: channel
     }
-    |> Jason.encode!()
+    |> JSON.encode!()
     |> send_raw(slack)
   end
 
@@ -63,7 +63,7 @@ defmodule Slack.Sends do
       channel: channel,
       thread_ts: thread
     }
-    |> Jason.encode!()
+    |> JSON.encode!()
     |> send_raw(slack)
   end
 
@@ -75,7 +75,7 @@ defmodule Slack.Sends do
       type: "typing",
       channel: channel
     }
-    |> Jason.encode!()
+    |> JSON.encode!()
     |> send_raw(slack)
   end
 
@@ -87,7 +87,7 @@ defmodule Slack.Sends do
       type: "ping"
     }
     |> Map.merge(Map.new(data))
-    |> Jason.encode!()
+    |> JSON.encode!()
     |> send_raw(slack)
   end
 
@@ -99,7 +99,7 @@ defmodule Slack.Sends do
       type: "presence_sub",
       ids: ids
     }
-    |> Jason.encode!()
+    |> JSON.encode!()
     |> send_raw(slack)
   end
 
@@ -140,7 +140,7 @@ defmodule Slack.Sends do
 
     case im_open do
       {:ok, response} ->
-        case Jason.decode!(response.body, keys: :atoms) do
+        case response.body |> JSON.decode!() |> Slack.JSON.atomize_keys() do
           %{ok: true, channel: %{id: id}} -> on_success.(id)
           e = %{error: _error_message} -> on_error.(e)
         end

@@ -44,7 +44,6 @@ defmodule Slack.Mixfile do
       {:req, "~> 0.5"},
       {:mint_web_socket, "~> 1.0"},
       {:castore, "~> 1.0"},
-      {:jason, "~> 1.1"},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
       {:credo, "~> 1.7", only: [:dev, :test]},
       {:excoveralls, "~> 0.18", only: :test},

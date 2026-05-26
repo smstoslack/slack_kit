@@ -46,7 +46,7 @@ defmodule Slack.Web.DefaultClient do
   defp to_field_name(name) when is_atom(name), do: name
   defp to_field_name(name) when is_binary(name), do: String.to_atom(name)
 
-  defp decode_body(body) when is_binary(body), do: Jason.decode!(body)
+  defp decode_body(body) when is_binary(body), do: JSON.decode!(body)
   defp decode_body(body), do: body
 
   defp opts do

@@ -4,7 +4,7 @@ defmodule Slack.JsonDecodeError do
   defexception [:reason, :string]
 
   def message(%Slack.JsonDecodeError{reason: reason, string: string}) do
-    "Poison could not decode string for reason: `:#{reason}`, string given:\n#{string}"
+    "Could not decode JSON for reason: #{inspect(reason)}, string given:\n#{string}"
   end
 end
 
@@ -21,20 +21,22 @@ defmodule Slack.Rtm do
   end
 
   defp handle_response({:ok, %Req.Response{body: body}}) do
-    case Jason.decode!(body, keys: :atoms) do
-      %{ok: true} = json ->
-        {:ok, json}
+    case JSON.decode(body) do
+      {:ok, decoded} ->
+        case Slack.JSON.atomize_keys(decoded) do
+          %{ok: true} = json ->
+            {:ok, json}
 
-      %{error: reason} ->
-        {:error, "Slack API returned an error `#{reason}.\n Response: #{body}"}
+          %{error: reason} ->
+            {:error, "Slack API returned an error `#{reason}.\n Response: #{body}"}
 
-      _ ->
-        {:error, "Invalid RTM response"}
+          _ ->
+            {:error, "Invalid RTM response"}
+        end
+
+      {:error, reason} ->
+        {:error, %Slack.JsonDecodeError{reason: reason, string: body}}
     end
-  rescue
-    error in Jason.DecodeError ->
-      %Jason.DecodeError{data: reason, position: _, token: _} = error
-      {:error, %Slack.JsonDecodeError{reason: reason, string: body}}
   end
 
   defp handle_response(error), do: error
