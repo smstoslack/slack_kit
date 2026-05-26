@@ -42,7 +42,8 @@ defmodule Slack.Mixfile do
   defp deps do
     [
       {:req, "~> 0.5"},
-      {:websockex, "~> 0.4"},
+      {:mint_web_socket, "~> 1.0"},
+      {:castore, "~> 1.0"},
       {:jason, "~> 1.1"},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
       {:credo, "~> 1.7", only: [:dev, :test]},

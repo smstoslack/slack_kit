@@ -6,7 +6,7 @@ defmodule Slack.Bot do
 
   require Logger
 
-  @behaviour :websocket_client
+  @behaviour Slack.WebSocketClient
 
   @doc """
   Connects to Slack and delegates events to `bot_handler`.
@@ -27,7 +27,7 @@ defmodule Slack.Bot do
     options =
       Map.merge(
         %{
-          client: :websocket_client,
+          client: Slack.WebSocketClient,
           keepalive: 10_000,
           name: nil
         },
