@@ -208,25 +208,14 @@ defmodule Slack.WebSocketClient do
   end
 
   defp handle_responses([{:data, ref, payload} | rest], %{request_ref: ref} = data) do
-    case WebSocket.decode(data.websocket, payload) do
-      {:ok, websocket, frames} ->
-        data = %{data | websocket: websocket}
+    {:ok, websocket, frames} = WebSocket.decode(data.websocket, payload)
+    data = %{data | websocket: websocket}
 
-        case dispatch_frames(frames, data) do
-          {:ok, data} -> handle_responses(rest, data)
-          {:disconnect, reason, data} -> handle_disconnect(reason, data)
-        end
-
-      {:error, websocket, reason} ->
-        handle_disconnect(reason, %{data | websocket: websocket})
+    case dispatch_frames(frames, data) do
+      {:ok, data} -> handle_responses(rest, data)
+      {:disconnect, reason, data} -> handle_disconnect(reason, data)
     end
   end
-
-  defp handle_responses([{:error, ref, reason} | _], %{request_ref: ref} = data) do
-    handle_disconnect(reason, data)
-  end
-
-  defp handle_responses([_other | rest], data), do: handle_responses(rest, data)
 
   defp dispatch_frames([], data), do: {:ok, data}
 
@@ -246,10 +235,6 @@ defmodule Slack.WebSocketClient do
 
   defp handle_incoming_frame({:close, _code, _reason} = frame, data) do
     dispatch_close(frame, data)
-  end
-
-  defp handle_incoming_frame(:close, data) do
-    dispatch_close(:close, data)
   end
 
   defp handle_incoming_frame(frame, data) do
@@ -301,15 +286,17 @@ defmodule Slack.WebSocketClient do
   end
 
   defp send_frame(data, frame) do
-    with {:ok, websocket, payload} <- WebSocket.encode(data.websocket, frame),
-         {:ok, conn} <- WebSocket.stream_request_body(data.conn, data.request_ref, payload) do
-      {:ok, %{data | websocket: websocket, conn: conn}}
-    else
-      {:error, %WebSocket{} = websocket, reason} ->
-        {:error, %{data | websocket: websocket}, reason}
+    case WebSocket.encode(data.websocket, frame) do
+      {:ok, websocket, payload} ->
+        data = %{data | websocket: websocket}
 
-      {:error, conn, reason} ->
-        {:error, %{data | conn: conn}, reason}
+        case WebSocket.stream_request_body(data.conn, data.request_ref, payload) do
+          {:ok, conn} -> {:ok, %{data | conn: conn}}
+          {:error, conn, reason} -> {:error, %{data | conn: conn}, reason}
+        end
+
+      {:error, websocket, reason} ->
+        {:error, %{data | websocket: websocket}, reason}
     end
   end
 

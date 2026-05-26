@@ -58,6 +58,75 @@ defmodule Slack.WebSocketClientTest do
     end
   end
 
+  defmodule RawWsServer do
+    @moduledoc false
+    # A minimal raw-TCP WebSocket server used to drive scenarios where the
+    # client's local write side is half-closed via `:gen_tcp.shutdown/2`.
+    # Cowboy auto-closes when it sees the FIN, but a passive-mode listener
+    # parked in a `receive` loop keeps the server's write direction open so
+    # the test can push server-to-client frames after the half-close.
+
+    @ws_magic "258EAFA5-E914-47DA-95CA-C5AB0DC85B11"
+
+    def start(parent) do
+      {:ok, listen} =
+        :gen_tcp.listen(0, [:binary, packet: :http_bin, active: false, reuseaddr: true])
+
+      {:ok, port} = :inet.port(listen)
+      pid = spawn_link(fn -> run(listen, parent) end)
+      {pid, port}
+    end
+
+    defp run(listen, parent) do
+      {:ok, sock} = :gen_tcp.accept(listen)
+      :gen_tcp.close(listen)
+
+      headers = read_headers(sock, %{})
+      key = Map.fetch!(headers, "sec-websocket-key")
+      accept = :sha |> :crypto.hash(key <> @ws_magic) |> Base.encode64()
+
+      :gen_tcp.send(sock, [
+        "HTTP/1.1 101 Switching Protocols\r\n",
+        "Upgrade: websocket\r\n",
+        "Connection: Upgrade\r\n",
+        "Sec-WebSocket-Accept: ",
+        accept,
+        "\r\n\r\n"
+      ])
+
+      :inet.setopts(sock, packet: :raw)
+      send(parent, {:raw_ws_upgraded, self()})
+      serve(sock)
+    end
+
+    defp read_headers(sock, acc) do
+      case :gen_tcp.recv(sock, 0, 5_000) do
+        {:ok, {:http_request, _, _, _}} ->
+          read_headers(sock, acc)
+
+        {:ok, {:http_header, _, name, _, value}} ->
+          read_headers(
+            sock,
+            Map.put(acc, name |> to_string() |> String.downcase(), to_string(value))
+          )
+
+        {:ok, :http_eoh} ->
+          acc
+      end
+    end
+
+    defp serve(sock) do
+      receive do
+        {:send, data} ->
+          :gen_tcp.send(sock, data)
+          serve(sock)
+
+        :close ->
+          :gen_tcp.close(sock)
+      end
+    end
+  end
+
   defmodule Handler do
     @behaviour Slack.WebSocketClient
 
@@ -429,6 +498,39 @@ defmodule Slack.WebSocketClientTest do
       assert_receive {:init, _}, 500
       assert_receive {:ondisconnect, _reason}, 1_000
     end
+
+    test "WebSocket.upgrade returning the 3-tuple error drives the disconnect path" do
+      # Mint.HTTP1 validates request targets synchronously and a space in the
+      # path is rejected, so upgrade returns {:error, conn, reason} before any
+      # bytes go on the wire — exercising the {:error, _conn, reason} branch
+      # in connect/1.
+      Process.flag(:trap_exit, true)
+
+      {:ok, _pid} =
+        WebSocketClient.start_link(
+          "ws://localhost:#{@port}/with space",
+          Handler,
+          %{test_pid: self(), on_disconnect: :ok},
+          []
+        )
+
+      assert_receive {:init, _}, 500
+      assert_receive {:ondisconnect, _reason}, 1_000
+    end
+  end
+
+  describe "send_frame encode errors" do
+    test "an oversized control frame returns an encode error and disconnects" do
+      # WebSocket control frames are limited to 125 bytes; Mint throws inside
+      # encode and returns {:error, websocket, reason}, which the encode-error
+      # clause of send_frame/2 routes into the disconnect path.
+      Process.flag(:trap_exit, true)
+      {:ok, pid} = start_client()
+      await_connect()
+
+      WebSocketClient.cast(pid, {:ping, :binary.copy("x", 200)})
+      assert_receive {:ondisconnect, _reason}, 500
+    end
   end
 
   describe "terminate fallback" do
@@ -529,6 +631,61 @@ defmodule Slack.WebSocketClientTest do
       # connection's own socket into a transport error response, which is
       # the only natural way to drive the error branch in handle_info.
       send(pid, {:tcp_closed, socket})
+      assert_receive {:ondisconnect, _reason}, 1_000
+    end
+  end
+
+  describe "send failures during incoming-frame handling" do
+    # Half-closing the local write side (via :gen_tcp.shutdown/2) makes all
+    # subsequent gen_tcp.send calls return {:error, :closed} while reads
+    # still work. A raw-TCP server stays in a receive loop ignoring the
+    # FIN, so it can push frames to the client after the half-close.
+
+    test "pong send failure after receiving a ping triggers the disconnect path" do
+      Process.flag(:trap_exit, true)
+      {_server, port} = RawWsServer.start(self())
+
+      {:ok, pid} =
+        WebSocketClient.start_link(
+          "ws://127.0.0.1:#{port}/ws",
+          Handler,
+          %{test_pid: self(), on_disconnect: :ok},
+          []
+        )
+
+      assert_receive {:raw_ws_upgraded, server}, 1_000
+      assert_receive {:onconnect, _ref}, 1_000
+
+      socket = :sys.get_state(pid).conn.socket
+      :ok = :gen_tcp.shutdown(socket, :write)
+
+      # Server-to-client ping frame: FIN+opcode=ping (0x89), len=4, "ping".
+      send(server, {:send, <<0x89, 0x04, "ping">>})
+
+      assert_receive {:ondisconnect, _reason}, 1_000
+    end
+
+    test "handler reply send failure triggers the disconnect path" do
+      Process.flag(:trap_exit, true)
+      {_server, port} = RawWsServer.start(self())
+
+      {:ok, pid} =
+        WebSocketClient.start_link(
+          "ws://127.0.0.1:#{port}/ws",
+          Handler,
+          %{test_pid: self(), on_disconnect: :ok, reply_with: {:text, "auto-reply"}},
+          []
+        )
+
+      assert_receive {:raw_ws_upgraded, server}, 1_000
+      assert_receive {:onconnect, _ref}, 1_000
+
+      socket = :sys.get_state(pid).conn.socket
+      :ok = :gen_tcp.shutdown(socket, :write)
+
+      # Server-to-client text frame: FIN+opcode=text (0x81), len=2, "hi".
+      send(server, {:send, <<0x81, 0x02, "hi">>})
+
       assert_receive {:ondisconnect, _reason}, 1_000
     end
   end
