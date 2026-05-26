@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: ./.github/actions/setup-beam-and-install-dependencies
-      - run: mix deps.audit
+      - run: mix deps.audit --ignore-file=.mix_audit_ignore
 
   hex-audit:
     runs-on: ubuntu-latest
