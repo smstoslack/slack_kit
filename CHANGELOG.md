@@ -10,6 +10,10 @@
   the default websocket transport for `Slack.Bot`. The consumer API
   (`Slack.Bot.start_link/4` and the `handle_connect` / `handle_event` /
   `handle_close` / `handle_info` callbacks) is unchanged.
+- Rewrite `lib/mix/tasks/update_slack_api.exs` to regenerate the per-method
+  JSON docs in `lib/slack/web/docs/` by scraping `docs.slack.dev` directly.
+  Run with `mix run lib/mix/tasks/update_slack_api.exs`. Replaces the previous
+  task that pulled from the now-unmaintained `slackhq/slack-api-docs` repo.
 
 ## 0.24.0
 
