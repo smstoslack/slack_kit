@@ -19,44 +19,6 @@ defmodule Slack.Web do
   end
 end
 
-defmodule Slack.Web.Errors do
-  @common_errors_path Path.join(__DIR__, "common_errors.json")
-  @external_resource @common_errors_path
-
-  @common_errors @common_errors_path |> File.read!() |> JSON.decode!()
-
-  @error_list @common_errors
-              |> Enum.sort()
-              |> Enum.map_join("\n", fn {name, desc} -> "* `#{name}` - #{desc}" end)
-
-  @moduledoc """
-  Errors returned by every Slack Web API method.
-
-  Slack documents the same set of errors on nearly every method page —
-  authentication failures, rate limiting, deprecated endpoints, transport
-  problems, and so on. To keep per-method docs focused, those shared errors
-  are listed here once and stripped from each method's own error list.
-  Method-specific errors (e.g. `channel_not_found`, `is_archived`) remain
-  on the method itself.
-
-  ## Errors
-
-  #{@error_list}
-  """
-
-  @doc """
-  Returns the map of common error codes to their descriptions.
-  """
-  @spec common() :: %{String.t() => String.t()}
-  def common, do: @common_errors
-
-  @doc """
-  Returns the set of error codes that are common to all Web API methods.
-  """
-  @spec names() :: MapSet.t(String.t())
-  def names, do: MapSet.new(Map.keys(@common_errors))
-end
-
 alias Slack.Web.Documentation
 
 Enum.each(Slack.Web.get_documentation(), fn {module_name, functions} ->

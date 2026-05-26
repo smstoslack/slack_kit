@@ -59,7 +59,8 @@ defmodule Slack.Web.Documentation do
 
   defp facts_docs(%__MODULE__{raw: raw}) when is_map(raw) do
     lines =
-      scope_lines(Map.get(raw, "scopes")) ++ [""] ++
+      scope_lines(Map.get(raw, "scopes")) ++
+        [""] ++
         rate_limit_lines(Map.get(raw, "rate_limit"))
 
     case drop_trailing_blanks(lines) do
@@ -86,7 +87,9 @@ defmodule Slack.Web.Documentation do
   defp scope_group_section(_key, []), do: []
 
   defp scope_group_section(key, list) do
-    items = Enum.map_join(list, ", ", fn %{"name" => name, "url" => url} -> "[`#{name}`](#{url})" end)
+    items =
+      Enum.map_join(list, ", ", fn %{"name" => name, "url" => url} -> "[`#{name}`](#{url})" end)
+
     ["* _#{scope_token_label(key)}_: #{items}"]
   end
 
@@ -141,7 +144,7 @@ defmodule Slack.Web.Documentation do
 
   def example(_meta), do: ""
 
-  @common_errors_footer "\nSee `Slack.Web.Errors` for errors common to all Web API methods.\n"
+  @common_errors_footer "\nSee the [Common Errors](common_errors.md) guide for errors returned by every Web API method.\n"
 
   defp errors_docs(%__MODULE__{errors: nil}), do: @common_errors_footer
   defp errors_docs(%__MODULE__{errors: errors}) when errors == %{}, do: @common_errors_footer

@@ -59,6 +59,7 @@ defmodule Slack.Mixfile do
         {:"README.md", [title: "Overview"]},
         "guides/configuration.md",
         "guides/token_generation_instructions.md",
+        "guides/common_errors.md",
         {:"CHANGELOG.md", [title: "Changelog"]},
         {:"LICENSE.md", [title: "License"]}
       ],
@@ -79,7 +80,13 @@ defmodule Slack.Mixfile do
           Slack.Sends,
           Slack.WebSocketClient
         ],
-        "Web API": [~r/^Slack\.Web($|\.)/]
+        "Web API": [
+          Slack.Web.Client,
+          Slack.Web.DefaultClient,
+          Slack.Web.Documentation,
+          Slack.Web.Errors
+        ],
+        "Web API Methods": [~r/^Slack\.Web($|\.)/]
       ]
     ]
   end

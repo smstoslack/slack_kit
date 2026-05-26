@@ -11,6 +11,13 @@ defmodule UpdateSlackApi do
   @index_url "https://docs.slack.dev/reference/methods.md"
   @out_dir "lib/slack/web/docs"
   @common_errors_path "lib/slack/web/common_errors.json"
+  @common_errors_markdown_path "guides/common_errors.md"
+  # An error code is "common" if it appears on at least this fraction of the
+  # method pages we successfully scraped. In practice ~30 boilerplate errors
+  # hit ~86% of pages and the next most common (channel_not_found) hits ~33%,
+  # so any threshold in (0.34, 0.85) yields the same set. 0.70 leaves
+  # headroom against Slack tweaking a handful of pages without shifting it.
+  @common_errors_threshold 0.70
   @user_agent "slack_kit-doc-generator"
 
   @method_link_re ~r"\[([A-Za-z][\w.]*)\]\((https://docs\.slack\.dev/reference/methods/[\w.]+\.md)\)"
@@ -47,27 +54,122 @@ defmodule UpdateSlackApi do
     IO.puts("Fetching #{length(methods)} methods...")
 
     File.mkdir_p!(@out_dir)
-    common_errors = load_common_errors()
 
+    parsed = fetch_all(methods)
+
+    common_errors =
+      case args do
+        [] ->
+          # Full regen — derive the common-error set from the fetched data and
+          # rewrite both the JSON source of truth and the human-facing guide.
+          common = compute_common_errors(parsed)
+          write_common_errors_files(common)
+          common
+
+        _ ->
+          # Subset regen — keep the existing curated/derived set intact;
+          # we don't have enough data to redetermine "common" from one method.
+          load_common_errors()
+      end
+
+    common_names = MapSet.new(Map.keys(common_errors))
+    Enum.each(parsed, &write_parsed(&1, common_names))
+  end
+
+  defp fetch_all(methods) do
     methods
-    |> Task.async_stream(&write_doc(&1, common_errors),
+    |> Task.async_stream(&fetch_and_parse/1,
       max_concurrency: 8,
       timeout: 60_000,
       on_timeout: :kill_task
     )
-    |> Enum.each(fn
-      {:ok, {:ok, name}} -> IO.puts("ok  #{name}")
-      {:ok, {:error, name, reason}} -> IO.puts(:stderr, "err #{name}: #{reason}")
-      {:exit, reason} -> IO.puts(:stderr, "exit: #{inspect(reason)}")
+    |> Enum.flat_map(fn
+      {:ok, {:ok, _name, _data} = ok} ->
+        [ok]
+
+      {:ok, {:error, name, reason}} ->
+        IO.puts(:stderr, "err #{name}: #{reason}")
+        []
+
+      {:exit, reason} ->
+        IO.puts(:stderr, "exit: #{inspect(reason)}")
+        []
     end)
+  end
+
+  defp fetch_and_parse({name, url}) do
+    data = url |> fetch!() |> parse_method_page()
+    {:ok, name, data}
+  rescue
+    e -> {:error, name, Exception.message(e)}
+  end
+
+  defp write_parsed({:ok, name, data}, common_names) do
+    stripped = strip_common_errors(data, common_names)
+    json = (stripped |> :json.format() |> IO.iodata_to_binary()) <> "\n"
+    File.write!(Path.join(@out_dir, "#{name}.json"), json)
+    IO.puts("ok  #{name}")
+  end
+
+  # Picks every error code that appears on >= @common_errors_threshold of the
+  # successfully parsed method pages, and chooses each one's canonical
+  # description as the most-frequent variant (ties broken by longest).
+  defp compute_common_errors([]), do: %{}
+
+  defp compute_common_errors(parsed) do
+    total = length(parsed)
+    threshold = max(1, ceil(total * @common_errors_threshold))
+
+    parsed
+    |> Enum.flat_map(fn
+      {:ok, _name, %{"errors" => errs}} when is_map(errs) -> Map.to_list(errs)
+      _ -> []
+    end)
+    |> Enum.group_by(fn {name, _} -> name end, fn {_, desc} -> desc end)
+    |> Enum.filter(fn {_name, descs} -> length(descs) >= threshold end)
+    |> Map.new(fn {name, descs} -> {name, canonical_description(descs)} end)
+  end
+
+  defp canonical_description(descs) do
+    descs
+    |> Enum.frequencies()
+    |> Enum.max_by(fn {desc, count} -> {count, String.length(desc)} end)
+    |> elem(0)
+  end
+
+  defp write_common_errors_files(common) do
+    json = (common |> :json.format() |> IO.iodata_to_binary()) <> "\n"
+    File.write!(@common_errors_path, json)
+    File.mkdir_p!(Path.dirname(@common_errors_markdown_path))
+    File.write!(@common_errors_markdown_path, render_common_errors_markdown(common))
+  end
+
+  defp render_common_errors_markdown(common) do
+    body =
+      common
+      |> Enum.sort()
+      |> Enum.map_join("\n", fn {name, desc} -> "* `#{name}` — #{desc}" end)
+
+    """
+    # Common Errors
+
+    Slack documents the same set of errors on nearly every Web API method page —
+    authentication failures, rate limiting, deprecated endpoints, transport
+    problems, and so on. To keep per-method docs focused, those shared errors
+    are listed here once and stripped from each method's own error list.
+    Method-specific errors (e.g. `channel_not_found`, `is_archived`) remain on
+    the method itself.
+
+    ## Errors
+
+    #{body}
+    """
   end
 
   defp load_common_errors do
     @common_errors_path
     |> File.read!()
     |> JSON.decode!()
-    |> Map.keys()
-    |> MapSet.new()
   end
 
   defp filter(methods, []), do: methods
@@ -87,22 +189,6 @@ defmodule UpdateSlackApi do
       if String.contains?(name, "."), do: Map.put_new(acc, name, url), else: acc
     end)
     |> Enum.sort()
-  end
-
-  defp write_doc({name, url}, common_errors) do
-    try do
-      data =
-        url
-        |> fetch!()
-        |> parse_method_page()
-        |> strip_common_errors(common_errors)
-
-      json = (data |> :json.format() |> IO.iodata_to_binary()) <> "\n"
-      File.write!(Path.join(@out_dir, "#{name}.json"), json)
-      {:ok, name}
-    rescue
-      e -> {:error, name, Exception.message(e)}
-    end
   end
 
   defp strip_common_errors(%{"errors" => errors} = data, common_errors) when is_map(errors) do

@@ -81,12 +81,15 @@ defmodule Slack.Web.DocumentationTest do
       assert output =~ "* `as_user`"
       assert output =~ "Errors the API can return"
       assert output =~ "* `channel_not_found`"
-      assert output =~ "See `Slack.Web.Errors` for errors common to all Web API methods."
+
+      assert output =~
+               "See the [Common Errors](common_errors.md) guide for errors returned by every Web API method."
+
       refute output =~ "(/concepts)"
       assert output =~ "the docs"
     end
 
-    test "links to Slack.Web.Errors even when the endpoint has no specific errors" do
+    test "links to the Common Errors guide even when the endpoint has no specific errors" do
       file_content = %{
         "desc" => "Plain endpoint.",
         "args" => %{},
@@ -96,7 +99,9 @@ defmodule Slack.Web.DocumentationTest do
       output = Documentation.to_doc_string(Documentation.new(file_content, "team.info.json"))
 
       refute output =~ "Errors the API can return"
-      assert output =~ "See `Slack.Web.Errors` for errors common to all Web API methods."
+
+      assert output =~
+               "See the [Common Errors](common_errors.md) guide for errors returned by every Web API method."
     end
 
     test "omits sections when there are no params or errors" do
@@ -109,7 +114,9 @@ defmodule Slack.Web.DocumentationTest do
       refute output =~ "Errors the API can return"
       refute output =~ "Scopes"
       refute output =~ "Rate limit"
-      assert output =~ "See `Slack.Web.Errors` for errors common to all Web API methods."
+
+      assert output =~
+               "See the [Common Errors](common_errors.md) guide for errors returned by every Web API method."
     end
 
     test "renders scopes grouped by token type with links" do
