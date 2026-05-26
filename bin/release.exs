@@ -3,29 +3,26 @@
 defmodule Slack.Release do
   def run([version]) do
     parsed = Version.parse!(version)
-    is_release? = Version.match?(parsed, ">= 0.0.0", allow_pre: false)
+    is_prerelease? = parsed.pre != []
 
     ensure_git_clean()
 
-    if is_release? do
-      replace_infile("CHANGELOG.md", ~r/## Next/, "## v#{version}")
-      replace_infile("mix.exs", ~r/@version \".*\"/, "@version \"#{version}\"")
+    replace_infile("CHANGELOG.md", ~r/## Next/, "## v#{version}")
+    replace_infile("mix.exs", ~r/@version \".*\"/, "@version \"#{version}\"")
 
+    unless is_prerelease? do
       replace_infile(
         "README.md",
         ~r/{:slack_kit, \"~> .*\"}/,
         "{:slack_kit, \"~> #{parsed.major}.#{parsed.minor}\"}"
       )
-
-      show_git_diff()
     end
 
+    show_git_diff()
     ensure_user_wants_release()
 
-    if is_release? do
-      git(["add", "CHANGELOG.md", "README.md", "mix.exs"])
-      git(["commit", "-m", "v#{version}"])
-    end
+    git(["add", "CHANGELOG.md", "README.md", "mix.exs"])
+    git(["commit", "-m", "v#{version}"])
 
     git(["tag", "v#{version}", "-m", "v#{version}"])
     git(["push"])
