@@ -32,7 +32,7 @@ end
 
 def deps do
   [
-    {:slack_kit, "~> 0.23.6"}
+    {:slack_kit, "~> 0.24"}
   ]
 end
 ```
