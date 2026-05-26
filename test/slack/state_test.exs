@@ -277,6 +277,41 @@ defmodule Slack.StateTest do
            }
   end
 
+  test "channel_created adds a channel" do
+    new_slack =
+      State.update(
+        %{type: "channel_created", channel: %{id: "C999", name: "fresh"}},
+        slack()
+      )
+
+    assert new_slack.channels["C999"] == %{id: "C999", name: "fresh"}
+  end
+
+  test "unknown event type returns slack unchanged" do
+    state = slack()
+    assert State.update(%{type: "totally_unknown_event"}, state) == state
+  end
+
+  test "Access behaviour delegates to Map" do
+    state = %State{token: "abc", bots: %{"B1" => %{name: "bot"}}}
+
+    assert State.fetch(state, :token) == {:ok, "abc"}
+    assert State.get(state, :token, nil) == "abc"
+    assert State.get(state, :missing, :default) == :default
+
+    {existing, updated} =
+      State.get_and_update(state, :token, fn current ->
+        {current, "new-token"}
+      end)
+
+    assert existing == "abc"
+    assert updated.token == "new-token"
+
+    {popped, popped_state} = State.pop(state, :token)
+    assert popped == "abc"
+    refute Map.has_key?(popped_state, :token)
+  end
+
   defp slack do
     %{
       channels: %{

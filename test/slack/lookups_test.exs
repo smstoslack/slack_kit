@@ -87,4 +87,9 @@ defmodule Slack.LookupsTest do
 
     assert Lookups.lookup_channel_name("G456", slack) == "#channel"
   end
+
+  test "turns a bot identifier into @bot_name (Bxxxx)" do
+    slack = %{bots: %{"B123" => %{name: "robo", id: "B123"}}}
+    assert Lookups.lookup_user_name("B123", slack) == "@robo"
+  end
 end

@@ -379,14 +379,10 @@ defmodule Slack.WebSocketClient do
         _ -> :ws
       end
 
-    port = uri.port || default_port(scheme)
     path = build_path(uri)
 
-    %{scheme: scheme, host: uri.host, port: port, path: path}
+    %{scheme: scheme, host: uri.host, port: uri.port, path: path}
   end
-
-  defp default_port(:wss), do: 443
-  defp default_port(:ws), do: 80
 
   defp build_path(%URI{path: nil, query: nil}), do: "/"
   defp build_path(%URI{path: path, query: nil}), do: path || "/"
