@@ -23,10 +23,16 @@ jobs:
           otp-version: ${{ matrix.otp }}
       - name: Run Tests
         run: mix coveralls.json
-      - name: Create cover folder
-        run: mkdir -p cover
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v6
         with:
           files: cover/excoveralls.json
+          token: ${{ secrets.CODECOV_TOKEN }}
+      - name: Upload test results to Codecov
+        if: ${{ !cancelled() }}
+        uses: codecov/codecov-action@v6
+        with:
+          files: cover/junit.xml
+          report_type: test_results
+          disable_search: true
           token: ${{ secrets.CODECOV_TOKEN }}

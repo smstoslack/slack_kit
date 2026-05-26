@@ -5,6 +5,8 @@
 - Replace `httpoison` with `req` as the HTTP client. The `:web_http_client_opts`
   config now accepts Req options instead of HTTPoison/hackney options.
 - Add `excoveralls` for test coverage reporting.
+- Add `junit_formatter` to emit JUnit XML to `cover/junit.xml` and upload it to
+  Codecov Test Analytics for flake/failure-rate tracking.
 - Replace `websocket_client` with `mint_web_socket`. Introduces a new
   `Slack.WebSocketClient` GenServer that wraps `Mint.WebSocket` and is used as
   the default websocket transport for `Slack.Bot`. The consumer API

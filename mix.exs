@@ -48,6 +48,7 @@ defmodule Slack.Mixfile do
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
       {:credo, "~> 1.7", only: [:dev, :test]},
       {:excoveralls, "~> 0.18", only: :test},
+      {:junit_formatter, "~> 3.4", only: :test},
       {:mix_audit, "~> 2.1", only: [:dev, :test], runtime: false},
       {:plug_cowboy, "~> 2.8", only: :test}
     ]
