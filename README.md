@@ -5,23 +5,33 @@
 [![Coverage Status](https://img.shields.io/codecov/c/github/smstoslack/slack_kit?style=flat-square)](https://app.codecov.io/gh/smstoslack/slack_kit)
 [![hex.pm downloads](https://img.shields.io/hexpm/dt/slack_kit?style=flat-square)](https://hex.pm/packages/slack_kit)
 
-This is a Slack [Real Time Messaging API] client for Elixir.  You'll need a
-Slack API token which can be retrieved by following the [Token Generation
-Instructions] or by creating a new [bot integration].
+SlackKit is a Slack client for Elixir. It covers both halves of the Slack
+platform from a single library:
+
+- **Real-Time Messaging (RTM).** A long-lived WebSocket connection that
+  streams workspace events (messages, presence changes, channel updates…) into
+  a bot module of your choosing. See [`Slack`](Slack.html) and
+  [`Slack.Bot`](Slack.Bot.html).
+- **Web API.** The full Slack Web API surface — every `chat.postMessage`,
+  `conversations.list`, `users.info`, and so on — generated at compile time
+  from the official JSON schemas. See the `Slack.Web.*` modules.
+
+You'll need a Slack API token, which can be obtained by following the
+[Token Generation Instructions](token_generation_instructions.html) or by
+creating a new [bot integration](https://my.slack.com/services/new/bot).
 
 [Real time Messaging API]: https://api.slack.com/rtm
-[Token Generation Instructions]: https://hexdocs.pm/slack/token_generation_instructions.html
-[bot integration]: https://my.slack.com/services/new/bot
 
 ## Fork
 
-This is a fork of [Elixir-Slack](https://github.com/BlakeWilliams/Elixir-Slack), which is no longer maintained. It has been updated to use the latest versions of dependencies.
+SlackKit is a fork of [Elixir-Slack](https://github.com/BlakeWilliams/Elixir-Slack),
+which is no longer maintained. It has been updated to use the latest versions
+of dependencies and migrated off the unmaintained `websocket_client` Erlang
+library onto `Mint.WebSocket`.
 
-## Installing
+## Installation
 
-Add `:slack_kit` to your `mix.exs` `dependencies` function:
-
-[websocket_client]: https://github.com/jeremyong/websocket_client
+Add `:slack_kit` to your `mix.exs` dependencies:
 
 ```elixir
 def deps do
@@ -29,6 +39,12 @@ def deps do
     {:slack_kit, "~> 0.24"}
   ]
 end
+```
+
+Then fetch dependencies:
+
+```sh
+mix deps.get
 ```
 
 ## Real Time Messaging (RTM) Bot Usage
@@ -69,17 +85,15 @@ You can send messages to channels using `send_message/3` which takes the message
 as the first argument, channel/user as the second, and the passed in `slack`
 state as the third.
 
-The passed in `slack` state holds the current user properties as `me`, team
-properties as `team`, and the current websocket connection as `socket`.
+The passed-in `slack` argument is a `Slack.State` struct that's folded forward
+as RTM events arrive. It exposes the current bot identity (`me`), team
+(`team`), and live maps of `channels`, `groups`, `users`, `bots`, and `ims`
+keyed by ID — see [`Slack.State`](Slack.State.html) for the full surface.
 
-[rtm.connect]: https://api.slack.com/methods/rtm.connect
+[rtm.connect]: https://docs.slack.dev/reference/methods/rtm.connect/
 
-If you want to do things like trigger the sending of messages outside of your
-Slack handlers, you can leverage the `handle_info/3` callback to implement an
-external API.
-
-This allows you to both respond to Slack RTM events and programmatically control
-your bot from external events.
+To trigger sends from outside the RTM loop — for example, from a Phoenix
+controller or a periodic job — leverage `handle_info/3`:
 
 ```elixir
 {:ok, rtm} = Slack.Bot.start_link(SlackRtm, [], "token")
@@ -88,74 +102,59 @@ send rtm, {:message, "External message", "#general"}
 #==> Sending your message, captain!
 ```
 
-Slack has *a lot* of message types so it's a good idea to define a callback like
-above where unhandled message types don't crash your application. You can find a
-list of message types and examples on the [RTM API page].
-
-You can find more detailed documentation on the [Slack hexdocs
-page][documentation].
+Slack has *a lot* of message types, so define a catch-all `handle_event/3`
+clause to keep unrecognised events from crashing your bot. A full list of types
+is on the [RTM API page].
 
 [RTM API page]: https://api.slack.com/rtm
 
 ## Web API Usage
 
-The complete Slack Web API is implemented by generating modules/functions from
-the JSON documentation. You can view this project's [documentation] for more
-details.
+The complete Slack Web API surface is generated at compile time from the JSON
+schemas under `lib/slack/web/docs/`. Each endpoint becomes a function on a
+module derived from its name — for example `chat.postMessage` becomes
+`Slack.Web.Chat.post_message`, and `conversations.list` becomes
+`Slack.Web.Conversations.list`. Required parameters are positional; everything
+else goes through an `optional_params` map.
 
-There are two ways to authenticate your API calls. You can configure `api_token`
-on `slack` that will authenticate all calls to the API automatically.
-
-```elixir
-config :slack, api_token: "VALUE"
-```
-
-Alternatively you can pass in `%{token: "VALUE"}` to any API call in
-`optional_params`. This also allows you to override the configured `api_token`
-value if desired.
-
-Quick example, getting the names of everyone on your team:
+There are two ways to authenticate. The common case is to set a default token in
+application config:
 
 ```elixir
-names = Slack.Web.Users.list(%{token: "TOKEN_HERE"})
-|> Map.get("members")
-|> Enum.map(fn(member) ->
-  member["real_name"]
-end)
+config :slack, api_token: "xoxb-…"
 ```
 
-### Web Client Configuration
+Alternatively, pass `%{token: "VALUE"}` in `optional_params` on any call. This
+overrides the configured `:api_token` and is useful for multi-workspace apps.
 
-A custom client callback module can be configured for cases in which you need extra control
-over how calls to the web API are performed. This can be used to control timeouts, or to add additional
-custom error handling as needed.
+Quick example — get every member's real name:
 
 ```elixir
-config :slack, :web_http_client, YourApp.CustomClient
+"xoxb-…"
+|> then(&Slack.Web.Users.list(%{token: &1}))
+|> Map.fetch!("members")
+|> Enum.map(& &1["real_name"])
 ```
 
-All Web API calls from documentation-generated modules/functions will call `post!/2` with the generated url
-and body passed as arguments.
-
-In the case where you only need to control the options passed to Req, the default client accepts
-a keyword list as an additional configuration parameter. Note that this is ignored if configuring a custom client.
-
-See [Req docs](https://hexdocs.pm/req/Req.html#new/1) for a list of available options.
+### Configuration
 
 ```elixir
-config :slack, :web_http_client_opts, [connect_options: [timeout: 10_000], receive_timeout: 10_000]
+import Config
+
+config :slack,
+  api_token: System.get_env("SLACK_TOKEN"),
+  url: "https://slack.com",
+  web_http_client: Slack.Web.DefaultClient,
+  web_http_client_opts: [receive_timeout: 10_000]
 ```
 
-## Testing
+See [Configuration](configuration.html) for the full list of supported config
+keys, including custom HTTP clients and `Req` options.
 
-For integration tests, you can change the default Slack URL to your fake Slack
-server:
+## Documentation
 
-```elixir
-config :slack, url: "http://localhost:8000"
-```
-
-[documentation]: http://hexdocs.pm/slack/
+Full documentation, including all generated `Slack.Web.*` modules, lives at
+[hexdocs.pm/slack_kit](https://hexdocs.pm/slack_kit/).
 
 ## Copyright and License
 

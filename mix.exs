@@ -56,15 +56,30 @@ defmodule Slack.Mixfile do
   def docs do
     [
       extras: [
-        {:"LICENSE.md", [title: "License"]},
         {:"README.md", [title: "Overview"]},
-        "guides/token_generation_instructions.md"
+        "guides/configuration.md",
+        "guides/token_generation_instructions.md",
+        {:"CHANGELOG.md", [title: "Changelog"]},
+        {:"LICENSE.md", [title: "License"]}
       ],
       main: "readme",
       source_url: @source_url,
+      source_ref: "v#{@version}",
       assets: %{"guides/assets" => "assets"},
       extra_section: "GUIDES",
-      formatters: ["html"]
+      formatters: ["html"],
+      nest_modules_by_prefix: [Slack.Web, Slack.Web.Admin],
+      groups_for_modules: [
+        "Real-Time Messaging": [
+          Slack,
+          Slack.Bot,
+          Slack.State,
+          Slack.Lookups,
+          Slack.Sends,
+          Slack.WebSocketClient
+        ],
+        "Web API": [~r/^Slack\.Web($|\.)/]
+      ]
     ]
   end
 

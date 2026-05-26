@@ -1,6 +1,23 @@
 defmodule Slack.Lookups do
   @moduledoc """
-  Utility functions for looking up slack state information.
+  Translates between Slack's IDs and human-friendly names.
+
+  Slack's RTM events almost always carry IDs (`"U…"`, `"C…"`, `"G…"`, `"D…"`,
+  `"B…"`) rather than display names; these helpers resolve them either
+  direction against the live `Slack.State` your bot holds. All functions are
+  imported into modules that `use Slack`, so you can call them unqualified
+  from within callbacks.
+
+  The functions that accept `"@USER_NAME"` / `"#CHANNEL_NAME"` strings are
+  convenient but slow (linear scan over `slack.users` or `slack.channels`).
+  Prefer raw IDs in hot paths.
+
+  > #### Username references are deprecated {: .warning}
+  >
+  > Slack deprecated `@username` references in 2017; see the
+  > [changelog](https://api.slack.com/changelog/2017-09-the-one-about-usernames).
+  > Functions that accept them log a warning on each call and may be removed
+  > in a future major version.
   """
 
   require Logger
@@ -10,12 +27,15 @@ defmodule Slack.Lookups do
   For more information see https://api.slack.com/changelog/2017-09-the-one-about-usernames
   """
 
-  @doc ~S"""
-  Turns a string like `"@USER_NAME"` into the ID that Slack understands (`"U…"`).
+  @type slack :: Slack.State.t()
 
-  NOTE: Referencing `"@USER_NAME"` is deprecated, and should not be used.
-  For more information see https://api.slack.com/changelog/2017-09-the-one-about-usernames
+  @doc ~S"""
+  Resolves a `"@USER_NAME"` string to a user ID (`"U…"`).
+
+  Returns `nil` if no user with that name is present in `slack.users`.
+  Deprecated; see the module docs.
   """
+  @spec lookup_user_id(String.t(), slack) :: String.t() | nil
   def lookup_user_id("@" <> user_name, slack) do
     Logger.warning(@username_warning)
 
@@ -28,13 +48,13 @@ defmodule Slack.Lookups do
   end
 
   @doc ~S"""
-  Turns a string like `"@USER_NAME"` or a user ID (`"U…"`) into the ID for the
-  direct message channel of that user (`"D…"`).  `nil` is returned if a direct
-  message channel has not yet been opened.
+  Resolves a user reference to its DM channel ID (`"D…"`).
 
-  NOTE: Referencing `"@USER_NAME"` is deprecated, and should not be used.
-  For more information see https://api.slack.com/changelog/2017-09-the-one-about-usernames
+  Accepts either a user ID (`"U…"`) or a `"@USER_NAME"` string (deprecated).
+  Returns `nil` if a DM channel with that user has not been opened yet —
+  `Slack.Sends.send_message/3` will open one transparently in that case.
   """
+  @spec lookup_direct_message_id(String.t(), slack) :: String.t() | nil
   def lookup_direct_message_id("@" <> _user_name = user, slack) do
     user
     |> lookup_user_id(slack)
@@ -49,10 +69,13 @@ defmodule Slack.Lookups do
   end
 
   @doc ~S"""
-  Turns a string like `"#CHANNEL_NAME"` into the ID that Slack understands
-  (`"C…"`) if a public channel,
-  (`"G…"`) if a group/private channel.
+  Resolves a `"#CHANNEL_NAME"` string to its ID.
+
+  Returns the channel's ID as `"C…"` for a public channel or `"G…"` for a
+  private channel/group. Returns `nil` if no channel with that name is known
+  to `slack`.
   """
+  @spec lookup_channel_id(String.t(), slack) :: String.t() | nil
   def lookup_channel_id("#" <> channel_name, slack) do
     channel =
       find_channel_by_name(slack.channels, channel_name) ||
@@ -62,12 +85,13 @@ defmodule Slack.Lookups do
   end
 
   @doc ~S"""
-  Turns a Slack user ID (`"U…"`), direct message ID (`"D…"`), or bot ID (`"B…"`)
-  into a string in the format "@USER_NAME".
+  Resolves a Slack ID to a `"@USER_NAME"` string.
 
-  NOTE: Referencing `"@USER_NAME"` is deprecated, and should not be used.
-  For more information see https://api.slack.com/changelog/2017-09-the-one-about-usernames
+  Accepts a user ID (`"U…"` or `"W…"`), a DM channel ID (`"D…"` — looked up
+  via the user on the other side of the DM), or a bot ID (`"B…"`). Returns
+  the name prefixed with `@`. Deprecated; see the module docs.
   """
+  @spec lookup_user_name(String.t(), slack) :: String.t()
   def lookup_user_name("D" <> _id = direct_message_id, slack) do
     lookup_user_name(slack.ims[direct_message_id].user, slack)
   end
@@ -86,9 +110,12 @@ defmodule Slack.Lookups do
   end
 
   @doc ~S"""
-  Turns a Slack channel ID (`"C…"`) or a Slack private channel ID (`"G…"`) into
-  a string in the format "#CHANNEL_NAME".
+  Resolves a Slack channel ID to a `"#CHANNEL_NAME"` string.
+
+  Accepts a public channel ID (`"C…"`) or a private channel ID (`"G…"`).
+  Returns the name prefixed with `#`.
   """
+  @spec lookup_channel_name(String.t(), slack) :: String.t()
   def lookup_channel_name("C" <> _id = channel_id, slack) do
     "#" <> slack.channels[channel_id].name
   end

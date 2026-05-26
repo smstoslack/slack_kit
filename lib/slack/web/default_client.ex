@@ -1,19 +1,27 @@
 defmodule Slack.Web.DefaultClient do
   @moduledoc """
-  Default http client used for all requests to Slack Web API.
+  Default `Slack.Web.Client` implementation, built on `Req`.
 
-  All Slack RPC method calls are delivered via post and are dangerous by
-  default, raising on any HTTP response that doesn't contain a body field.
+  Every call generated under `Slack.Web.*` is delivered as an HTTP POST. Form
+  bodies are sent as `application/x-www-form-urlencoded`; uploads are sent as
+  `multipart/form-data` with the file streamed from disk.
 
-  Parsed body data is returned unwrapped to the caller.
+  Responses are JSON-decoded and returned **unwrapped** — i.e. the caller
+  receives the body map directly, so successful calls and Slack-level errors
+  (`%{"ok" => false, "error" => …}`) are surfaced identically. Transport
+  failures raise via `Req.post!/2`.
 
-  Additional error handling or response wrapping can be controlled as needed
-  by configuring a custom client module.
+  Request options can be tuned globally via the `:web_http_client_opts` config
+  key:
 
-  ## Examples
+      config :slack, :web_http_client_opts,
+        connect_options: [timeout: 10_000],
+        receive_timeout: 10_000
 
-      config :slack, :web_http_client, YourApp.CustomClient
+  For richer behaviour — retries, response wrapping, telemetry, custom error
+  handling — swap in a module implementing `Slack.Web.Client`:
 
+      config :slack, :web_http_client, MyApp.SlackClient
   """
 
   @behaviour Slack.Web.Client
