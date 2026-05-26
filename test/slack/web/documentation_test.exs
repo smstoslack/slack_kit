@@ -142,10 +142,13 @@ defmodule Slack.Web.DocumentationTest do
         Documentation.to_doc_string(Documentation.new(file_content, "chat.postMessage.json"))
 
       assert output =~ "> #### API reference {: .info}"
-      assert output =~ "> **Scopes**"
-      assert output =~ "> _Bot token_"
-      assert output =~ "> _User token_"
-      assert output =~ "> * [`chat:write`](https://docs.slack.dev/reference/scopes/chat.write)"
+      assert output =~ "> **Scopes:**"
+
+      assert output =~
+               "> * _Bot token_: [`chat:write`](https://docs.slack.dev/reference/scopes/chat.write)"
+
+      assert output =~
+               "> * _User token_: [`chat:write`](https://docs.slack.dev/reference/scopes/chat.write)"
     end
 
     test "renders 'No scopes required' when scopes is empty" do
@@ -154,6 +157,46 @@ defmodule Slack.Web.DocumentationTest do
 
       assert output =~ "> #### API reference {: .info}"
       assert output =~ "> **Scopes:** _No scopes required_"
+    end
+
+    test "skips token groups whose scope list is empty" do
+      file_content = %{
+        "desc" => "x",
+        "scopes" => %{
+          "bot" => [],
+          "user" => [
+            %{
+              "name" => "chat:write",
+              "url" => "https://docs.slack.dev/reference/scopes/chat.write"
+            }
+          ]
+        }
+      }
+
+      output =
+        Documentation.to_doc_string(Documentation.new(file_content, "chat.postMessage.json"))
+
+      assert output =~ "> * _User token_:"
+      refute output =~ "_Bot token_"
+    end
+
+    test "renders the app token group" do
+      file_content = %{
+        "desc" => "x",
+        "scopes" => %{
+          "app" => [
+            %{
+              "name" => "app_mentions:read",
+              "url" => "https://docs.slack.dev/reference/scopes/app_mentions.read"
+            }
+          ]
+        }
+      }
+
+      output = Documentation.to_doc_string(Documentation.new(file_content, "apps.event.json"))
+
+      assert output =~
+               "> * _App token_: [`app_mentions:read`](https://docs.slack.dev/reference/scopes/app_mentions.read)"
     end
 
     test "renders scopes and rate limit in a single info admonition" do
@@ -178,19 +221,58 @@ defmodule Slack.Web.DocumentationTest do
       # Only one admonition opens.
       assert output |> String.split("> #### API reference {: .info}") |> length() == 2
 
-      assert output =~ "> **Scopes**"
-      assert output =~ "> _Bot token_"
+      assert output =~ "> **Scopes:**"
+
+      assert output =~
+               "> * _Bot token_: [`users:read`](https://docs.slack.dev/reference/scopes/users.read)"
 
       assert output =~
                "> **Rate limit:** [Tier 2: 20+ per minute](https://docs.slack.dev/apis/web-api/rate-limits)"
     end
 
-    test "omits the admonition entirely when neither scopes nor rate_limit are present" do
+    test "always renders the API reference admonition with a link to the Slack docs" do
       doc = Documentation.new(%{"desc" => "Legacy endpoint."}, "legacy.method.json")
       output = Documentation.to_doc_string(doc)
 
-      refute output =~ "API reference"
-      refute output =~ "{: .info}"
+      assert output =~ "> #### API reference {: .info}"
+
+      assert output =~
+               "> [View on docs.slack.dev ↗](https://docs.slack.dev/reference/methods/legacy.method)"
+    end
+
+    test "lowercases the endpoint in the Slack docs URL" do
+      doc = Documentation.new(%{"desc" => "Send."}, "chat.postMessage.json")
+      output = Documentation.to_doc_string(doc)
+
+      assert output =~
+               "> [View on docs.slack.dev ↗](https://docs.slack.dev/reference/methods/chat.postmessage)"
+    end
+
+    test "orders the admonition as rate limit, scopes, then the docs link" do
+      file_content = %{
+        "desc" => "x",
+        "scopes" => %{
+          "bot" => [
+            %{
+              "name" => "users:read",
+              "url" => "https://docs.slack.dev/reference/scopes/users.read"
+            }
+          ]
+        },
+        "rate_limit" => %{
+          "label" => "Tier 2",
+          "url" => "https://docs.slack.dev/apis/web-api/rate-limits"
+        }
+      }
+
+      output = Documentation.to_doc_string(Documentation.new(file_content, "users.list.json"))
+
+      rate_limit_idx = output |> :binary.match("Rate limit:") |> elem(0)
+      scopes_idx = output |> :binary.match("**Scopes:**") |> elem(0)
+      reference_idx = output |> :binary.match("[View on docs.slack.dev ↗]") |> elem(0)
+
+      assert rate_limit_idx < scopes_idx
+      assert scopes_idx < reference_idx
     end
   end
 

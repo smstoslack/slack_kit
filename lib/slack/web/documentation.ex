@@ -57,25 +57,27 @@ defmodule Slack.Web.Documentation do
   @relative_link_re ~r/\[([^\]]+)\]\(\/[^)]*\)/
   defp strip_relative_links(text), do: Regex.replace(@relative_link_re, text, "\\1")
 
-  defp facts_docs(%__MODULE__{raw: raw}) when is_map(raw) do
+  defp facts_docs(%__MODULE__{endpoint: endpoint, raw: raw}) when is_map(raw) do
     lines =
-      scope_lines(Map.get(raw, "scopes")) ++
+      rate_limit_lines(Map.get(raw, "rate_limit")) ++
+        scope_lines(Map.get(raw, "scopes")) ++
         [""] ++
-        rate_limit_lines(Map.get(raw, "rate_limit"))
+        reference_lines(endpoint)
 
-    case drop_trailing_blanks(lines) do
-      [] -> ""
-      body -> admonition("API reference", body)
-    end
+    admonition("API reference", drop_trailing_blanks(lines))
   end
 
-  defp facts_docs(_), do: ""
+  defp reference_lines(endpoint) do
+    [
+      "[View on docs.slack.dev ↗](https://docs.slack.dev/reference/methods/#{String.downcase(endpoint)})"
+    ]
+  end
 
   defp scope_lines(nil), do: []
   defp scope_lines(scopes) when scopes == %{}, do: ["**Scopes:** _No scopes required_", ""]
 
   defp scope_lines(scopes) do
-    ["**Scopes**", "" | scope_group_lines(scopes)]
+    ["**Scopes:**", "" | scope_group_lines(scopes)]
   end
 
   defp scope_group_lines(scopes) do
@@ -96,7 +98,6 @@ defmodule Slack.Web.Documentation do
   defp scope_token_label("bot"), do: "Bot token"
   defp scope_token_label("user"), do: "User token"
   defp scope_token_label("app"), do: "App token"
-  defp scope_token_label(other), do: other
 
   defp rate_limit_lines(%{"label" => label, "url" => url}),
     do: ["**Rate limit:** [#{label}](#{url})"]
