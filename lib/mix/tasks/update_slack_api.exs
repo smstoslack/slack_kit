@@ -7,8 +7,10 @@
 # The universal `token` argument is excluded — Slack.Web injects it at call time.
 
 defmodule UpdateSlackApi do
+  @base_url "https://docs.slack.dev"
   @index_url "https://docs.slack.dev/reference/methods.md"
   @out_dir "lib/slack/web/docs"
+  @common_errors_path "lib/slack/web/common_errors.json"
   @user_agent "slack_kit-doc-generator"
 
   @method_link_re ~r"\[([A-Za-z][\w.]*)\]\((https://docs\.slack\.dev/reference/methods/[\w.]+\.md)\)"
@@ -23,6 +25,12 @@ defmodule UpdateSlackApi do
   @error_name_re ~r/^`([a-z][a-z0-9_]*)`$/
   @trailing_rule_re ~r/\s*\*\s*\*\s*\*\s*\z/
   @markdown_link_re ~r/\[([^\]]+)\]\([^)]+\)/
+
+  @scopes_section_re ~r/\*\*Scopes\*\*(.*?)(?=\n\n\*\*|\n##\s)/s
+  @no_scopes_re ~r/_No scopes required_/
+  @scope_token_split_re ~r/\b(Bot token|User token|App token):\s*/
+  @scope_link_re ~r/\[`([^`]+)`\]\(([^)]+)\)/
+  @rate_limit_re ~r/\*\*Rate Limits\*\*\s*\[([^\]]+)\]\(([^)]+)\)/
 
   @usage_section_re ~r/##\s*Usage info\s*\{#usage-info\}(.*?)(?=\n##\s|\z)/s
   @code_block_re ~r/```.*?```/s
@@ -39,9 +47,10 @@ defmodule UpdateSlackApi do
     IO.puts("Fetching #{length(methods)} methods...")
 
     File.mkdir_p!(@out_dir)
+    common_errors = load_common_errors()
 
     methods
-    |> Task.async_stream(&write_doc/1,
+    |> Task.async_stream(&write_doc(&1, common_errors),
       max_concurrency: 8,
       timeout: 60_000,
       on_timeout: :kill_task
@@ -51,6 +60,14 @@ defmodule UpdateSlackApi do
       {:ok, {:error, name, reason}} -> IO.puts(:stderr, "err #{name}: #{reason}")
       {:exit, reason} -> IO.puts(:stderr, "exit: #{inspect(reason)}")
     end)
+  end
+
+  defp load_common_errors do
+    @common_errors_path
+    |> File.read!()
+    |> JSON.decode!()
+    |> Map.keys()
+    |> MapSet.new()
   end
 
   defp filter(methods, []), do: methods
@@ -72,9 +89,14 @@ defmodule UpdateSlackApi do
     |> Enum.sort()
   end
 
-  defp write_doc({name, url}) do
+  defp write_doc({name, url}, common_errors) do
     try do
-      data = url |> fetch!() |> parse_method_page()
+      data =
+        url
+        |> fetch!()
+        |> parse_method_page()
+        |> strip_common_errors(common_errors)
+
       json = (data |> :json.format() |> IO.iodata_to_binary()) <> "\n"
       File.write!(Path.join(@out_dir, "#{name}.json"), json)
       {:ok, name}
@@ -82,6 +104,12 @@ defmodule UpdateSlackApi do
       e -> {:error, name, Exception.message(e)}
     end
   end
+
+  defp strip_common_errors(%{"errors" => errors} = data, common_errors) when is_map(errors) do
+    Map.put(data, "errors", Map.reject(errors, fn {k, _} -> MapSet.member?(common_errors, k) end))
+  end
+
+  defp strip_common_errors(data, _common_errors), do: data
 
   defp fetch!(url) do
     %{body: body} = Req.get!(url, headers: [{"user-agent", @user_agent}])
@@ -92,9 +120,77 @@ defmodule UpdateSlackApi do
     %{
       "desc" => extract(text, @desc_re),
       "args" => parse_args(text),
-      "errors" => parse_errors(text)
+      "errors" => parse_errors(text),
+      "scopes" => parse_scopes(text),
+      "rate_limit" => parse_rate_limit(text)
     }
   end
+
+  defp parse_scopes(text) do
+    case Regex.run(@scopes_section_re, text) do
+      [_, section] ->
+        if Regex.match?(@no_scopes_re, section),
+          do: %{},
+          else: extract_scope_groups(section)
+
+      _ ->
+        %{}
+    end
+  end
+
+  # The section opens with `**Scopes**` followed by zero or more
+  # `Bot token:` / `User token:` / `App token:` blocks. For each labeled
+  # block, the body runs from the label's end to the next label or section end.
+  defp extract_scope_groups(section) do
+    matches = Regex.scan(@scope_token_split_re, section, return: :index)
+    section_len = byte_size(section)
+
+    matches
+    |> Enum.with_index()
+    |> Enum.reduce(%{}, fn {[{m_start, m_len}, {label_start, label_len}], i}, acc ->
+      body_start = m_start + m_len
+
+      body_end =
+        case Enum.at(matches, i + 1) do
+          [{next_start, _} | _] -> next_start
+          _ -> section_len
+        end
+
+      label = binary_part(section, label_start, label_len)
+      body = binary_part(section, body_start, body_end - body_start)
+      maybe_add_scopes(acc, scope_token_key(label), extract_scope_links(body))
+    end)
+  end
+
+  defp scope_token_key("Bot token"), do: "bot"
+  defp scope_token_key("User token"), do: "user"
+  defp scope_token_key("App token"), do: "app"
+  defp scope_token_key(_), do: nil
+
+  defp extract_scope_links(body) do
+    @scope_link_re
+    |> Regex.scan(body, capture: :all_but_first)
+    |> Enum.map(fn [name, url] ->
+      %{"name" => name, "url" => absolute_url(url)}
+    end)
+  end
+
+  defp maybe_add_scopes(acc, nil, _scopes), do: acc
+  defp maybe_add_scopes(acc, _key, []), do: acc
+  defp maybe_add_scopes(acc, key, scopes), do: Map.put(acc, key, scopes)
+
+  defp parse_rate_limit(text) do
+    case Regex.run(@rate_limit_re, text) do
+      [_, label, url] ->
+        %{"label" => String.trim(label), "url" => absolute_url(url)}
+
+      _ ->
+        nil
+    end
+  end
+
+  defp absolute_url("/" <> _ = path), do: @base_url <> path
+  defp absolute_url(url), do: url
 
   defp extract(text, re) do
     case Regex.run(re, text) do

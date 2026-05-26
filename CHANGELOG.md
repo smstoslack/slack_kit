@@ -1,5 +1,10 @@
 # Changelog
 
+## Next
+
+- Scrape per-method scopes and rate limits from `docs.slack.dev` and include them in the generated `Slack.Web.*` function docs (with links to the upstream scope and rate-limit reference pages).
+- Extract the ~30 errors Slack lists on every Web API method into a new `Slack.Web.Errors` module. Per-method docs now only list errors specific to that method and link to `Slack.Web.Errors` for the shared set, dramatically reducing noise in the generated docs. The doc-regeneration mix task strips common errors on every run.
+
 ## v0.25.0-alpha.0
 
 - **Breaking:** Requires Elixir 1.18.

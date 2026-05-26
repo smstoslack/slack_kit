@@ -45,6 +45,7 @@ defmodule Slack.Web.Documentation do
   def to_doc_string(documentation) do
     [
       documentation.desc,
+      facts_docs(documentation),
       required_params_docs(documentation),
       optional_params_docs(documentation),
       errors_docs(documentation)
@@ -55,6 +56,64 @@ defmodule Slack.Web.Documentation do
 
   @relative_link_re ~r/\[([^\]]+)\]\(\/[^)]*\)/
   defp strip_relative_links(text), do: Regex.replace(@relative_link_re, text, "\\1")
+
+  defp facts_docs(%__MODULE__{raw: raw}) when is_map(raw) do
+    lines =
+      scope_lines(Map.get(raw, "scopes")) ++ [""] ++
+        rate_limit_lines(Map.get(raw, "rate_limit"))
+
+    case drop_trailing_blanks(lines) do
+      [] -> ""
+      body -> admonition("API reference", body)
+    end
+  end
+
+  defp facts_docs(_), do: ""
+
+  defp scope_lines(nil), do: []
+  defp scope_lines(scopes) when scopes == %{}, do: ["**Scopes:** _No scopes required_", ""]
+
+  defp scope_lines(scopes) do
+    ["**Scopes**", "" | scope_group_lines(scopes)]
+  end
+
+  defp scope_group_lines(scopes) do
+    ["bot", "user", "app"]
+    |> Enum.flat_map(&scope_group_section(&1, Map.get(scopes, &1)))
+  end
+
+  defp scope_group_section(_key, nil), do: []
+  defp scope_group_section(_key, []), do: []
+
+  defp scope_group_section(key, list) do
+    items = Enum.map_join(list, ", ", fn %{"name" => name, "url" => url} -> "[`#{name}`](#{url})" end)
+    ["* _#{scope_token_label(key)}_: #{items}"]
+  end
+
+  defp scope_token_label("bot"), do: "Bot token"
+  defp scope_token_label("user"), do: "User token"
+  defp scope_token_label("app"), do: "App token"
+  defp scope_token_label(other), do: other
+
+  defp rate_limit_lines(%{"label" => label, "url" => url}),
+    do: ["**Rate limit:** [#{label}](#{url})"]
+
+  defp rate_limit_lines(_), do: []
+
+  # ExDoc admonition info block — a markdown blockquote with `{: .info}`.
+  # Body lines are quoted; empty lines become bare `>` so the block stays
+  # contiguous in the rendered output.
+  defp admonition(title, body_lines) do
+    quoted = Enum.map_join(body_lines, "\n", &("> " <> &1))
+    "\n> #### #{title} {: .info}\n>\n" <> quoted <> "\n"
+  end
+
+  defp drop_trailing_blanks(lines) do
+    lines
+    |> Enum.reverse()
+    |> Enum.drop_while(&(&1 == ""))
+    |> Enum.reverse()
+  end
 
   defp required_params_docs(%__MODULE__{required_params: []}), do: ""
 
@@ -82,13 +141,17 @@ defmodule Slack.Web.Documentation do
 
   def example(_meta), do: ""
 
-  defp errors_docs(%__MODULE__{errors: nil}), do: ""
+  @common_errors_footer "\nSee `Slack.Web.Errors` for errors common to all Web API methods.\n"
+
+  defp errors_docs(%__MODULE__{errors: nil}), do: @common_errors_footer
+  defp errors_docs(%__MODULE__{errors: errors}) when errors == %{}, do: @common_errors_footer
 
   defp errors_docs(%__MODULE__{errors: errors}) do
     errors
     |> Enum.reduce("\nErrors the API can return:\n", fn {error, desc}, doc ->
       doc <> "* `#{error}` - #{desc}\n"
     end)
+    |> Kernel.<>(@common_errors_footer)
   end
 
   defp get_required_params(json), do: get_params_with_required(json, true)

@@ -1,6 +1,8 @@
 {
   "args": {},
   "desc": "",
-  "errors": {}
+  "errors": {},
+  "rate_limit": "nil",
+  "scopes": {}
 }
 

@@ -81,8 +81,22 @@ defmodule Slack.Web.DocumentationTest do
       assert output =~ "* `as_user`"
       assert output =~ "Errors the API can return"
       assert output =~ "* `channel_not_found`"
+      assert output =~ "See `Slack.Web.Errors` for errors common to all Web API methods."
       refute output =~ "(/concepts)"
       assert output =~ "the docs"
+    end
+
+    test "links to Slack.Web.Errors even when the endpoint has no specific errors" do
+      file_content = %{
+        "desc" => "Plain endpoint.",
+        "args" => %{},
+        "errors" => %{}
+      }
+
+      output = Documentation.to_doc_string(Documentation.new(file_content, "team.info.json"))
+
+      refute output =~ "Errors the API can return"
+      assert output =~ "See `Slack.Web.Errors` for errors common to all Web API methods."
     end
 
     test "omits sections when there are no params or errors" do
@@ -93,6 +107,83 @@ defmodule Slack.Web.DocumentationTest do
       refute output =~ "Required Params"
       refute output =~ "Optional Params"
       refute output =~ "Errors the API can return"
+      refute output =~ "Scopes"
+      refute output =~ "Rate limit"
+      assert output =~ "See `Slack.Web.Errors` for errors common to all Web API methods."
+    end
+
+    test "renders scopes grouped by token type with links" do
+      file_content = %{
+        "desc" => "Sends a message.",
+        "scopes" => %{
+          "bot" => [
+            %{
+              "name" => "chat:write",
+              "url" => "https://docs.slack.dev/reference/scopes/chat.write"
+            }
+          ],
+          "user" => [
+            %{
+              "name" => "chat:write",
+              "url" => "https://docs.slack.dev/reference/scopes/chat.write"
+            }
+          ]
+        }
+      }
+
+      output =
+        Documentation.to_doc_string(Documentation.new(file_content, "chat.postMessage.json"))
+
+      assert output =~ "> #### API reference {: .info}"
+      assert output =~ "> **Scopes**"
+      assert output =~ "> _Bot token_"
+      assert output =~ "> _User token_"
+      assert output =~ "> * [`chat:write`](https://docs.slack.dev/reference/scopes/chat.write)"
+    end
+
+    test "renders 'No scopes required' when scopes is empty" do
+      doc = Documentation.new(%{"desc" => "x", "scopes" => %{}}, "auth.test.json")
+      output = Documentation.to_doc_string(doc)
+
+      assert output =~ "> #### API reference {: .info}"
+      assert output =~ "> **Scopes:** _No scopes required_"
+    end
+
+    test "renders scopes and rate limit in a single info admonition" do
+      file_content = %{
+        "desc" => "x",
+        "scopes" => %{
+          "bot" => [
+            %{
+              "name" => "users:read",
+              "url" => "https://docs.slack.dev/reference/scopes/users.read"
+            }
+          ]
+        },
+        "rate_limit" => %{
+          "label" => "Tier 2: 20+ per minute",
+          "url" => "https://docs.slack.dev/apis/web-api/rate-limits"
+        }
+      }
+
+      output = Documentation.to_doc_string(Documentation.new(file_content, "users.list.json"))
+
+      # Only one admonition opens.
+      assert output |> String.split("> #### API reference {: .info}") |> length() == 2
+
+      assert output =~ "> **Scopes**"
+      assert output =~ "> _Bot token_"
+
+      assert output =~
+               "> **Rate limit:** [Tier 2: 20+ per minute](https://docs.slack.dev/apis/web-api/rate-limits)"
+    end
+
+    test "omits the admonition entirely when neither scopes nor rate_limit are present" do
+      doc = Documentation.new(%{"desc" => "Legacy endpoint."}, "legacy.method.json")
+      output = Documentation.to_doc_string(doc)
+
+      refute output =~ "API reference"
+      refute output =~ "{: .info}"
     end
   end
 

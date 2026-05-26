@@ -69,6 +69,7 @@ defmodule Slack.Mixfile do
       extra_section: "GUIDES",
       formatters: ["html"],
       nest_modules_by_prefix: [Slack.Web, Slack.Web.Admin],
+      markdown_processor: {ExDoc.Markdown.Earmark, [breaks: true]},
       groups_for_modules: [
         "Real-Time Messaging": [
           Slack,

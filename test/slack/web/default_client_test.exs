@@ -66,7 +66,8 @@ defmodule Slack.Web.DefaultClientTest do
       {:file, path, []}
     ]
 
-    assert %{"ok" => true} = DefaultClient.post!("http://x.test/api/files.upload", {:multipart, parts})
+    assert %{"ok" => true} =
+             DefaultClient.post!("http://x.test/api/files.upload", {:multipart, parts})
 
     File.rm!(path)
   end

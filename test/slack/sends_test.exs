@@ -127,8 +127,7 @@ defmodule Slack.SendsTest do
     result = Sends.send_message("hi", "#channel", slack, "1.2")
 
     assert result ==
-             {nil,
-              ~s/{"type":"message","text":"hi","channel":"C456","thread_ts":"1.2"}/}
+             {nil, ~s/{"type":"message","text":"hi","channel":"C456","thread_ts":"1.2"}/}
   end
 
   test "send_message/4 raises ArgumentError when #channel is not found" do
