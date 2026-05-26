@@ -1,0 +1,24 @@
+name: test
+
+on: [workflow_call]
+
+jobs:
+  unit:
+    name: ${{ matrix.elixir }}, ${{ matrix.otp }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - elixir: "1.18"
+            otp: "26.x"
+          - elixir: "1.18"
+            otp: "27.x"
+          - elixir: "1.19"
+            otp: "28.x"
+    steps:
+      - uses: actions/checkout@v6
+      - uses: ./.github/actions/setup-beam-and-install-dependencies
+        with:
+          elixir-version: ${{ matrix.elixir }}
+          otp-version: ${{ matrix.otp }}
+      - run: mix test

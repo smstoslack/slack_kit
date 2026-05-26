@@ -1,0 +1,18 @@
+name: checks
+
+on: [workflow_call]
+
+jobs:
+  credo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: ./.github/actions/setup-beam-and-install-dependencies
+      - run: mix credo
+
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: ./.github/actions/setup-beam-and-install-dependencies
+      - run: mix format --check-formatted

@@ -1,0 +1,11 @@
+name: docs
+
+on: [workflow_call]
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: ./.github/actions/setup-beam-and-install-dependencies
+      - run: mix docs

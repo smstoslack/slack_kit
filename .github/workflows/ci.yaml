@@ -1,0 +1,16 @@
+name: ci
+
+on: [push, pull_request, workflow_call]
+
+jobs:
+  docs:
+    uses: ./.github/workflows/docs.yaml
+
+  lint:
+    uses: ./.github/workflows/lint.yaml
+
+  security:
+    uses: ./.github/workflows/security.yaml
+
+  test:
+    uses: ./.github/workflows/test.yaml

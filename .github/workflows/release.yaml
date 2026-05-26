@@ -1,0 +1,24 @@
+name: release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  ci:
+    uses: ./.github/workflows/ci.yaml
+
+  release:
+    runs-on: ubuntu-latest
+    needs:
+      - ci
+    env:
+      HEX_API_KEY: ${{ secrets.HEX_API_KEY }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: ./.github/actions/setup-beam-and-install-dependencies
+      - name: Publish to Hex
+        run: |
+          mix hex.publish --yes
+          mix hex.publish docs --yes
