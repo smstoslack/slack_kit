@@ -1,16 +1,16 @@
 defmodule Slack.Mixfile do
   use Mix.Project
 
-  @source_url "https://github.com/BlakeWilliams/Elixir-Slack"
+  @source_url "https://github.com/smstoslack/slack_kit"
   @version "0.23.6"
 
   def project do
     [
-      app: :slack,
+      app: :slack_kit,
       version: @version,
       elixir: "~> 1.7",
       elixirc_paths: elixirc_paths(Mix.env()),
-      name: "Slack",
+      name: "SlackKit",
       deps: deps(),
       docs: docs(),
       package: package()
@@ -55,8 +55,8 @@ defmodule Slack.Mixfile do
 
   defp package do
     [
-      description: "A Slack Real Time Messaging API client.",
-      maintainers: ["Blake Williams"],
+      description: "A Slack Web & Real Time Messaging API client.",
+      maintainers: ["Samuel Gordalina"],
       licenses: ["MIT"],
       links: %{
         GitHub: @source_url
