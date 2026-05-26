@@ -46,10 +46,10 @@ defmodule Slack.Bot do
           initial_state: initial_state
         }
 
-        url = String.to_charlist(state.rtm.url)
-
         {:ok, pid} =
-          options.client.start_link(url, __MODULE__, state, keepalive: options.keepalive)
+          options.client.start_link(state.rtm.url, __MODULE__, state,
+            keepalive: options.keepalive
+          )
 
         if options.name != nil do
           Process.register(pid, options.name)
@@ -116,10 +116,7 @@ defmodule Slack.Bot do
       bot_handler.handle_close(reason, slack, process_state)
       {:close, reason, state}
     rescue
-      e ->
-        Logger.error(__STACKTRACE__)
-        handle_exception(e)
-        {:close, reason, state}
+      e -> log_and_reraise(e, __STACKTRACE__)
     end
   end
 
@@ -133,10 +130,7 @@ defmodule Slack.Bot do
       {:ok, new_process_state} = bot_handler.handle_info(message, slack, process_state)
       {:ok, %{state | process_state: new_process_state}}
     rescue
-      e ->
-        Logger.error(__STACKTRACE__)
-        handle_exception(e)
-        {:ok, state}
+      e -> log_and_reraise(e, __STACKTRACE__)
     end
   end
 
@@ -164,9 +158,7 @@ defmodule Slack.Bot do
           {:ok, new_process_state} = bot_handler.handle_event(message, slack, process_state)
           new_process_state
         rescue
-          e ->
-            Logger.error(__STACKTRACE__)
-            handle_exception(e)
+          e -> log_and_reraise(e, __STACKTRACE__)
         end
       else
         process_state
@@ -185,9 +177,8 @@ defmodule Slack.Bot do
     |> Slack.JSON.atomize_keys()
   end
 
-  defp handle_exception(e) do
-    message = Exception.message(e)
-    Logger.error(message)
-    raise message
+  defp log_and_reraise(e, stacktrace) do
+    Logger.error(Exception.format(:error, e, stacktrace))
+    reraise e, stacktrace
   end
 end

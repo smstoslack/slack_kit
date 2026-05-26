@@ -176,17 +176,7 @@ defmodule Slack.WebSocketClient do
   defp connect_opts(:https), do: [transport_opts: [cacerts: cacerts()]]
   defp connect_opts(:http), do: []
 
-  defp cacerts do
-    if Code.ensure_loaded?(:public_key) and
-         function_exported?(:public_key, :cacerts_get, 0) do
-      :public_key.cacerts_get()
-    else
-      CAStore.file_path()
-      |> File.read!()
-      |> :public_key.pem_decode()
-      |> Enum.map(&elem(&1, 1))
-    end
-  end
+  defp cacerts, do: :public_key.cacerts_get()
 
   defp handle_responses([], data), do: {:noreply, data}
 

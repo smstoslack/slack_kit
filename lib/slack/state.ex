@@ -30,6 +30,19 @@ defmodule Slack.State do
     ims: %{}
   ]
 
+  @type t :: %__MODULE__{
+          process: pid() | nil,
+          client: module() | nil,
+          token: String.t() | nil,
+          me: map() | nil,
+          team: map() | nil,
+          bots: map(),
+          channels: map(),
+          groups: map(),
+          users: map(),
+          ims: map()
+        }
+
   defp safe_map_getter(key) do
     Access.key(key, %{})
   end
@@ -41,7 +54,7 @@ defmodule Slack.State do
   @doc """
   Pattern matches against messages and returns updated Slack state.
   """
-  @spec update(Map, Map) :: {Symbol, Map}
+  @spec update(map(), t()) :: t()
   def update(%{type: "channel_created", channel: channel}, slack) do
     put_in(slack, [:channels, channel.id], channel)
   end

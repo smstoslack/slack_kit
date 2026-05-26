@@ -126,19 +126,11 @@ defmodule Slack.Sends do
   end
 
   defp open_im_channel(token, user_id, on_success, on_error) do
-    im_open =
-      with url <- Application.get_env(:slack, :url, "https://slack.com") <> "/api/im.open",
-           options <- Application.get_env(:slack, :web_http_client_opts, []) do
-        Req.post(
-          url,
-          Keyword.merge(options,
-            form: [token: token, user: user_id],
-            decode_body: false
-          )
-        )
-      end
+    url = Application.get_env(:slack, :url, "https://slack.com") <> "/api/im.open"
+    options = Application.get_env(:slack, :web_http_client_opts, [])
+    options = Keyword.merge(options, form: [token: token, user: user_id], decode_body: false)
 
-    case im_open do
+    case Req.post(url, options) do
       {:ok, response} ->
         case response.body |> JSON.decode!() |> Slack.JSON.atomize_keys() do
           %{ok: true, channel: %{id: id}} -> on_success.(id)

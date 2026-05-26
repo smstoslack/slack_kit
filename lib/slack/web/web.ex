@@ -3,7 +3,7 @@ defmodule Slack.Web do
 
   def get_documentation do
     File.ls!("#{__DIR__}/docs")
-    |> format_documentation
+    |> format_documentation()
   end
 
   defp format_documentation(files) do
@@ -14,9 +14,7 @@ defmodule Slack.Web do
 
       doc = Slack.Web.Documentation.new(json, file)
 
-      module_names
-      |> Map.put_new(doc.module, [])
-      |> update_in([doc.module], &(&1 ++ [doc]))
+      Map.update(module_names, doc.module, [doc], &(&1 ++ [doc]))
     end)
   end
 end
@@ -28,7 +26,7 @@ Enum.each(Slack.Web.get_documentation(), fn {module_name, functions} ->
     module_name
     |> String.split(".")
     |> Enum.map(&Macro.camelize/1)
-    |> Enum.reduce(Slack.Web, &Module.concat(&2, &1))
+    |> then(&Module.concat([Slack.Web | &1]))
 
   defmodule module do
     Enum.each(functions, fn doc ->

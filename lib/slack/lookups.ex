@@ -17,7 +17,7 @@ defmodule Slack.Lookups do
   For more information see https://api.slack.com/changelog/2017-09-the-one-about-usernames
   """
   def lookup_user_id("@" <> user_name, slack) do
-    Logger.warn(@username_warning)
+    Logger.warning(@username_warning)
 
     slack.users
     |> Map.values()
@@ -81,7 +81,7 @@ defmodule Slack.Lookups do
   end
 
   def lookup_user_name("B" <> _id = bot_id, slack) do
-    Logger.warn(@username_warning)
+    Logger.warning(@username_warning)
     "@" <> slack.bots[bot_id].name
   end
 
@@ -102,7 +102,7 @@ defmodule Slack.Lookups do
   end
 
   defp find_username_by_id(user_id, slack) do
-    Logger.warn(@username_warning)
+    Logger.warning(@username_warning)
     "@" <> slack.users[user_id].name
   end
 end
