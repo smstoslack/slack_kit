@@ -2,7 +2,7 @@ defmodule Slack.FakeSlack do
   def start_link do
     Application.put_env(:slack, :url, "http://localhost:51345")
 
-    Plug.Adapters.Cowboy.http(
+    Plug.Cowboy.http(
       Slack.FakeSlack.Router,
       [],
       port: 51345,
@@ -11,7 +11,7 @@ defmodule Slack.FakeSlack do
   end
 
   def stop do
-    Plug.Adapters.Cowboy.shutdown(Slack.FakeSlack.Router)
+    Plug.Cowboy.shutdown(Slack.FakeSlack.Router.HTTP)
   end
 
   defp dispatch do
@@ -20,7 +20,7 @@ defmodule Slack.FakeSlack do
         :_,
         [
           {"/ws", Slack.FakeSlack.Websocket, []},
-          {:_, Plug.Adapters.Cowboy.Handler, {Slack.FakeSlack.Router, []}}
+          {:_, Plug.Cowboy.Handler, {Slack.FakeSlack.Router, []}}
         ]
       }
     ]
