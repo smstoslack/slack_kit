@@ -43,16 +43,18 @@ defmodule Slack.Web.Documentation do
   end
 
   def to_doc_string(documentation) do
-    Enum.join(
-      [
-        documentation.desc,
-        required_params_docs(documentation),
-        optional_params_docs(documentation),
-        errors_docs(documentation)
-      ],
-      "\n"
-    )
+    [
+      documentation.desc,
+      required_params_docs(documentation),
+      optional_params_docs(documentation),
+      errors_docs(documentation)
+    ]
+    |> Enum.join("\n")
+    |> strip_relative_links()
   end
+
+  @relative_link_re ~r/\[([^\]]+)\]\(\/[^)]*\)/
+  defp strip_relative_links(text), do: Regex.replace(@relative_link_re, text, "\\1")
 
   defp required_params_docs(%__MODULE__{required_params: []}), do: ""
 

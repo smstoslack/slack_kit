@@ -3,7 +3,7 @@
 [![hex.pm version](https://img.shields.io/hexpm/v/slack_kit?style=flat-square)](https://hex.pm/packages/slack_kit)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/smstoslack/slack_kit/ci.yaml?branch=main&style=flat-square)](https://github.com/smstoslack/slack_kit/actions/workflows/ci.yaml)
 [![Coverage Status](https://img.shields.io/codecov/c/github/smstoslack/slack_kit?style=flat-square)](https://app.codecov.io/gh/smstoslack/slack_kit)
-[![hex.pm downloads](https://img.shields.io/hexpm/dt/slack_kit?style=flat-square)]([LICENSE](https://hex.pm/packages/slack_kit))
+[![hex.pm downloads](https://img.shields.io/hexpm/dt/slack_kit?style=flat-square)](https://hex.pm/packages/slack_kit)
 
 This is a Slack [Real Time Messaging API] client for Elixir.  You'll need a
 Slack API token which can be retrieved by following the [Token Generation

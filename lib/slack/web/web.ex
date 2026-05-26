@@ -28,6 +28,8 @@ Enum.each(Slack.Web.get_documentation(), fn {module_name, functions} ->
     |> Enum.map(&Macro.camelize/1)
     |> then(&Module.concat([Slack.Web | &1]))
 
+  has_upload? = Enum.any?(functions, &(&1.function == :upload))
+
   defmodule module do
     Enum.each(functions, fn doc ->
       function_name = doc.function
@@ -64,15 +66,17 @@ Enum.each(Slack.Web.get_documentation(), fn {module_name, functions} ->
     defp get_token(%{token: token}), do: token
     defp get_token(_), do: Application.get_env(:slack, :api_token)
 
-    defp params(:upload, params, arguments) do
-      file = List.first(arguments)
+    if has_upload? do
+      defp params(:upload, params, arguments) do
+        file = List.first(arguments)
 
-      params =
-        Enum.map(params, fn {key, value} ->
-          {"", to_string(value), {"form-data", [{"name", key}]}, []}
-        end)
+        params =
+          Enum.map(params, fn {key, value} ->
+            {"", to_string(value), {"form-data", [{"name", key}]}, []}
+          end)
 
-      {:multipart, params ++ [{:file, file, []}]}
+        {:multipart, params ++ [{:file, file, []}]}
+      end
     end
 
     defp params(_, params, _), do: {:form, params}

@@ -61,7 +61,7 @@ defmodule Slack.Mixfile do
       ],
       main: "readme",
       source_url: @source_url,
-      assets: "guides/assets",
+      assets: %{"guides/assets" => "assets"},
       extra_section: "GUIDES",
       formatters: ["html"]
     ]
