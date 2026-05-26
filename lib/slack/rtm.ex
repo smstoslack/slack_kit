@@ -13,15 +13,14 @@ defmodule Slack.Rtm do
 
   def start(token) do
     with url <- slack_url(token),
-         headers <- [],
          options <- Application.get_env(:slack, :web_http_client_opts, []) do
       url
-      |> HTTPoison.get(headers, options)
+      |> Req.get(Keyword.put(options, :decode_body, false))
       |> handle_response()
     end
   end
 
-  defp handle_response({:ok, %HTTPoison.Response{body: body}}) do
+  defp handle_response({:ok, %Req.Response{body: body}}) do
     case Jason.decode!(body, keys: :atoms) do
       %{ok: true} = json ->
         {:ok, json}

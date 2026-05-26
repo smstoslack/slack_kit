@@ -19,12 +19,35 @@ defmodule Slack.Web.DefaultClient do
   @behaviour Slack.Web.Client
 
   @impl true
-  def post!(url, body) do
+  def post!(url, {:form, params}) do
     url
-    |> HTTPoison.post!(body, [], opts())
+    |> Req.post!(Keyword.merge(opts(), form: params))
     |> Map.fetch!(:body)
-    |> Jason.decode!(%{})
+    |> decode_body()
   end
+
+  def post!(url, {:multipart, parts}) do
+    url
+    |> Req.post!(Keyword.merge(opts(), form_multipart: build_multipart(parts)))
+    |> Map.fetch!(:body)
+    |> decode_body()
+  end
+
+  defp build_multipart(parts) do
+    Enum.map(parts, fn
+      {:file, path, _} ->
+        {:file, {File.stream!(path), filename: Path.basename(path)}}
+
+      {"", value, {"form-data", [{"name", name}]}, _} ->
+        {to_field_name(name), value}
+    end)
+  end
+
+  defp to_field_name(name) when is_atom(name), do: name
+  defp to_field_name(name) when is_binary(name), do: String.to_atom(name)
+
+  defp decode_body(body) when is_binary(body), do: Jason.decode!(body)
+  defp decode_body(body), do: body
 
   defp opts do
     Application.get_env(:slack, :web_http_client_opts, [])
