@@ -105,6 +105,17 @@ defmodule UpdateSlackApi do
 
   defp strip_links(text), do: Regex.replace(@markdown_link_re, text, "\\1")
 
+  # Argument descriptions must be single-line: the upstream docs sometimes
+  # interleave horizontal rules or stray scalar values (e.g. a lone `0` minimum)
+  # between the prose and the `_Example:_` marker, and we don't want those
+  # smuggled into the JSON as newline-separated cruft.
+  defp normalize_whitespace(text) do
+    text
+    |> then(&Regex.replace(@trailing_rule_re, &1, ""))
+    |> String.replace(~r/\s+/, " ")
+    |> String.trim()
+  end
+
   defp parse_args(text) do
     case Regex.run(@args_section_re, text) do
       [_, section] ->
@@ -223,6 +234,7 @@ defmodule UpdateSlackApi do
           |> hd()
           |> String.trim()
           |> strip_links()
+          |> normalize_whitespace()
 
         entry =
           %{"required" => required == "Required", "desc" => desc}
