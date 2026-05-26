@@ -1,6 +1,6 @@
 # Changelog
 
-## Next
+## v0.25.0-alpha.0
 
 - **Breaking:** Requires Elixir 1.18.
 - **Breaking:** Replace `jason` with Elixir's built-in `JSON` module.
