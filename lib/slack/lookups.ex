@@ -35,7 +35,7 @@ defmodule Slack.Lookups do
   NOTE: Referencing `"@USER_NAME"` is deprecated, and should not be used.
   For more information see https://api.slack.com/changelog/2017-09-the-one-about-usernames
   """
-  def lookup_direct_message_id(user = "@" <> _user_name, slack) do
+  def lookup_direct_message_id("@" <> _user_name = user, slack) do
     user
     |> lookup_user_id(slack)
     |> lookup_direct_message_id(slack)
@@ -68,19 +68,19 @@ defmodule Slack.Lookups do
   NOTE: Referencing `"@USER_NAME"` is deprecated, and should not be used.
   For more information see https://api.slack.com/changelog/2017-09-the-one-about-usernames
   """
-  def lookup_user_name(direct_message_id = "D" <> _id, slack) do
+  def lookup_user_name("D" <> _id = direct_message_id, slack) do
     lookup_user_name(slack.ims[direct_message_id].user, slack)
   end
 
-  def lookup_user_name(user_id = "U" <> _id, slack) do
+  def lookup_user_name("U" <> _id = user_id, slack) do
     find_username_by_id(user_id, slack)
   end
 
-  def lookup_user_name(user_id = "W" <> _id, slack) do
+  def lookup_user_name("W" <> _id = user_id, slack) do
     find_username_by_id(user_id, slack)
   end
 
-  def lookup_user_name(bot_id = "B" <> _id, slack) do
+  def lookup_user_name("B" <> _id = bot_id, slack) do
     Logger.warn(@username_warning)
     "@" <> slack.bots[bot_id].name
   end
@@ -89,11 +89,11 @@ defmodule Slack.Lookups do
   Turns a Slack channel ID (`"C…"`) or a Slack private channel ID (`"G…"`) into
   a string in the format "#CHANNEL_NAME".
   """
-  def lookup_channel_name(channel_id = "C" <> _id, slack) do
+  def lookup_channel_name("C" <> _id = channel_id, slack) do
     "#" <> slack.channels[channel_id].name
   end
 
-  def lookup_channel_name(channel_id = "G" <> _id, slack) do
+  def lookup_channel_name("G" <> _id = channel_id, slack) do
     "#" <> slack.groups[channel_id].name
   end
 

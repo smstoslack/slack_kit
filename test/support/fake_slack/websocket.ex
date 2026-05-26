@@ -1,4 +1,6 @@
 defmodule Slack.FakeSlack.Websocket do
+  @moduledoc false
+
   @behaviour :cowboy_websocket
 
   @activity_timeout 5000

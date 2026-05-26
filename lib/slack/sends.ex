@@ -13,7 +13,7 @@ defmodule Slack.Sends do
   NOTE: Referencing `"@USER_NAME"` is deprecated, and should not be used.
   For more information see https://api.slack.com/changelog/2017-09-the-one-about-usernames
   """
-  def send_message(text, channel = "#" <> channel_name, slack) do
+  def send_message(text, "#" <> channel_name = channel, slack) do
     channel_id = Lookups.lookup_channel_id(channel, slack)
 
     if channel_id do
@@ -23,15 +23,15 @@ defmodule Slack.Sends do
     end
   end
 
-  def send_message(text, user_id = "U" <> _user_id, slack) do
+  def send_message(text, "U" <> _user_id = user_id, slack) do
     send_message_to_user(text, user_id, slack)
   end
 
-  def send_message(text, user_id = "W" <> _user_id, slack) do
+  def send_message(text, "W" <> _user_id = user_id, slack) do
     send_message_to_user(text, user_id, slack)
   end
 
-  def send_message(text, user = "@" <> _user_name, slack) do
+  def send_message(text, "@" <> _user_name = user, slack) do
     user_id = Lookups.lookup_user_id(user, slack)
     send_message(text, user_id, slack)
   end
@@ -46,7 +46,7 @@ defmodule Slack.Sends do
     |> send_raw(slack)
   end
 
-  def send_message(text, channel = "#" <> channel_name, slack, thread) do
+  def send_message(text, "#" <> channel_name = channel, slack, thread) do
     channel_id = Lookups.lookup_channel_id(channel, slack)
 
     if channel_id do

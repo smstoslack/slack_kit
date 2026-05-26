@@ -4,7 +4,7 @@ defmodule Slack.Integration.BotTest do
   defmodule Bot do
     use Slack
 
-    def handle_event(message = %{type: "message", text: text}, slack, state) do
+    def handle_event(%{type: "message", text: text} = message, slack, state) do
       send_message(String.reverse(text), message.channel, slack)
       {:ok, state}
     end
