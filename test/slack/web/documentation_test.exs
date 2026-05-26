@@ -208,7 +208,7 @@ defmodule Slack.Web.DocumentationTest do
   describe "new/2 versioned endpoints" do
     test "accepts versioned endpoints" do
       file_content =
-        "#{__DIR__}/../../../lib/slack/web/docs/oauth.v2.access.json"
+        "#{__DIR__}/../../../priv/docs/methods/oauth.v2.access.json"
         |> File.read!()
         |> JSON.decode!()
 

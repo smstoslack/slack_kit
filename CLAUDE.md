@@ -9,7 +9,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `mix test test/slack/state_test.exs` — run one file; append `:LINE` to run a single test
 - `mix coveralls` / `mix coveralls.html` / `mix coveralls.json` — coverage (configured in `mix.exs` under `cli/0`)
 - `mix format` and `mix credo` — both gate CI in [.github/workflows/lint.yaml](.github/workflows/lint.yaml); run before pushing
-- `mix run lib/mix/tasks/update_slack_api.exs [method ...]` — regenerate the JSON in [lib/slack/web/docs/](lib/slack/web/docs/) by scraping docs.slack.dev. See [.claude/skills/generate-slack-docs/SKILL.md](.claude/skills/generate-slack-docs/SKILL.md).
+- `mix run lib/mix/tasks/update_slack_api.exs [method ...]` — regenerate the JSON in [priv/docs/methods/](priv/docs/methods/) by scraping docs.slack.dev. See [.claude/skills/generate-slack-docs/SKILL.md](.claude/skills/generate-slack-docs/SKILL.md).
 
 CI matrix is Elixir 1.18 (OTP 26/27) and 1.19 (OTP 28); `mix.exs` requires `~> 1.18`.
 
@@ -35,11 +35,11 @@ A user bot module does `use Slack` ([lib/slack.ex](lib/slack.ex)) to get default
 
 ### Web API — metaprogrammed from JSON
 
-[lib/slack/web/web.ex](lib/slack/web/web.ex) reads every file in [lib/slack/web/docs/](lib/slack/web/docs/) at compile time and generates a module/function per Slack endpoint (e.g. `chat.postMessage.json` → `Slack.Web.Chat.post_message/N`). Required JSON args become positional function arguments; everything else goes through an `optional_params` map.
+[lib/slack/web/web.ex](lib/slack/web/web.ex) reads every file in [priv/docs/methods/](priv/docs/methods/) at compile time and generates a module/function per Slack endpoint (e.g. `chat.postMessage.json` → `Slack.Web.Chat.post_message/N`). Required JSON args become positional function arguments; everything else goes through an `optional_params` map.
 
 Implications:
 
-- **Never hand-edit files in `lib/slack/web/docs/`.** Regenerate them with the mix task above.
+- **Never hand-edit files in `priv/docs/methods/`.** Regenerate them with the mix task above.
 - Adding/changing a Web API surface = changing the JSON or the codegen in `web.ex`/`documentation.ex`, not writing per-method modules.
 - HTTP transport is pluggable: `config :slack, :web_http_client, MyClient` swaps the whole client (must implement `Slack.Web.Client.post!/2`); `config :slack, :web_http_client_opts, [...]` passes Req options to the default client only.
 

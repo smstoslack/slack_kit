@@ -1,15 +1,17 @@
 defmodule Slack.Web do
   @moduledoc false
 
+  @docs_dir Path.expand("../../../priv/docs/methods", __DIR__)
+
   def get_documentation do
-    File.ls!("#{__DIR__}/docs")
+    File.ls!(@docs_dir)
     |> format_documentation()
   end
 
   defp format_documentation(files) do
     Enum.reduce(files, %{}, fn file, module_names ->
       json =
-        File.read!("#{__DIR__}/docs/#{file}")
+        File.read!(Path.join(@docs_dir, file))
         |> JSON.decode!()
 
       doc = Slack.Web.Documentation.new(json, file)

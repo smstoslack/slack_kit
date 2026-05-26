@@ -1,16 +1,10 @@
 defmodule Slack.Web.CommonErrorsTest do
   use ExUnit.Case, async: true
 
-  @common_errors_path Path.join([
-                        File.cwd!(),
-                        "lib",
-                        "slack",
-                        "web",
-                        "common_errors.json"
-                      ])
+  @common_errors_path Path.join([File.cwd!(), "priv", "docs", "common_errors.json"])
 
   @markdown_path Path.join([File.cwd!(), "guides", "common_errors.md"])
-  @docs_dir Path.join([File.cwd!(), "lib", "slack", "web", "docs"])
+  @docs_dir Path.join([File.cwd!(), "priv", "docs", "methods"])
 
   test "no per-endpoint JSON file lists a common error" do
     common = common_error_names()

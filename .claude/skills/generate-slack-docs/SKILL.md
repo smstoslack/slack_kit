@@ -1,9 +1,9 @@
 ---
 name: generate-slack-docs
-description: Regenerate the JSON method docs in lib/slack/web/docs by scraping https://docs.slack.dev/reference/methods.md. Use when the Slack Web API has new or updated methods and the local docs need to be refreshed.
+description: Regenerate the JSON method docs in priv/docs/methods by scraping https://docs.slack.dev/reference/methods.md. Use when the Slack Web API has new or updated methods and the local docs need to be refreshed.
 ---
 
-This skill regenerates the per-method JSON files in [lib/slack/web/docs/](lib/slack/web/docs/) that drive `Slack.Web` at runtime. Each JSON file contains the method's description, arguments, and documented errors, scraped from the canonical Slack docs.
+This skill regenerates the per-method JSON files in [priv/docs/methods/](priv/docs/methods/) that drive `Slack.Web` at runtime. Each JSON file contains the method's description, arguments, and documented errors, scraped from the canonical Slack docs.
 
 The work is done by the script at [lib/mix/tasks/update_slack_api.exs](lib/mix/tasks/update_slack_api.exs). It uses Req (already a project dep) for fetching and Elixir's built-in `JSON` module (plus `:json.format/1`, which requires OTP 27+) for serialization, loaded automatically by `mix run`.
 

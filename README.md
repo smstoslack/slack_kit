@@ -111,7 +111,7 @@ is on the [RTM API page].
 ## Web API Usage
 
 The complete Slack Web API surface is generated at compile time from the JSON
-schemas under `lib/slack/web/docs/`. Each endpoint becomes a function on a
+schemas under `priv/docs/methods/`. Each endpoint becomes a function on a
 module derived from its name — for example `chat.postMessage` becomes
 `Slack.Web.Chat.post_message`, and `conversations.list` becomes
 `Slack.Web.Conversations.list`. Required parameters are positional; everything

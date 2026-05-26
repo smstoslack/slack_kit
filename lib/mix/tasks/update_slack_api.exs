@@ -1,4 +1,4 @@
-# Regenerates the per-method JSON docs in lib/slack/web/docs/ by scraping
+# Regenerates the per-method JSON docs in priv/docs/methods/ by scraping
 # https://docs.slack.dev/reference/methods.md and each linked method page.
 #
 #     mix run lib/mix/tasks/update_slack_api.exs                    # all methods
@@ -9,8 +9,8 @@
 defmodule UpdateSlackApi do
   @base_url "https://docs.slack.dev"
   @index_url "https://docs.slack.dev/reference/methods.md"
-  @out_dir "lib/slack/web/docs"
-  @common_errors_path "lib/slack/web/common_errors.json"
+  @out_dir "priv/docs/methods"
+  @common_errors_path "priv/docs/common_errors.json"
   @common_errors_markdown_path "guides/common_errors.md"
   # An error code is "common" if it appears on at least this fraction of the
   # method pages we successfully scraped. In practice ~30 boilerplate errors
