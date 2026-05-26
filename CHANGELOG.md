@@ -13,6 +13,6 @@
 - Add weekly cron workflow to regenerate Slack Web API docs.
 - Regenerate Slack Web API docs on 2026-05-25.
 
-## 0.24.0
+## v0.24.0
 
-- Dependency updates.
+- Update dependencies to latest versions.
