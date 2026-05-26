@@ -1,0 +1,55 @@
+name: cron-update-slack-docs
+
+on:
+  schedule:
+    - cron: "0 8 * * 5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: ./.github/actions/setup-beam-and-install-dependencies
+
+      - name: Today's date
+        id: date
+        run: echo "today=$(date -u +%Y-%m-%d)" >> "$GITHUB_OUTPUT"
+
+      - name: Regenerate docs and write PR body
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          claude_args: --allowed-tools "Bash,Read,Edit,Write,Glob,Grep"
+          prompt: |
+            Today is ${{ steps.date.outputs.today }}.
+
+            Do the following in order. Do **not** commit or push — leave the working tree dirty for a later step.
+
+            1. Invoke the `/generate-slack-docs` skill to regenerate the JSON files in `lib/slack/web/docs/`.
+
+            2. Invoke the `/changelog` skill to record a bullet noting that the Slack Web API docs were regenerated on ${{ steps.date.outputs.today }}.
+
+            3. Write the pull request body to `.pr-body.md`. It must contain:
+               - A one-line opener stating this is the weekly automated regeneration for ${{ steps.date.outputs.today }}.
+               - A `## Gotchas` section flagging anything reviewers should double-check before merging — for example any newly regenerated file with an empty `desc` (a strong parser-drift signal), suspicious diffs in methods you know are widely used, or any obvious anomaly. If nothing looks off, say so explicitly. Reference the `.claude/skills/generate-slack-docs/SKILL.md` checklist for the kinds of things to watch for.
+               - A `## Summary` section with the high-level shape of the change: how many methods were added / removed / modified, plus the full list of added and removed method names (use `git status` / `git diff --name-only -- lib/slack/web/docs` to compute these — added files appear as untracked).
+
+            Keep the PR body tight — bullet lists over prose.
+
+      - name: Open pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "Update Slack API docs to ${{ steps.date.outputs.today }}"
+          branch: automation/update-slack-docs
+          delete-branch: true
+          title: "Update Slack API docs to ${{ steps.date.outputs.today }}"
+          body-path: .pr-body.md
+          add-paths: |
+            lib/slack/web/docs
+            CHANGELOG.md

@@ -10,6 +10,7 @@
 - Add `excoveralls` for test coverage reporting.
 - Add `junit_formatter` for Codecov flake/failure-rate tracking.
 - Internal cleanups: codebase modernization to Elixir 1.19.
+- Add weekly cron workflow to regenerate Slack Web API docs.
 
 ## 0.24.0
 
