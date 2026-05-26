@@ -1,11 +1,9 @@
-# Elixir-Slack
+# SlackKit
 
-[![Elixir CI](https://github.com/BlakeWilliams/Elixir-Slack/actions/workflows/elixir.yml/badge.svg)](https://github.com/BlakeWilliams/Elixir-Slack/actions/workflows/elixir.yml)
-[![Module Version](https://img.shields.io/hexpm/v/slack.svg)](https://hex.pm/packages/slack)
-[![Hex Docs](https://img.shields.io/badge/hex-docs-lightgreen.svg)](https://hexdocs.pm/slack/)
-[![Total Download](https://img.shields.io/hexpm/dt/slack.svg)](https://hex.pm/packages/slack)
-[![License](https://img.shields.io/hexpm/l/slack.svg)](https://github.com/BlakeWilliams/Elixir-Slack/blob/master/LICENSE.md)
-[![Last Updated](https://img.shields.io/github/last-commit/BlakeWilliams/Elixir-Slack.svg)](https://github.com/BlakeWilliams/Elixir-Slack/commits/master)
+[![hex.pm version](https://img.shields.io/hexpm/v/slack_kit?style=flat-square)](https://hex.pm/packages/slack_kit)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/smstoslack/slack_kit/ci.yaml?branch=main&style=flat-square)](https://github.com/smstoslack/slack_kit/actions/workflows/ci.yaml)
+[![Coverage Status](https://img.shields.io/codecov/c/github/smstoslack/slack_kit?style=flat-square)](https://app.codecov.io/gh/smstoslack/slack_kit)
+[![hex.pm downloads](https://img.shields.io/hexpm/dt/slack_kit?style=flat-square)]([LICENSE](https://hex.pm/packages/slack_kit))
 
 This is a Slack [Real Time Messaging API] client for Elixir.  You'll need a
 Slack API token which can be retrieved by following the [Token Generation
@@ -15,41 +13,22 @@ Instructions] or by creating a new [bot integration].
 [Token Generation Instructions]: https://hexdocs.pm/slack/token_generation_instructions.html
 [bot integration]: https://my.slack.com/services/new/bot
 
+## Fork
+
+This is a fork of [Elixir-Slack](https://github.com/BlakeWilliams/Elixir-Slack), which is no longer maintained. It has been updated to use the latest versions of dependencies.
+
 ## Installing
 
-Add `:slack` to your `mix.exs` `dependencies` function:
+Add `:slack_kit` to your `mix.exs` `dependencies` function:
 
 [websocket_client]: https://github.com/jeremyong/websocket_client
 
 ```elixir
-def application do
-  [
-    extra_applications: [:logger]
-  ]
-end
-
 def deps do
   [
-    {:slack, "~> 0.23.6"}
+    {:slack_kit, "~> 0.23.6"}
   ]
 end
-```
-
-## Upgrading from 0.x to 0.20+
-
-The newest version of the Slack client introduces breaking changes with regards to starting and connecting to the Real Time Messaging API. `rtm.start` is now [deprecated](https://api.slack.com/methods/rtm.start) and has since been replaced with [`rtm.connect`](https://api.slack.com/methods/rtm.connect). **This has removed the list of  `bots`, `channels`, `groups`, `users`, and `ims` that are normally returned from `rtm.start`**. Additionally, these lists are now rate-limited. In order to achieve relative parity to the old way of doing things, you'll need to make one change in your code:
-
-### Make additional calls to the Slack API to fetch bots, channels, groups, users, and IMs
-
-Wherever you grab the passed in `slack` state, add in additional calls to populate these lists:
-
-```elixir
-slack
-|> Map.put(:bots, Slack.Web.Bots.info(%{token: token}) |> Map.get("bot"))
-|> Map.put(:channels, Slack.Web.Channels.list(%{token: token}) |> Map.get("channels"))
-|> Map.put(:groups, Slack.Web.Groups.list(%{token: token}) |> Map.get("groups"))
-|> Map.put(:ims, Slack.Web.Im.list(%{token: token}) |> Map.get("ims"))
-|> Map.put(:users, Slack.Web.Users.list(%{token: token}) |> Map.get("members"))
 ```
 
 ## Real Time Messaging (RTM) Bot Usage
@@ -180,6 +159,7 @@ config :slack, url: "http://localhost:8000"
 
 ## Copyright and License
 
-Copyright (c) 2014 Blake Williams
+Copyright (c) 2026 Samuel Gordalina
+Copyright (c) 2014-2022 Blake Williams
 
 Source code is released under [the MIT license](./LICENSE.md).
