@@ -3,43 +3,92 @@
     "channels": {
       "desc": "Comma-separated list of channel names or IDs where the file will be shared.",
       "required": false,
-      "type": "channel"
+      "type": "string"
     },
     "content": {
-      "desc": "File contents via a POST var.",
+      "desc": "File contents via a POST variable. If omitting this parameter, you must provide a `file`. You must provide either a `file` or `content` parameter. The content of the file can either be posted using an `enctype` of `multipart/form-data` (with the file parameter named `file`), in the usual way that files are uploaded via the browser, or the content of the file can be sent as a POST var called `content`.",
       "example": "...",
-      "required": false
+      "required": false,
+      "type": "string"
     },
     "file": {
-      "desc": "File contents via `multipart/form-data`.",
+      "desc": "File contents via `multipart/form-data`. If omitting this parameter, you must submit `content`. You must provide either a `file` or `content` parameter. The content of the file can either be posted using an `enctype` of `multipart/form-data` (with the file parameter named `file`), in the usual way that files are uploaded via the browser, or the content of the file can be sent as a POST var called `content`. Possible `filetype` values can be found in the `file` object definition.",
       "example": "...",
-      "required": true,
-      "type": "file"
+      "required": false
     },
     "filename": {
-      "desc": "Filename of file.",
+      "desc": "Filename of file. If you only specify a `filename`, we remove the file extension and populate the file's `title` with the remaining value.",
       "example": "foo.txt",
-      "required": true
+      "required": false,
+      "type": "string"
     },
     "filetype": {
-      "desc": "Slack-internal file type identifier.",
+      "desc": "A file type identifier. Possible `filetype` values can be found in the `file` object definition.",
       "example": "php",
-      "required": false
+      "required": false,
+      "type": "string"
     },
     "initial_comment": {
-      "desc": "Initial comment to add to file.",
+      "desc": "The message text introducing the file in specified `channels`.",
       "example": "Best!",
-      "required": false
+      "required": false,
+      "type": "string"
+    },
+    "thread_ts": {
+      "desc": "Provide another message's `ts` value to upload this file as a reply. Never use a reply's `ts` value; use its parent instead.",
+      "required": false,
+      "type": "string"
     },
     "title": {
-      "desc": "Title of file.",
+      "desc": "Title of file. If you only specify a `filename`, we remove the file extension and populate the file's `title` with the remaining value.",
       "example": "My File",
-      "required": false
+      "required": false,
+      "type": "string"
     }
   },
   "desc": "Uploads or creates a file.",
   "errors": {
+    "access_denied": "Access to a resource specified in the request is denied.",
+    "accesslimited": "Access to this method is limited on the current network",
+    "account_inactive": "Authentication token is for a deleted user or workspace when using a `bot` token.",
+    "blocked_file_type": "Admin has disabled uploading this type of file",
+    "channel_not_found": "At least one of the values passed for `channels` was invalid.",
+    "deprecated_endpoint": "The endpoint has been deprecated.",
+    "ekm_access_denied": "Administrators have suspended the ability to post a message.",
+    "enterprise_is_restricted": "The method cannot be called from an Enterprise.",
+    "fatal_error": "The server could not complete your operation(s) without encountering a catastrophic error. It's possible some aspect of the operation succeeded before the error was raised.",
+    "internal_error": "The server could not complete your operation(s) without encountering an error, likely due to a transient issue on our end. It's possible some aspect of the operation succeeded before the error was raised.",
+    "invalid_arg_name": "The method was passed an argument whose name falls outside the bounds of accepted or expected values. This includes very long names and names with non-alphanumeric characters other than `_`. If you get this error, it is typically an indication that you have made a _very_ malformed API call.",
+    "invalid_arguments": "The method was called with invalid arguments.",
+    "invalid_array_arg": "The method was passed an array as an argument. Please only input valid strings.",
+    "invalid_auth": "Some aspect of authentication cannot be validated. Either the provided token is invalid or the request originates from an IP address disallowed from making the request.",
     "invalid_channel": "One or more channels supplied are invalid",
-    "posting_to_general_channel_denied": "An admin has restricted posting to the #general channel."
+    "invalid_charset": "The method was called via a `POST` request, but the `charset` specified in the `Content-Type` header was invalid. Valid charset names are: `utf-8` `iso-8859-1`.",
+    "invalid_form_data": "The method was called via a `POST` request with `Content-Type` `application/x-www-form-urlencoded` or `multipart/form-data`, but the form data was either missing or syntactically invalid.",
+    "invalid_post_type": "The method was called via a `POST` request, but the specified `Content-Type` was invalid. Valid types are: `application/json` `application/x-www-form-urlencoded` `multipart/form-data` `text/plain`.",
+    "invalid_thread_ts": "Value passed to thread\\_ts was invalid",
+    "malware_detected": "This file may contain a virus or other malware and can't be uploaded to Slack",
+    "method_deprecated": "This API is deprecated. Please refer to https://docs.slack.dev/changelog/2024-04-a-better-way-to-upload-files-is-here-to-stay",
+    "missing_post_type": "The method was called via a `POST` request and included a data payload, but the request did not include a `Content-Type` header.",
+    "missing_scope": "The token used is not granted the specific scope permissions required to complete this request.",
+    "no_permission": "The workspace token used in this request does not have the permissions necessary to complete the request. Make sure your app is a member of the conversation it's attempting to post a message to.",
+    "not_allowed_token_type": "The token type used in this request is not allowed.",
+    "not_authed": "No authentication token provided.",
+    "not_in_channel": "Authenticated user is not in the channel.",
+    "org_login_required": "The workspace is undergoing an enterprise migration and will not be available until migration is complete.",
+    "post_contents_too_large": "File content is larger than 130kb.",
+    "posting_to_general_channel_denied": "An admin has restricted posting to the #general channel.",
+    "ratelimited": "The request has been ratelimited. Refer to the `Retry-After` header for when to retry the request.",
+    "request_timeout": "The method was called via a `POST` request, but the `POST` data was either missing or truncated.",
+    "service_unavailable": "The service is temporarily unavailable",
+    "slack_connect_blocked_file_type": "File uploads with certain types are blocked in all Slack Connect communications",
+    "slack_connect_clip_sharing_blocked": "Admin has disabled Clip sharing in Slack Connect channels",
+    "slack_connect_file_upload_sharing_blocked": "Admin has disabled File uploads in all Slack Connect communications",
+    "team_access_not_granted": "The token used is not granted the specific workspace access required to complete this request.",
+    "team_added_to_org": "The workspace associated with your request is currently undergoing migration to an Enterprise Organization. Web API and other platform operations will be intermittently unavailable until the transition is complete.",
+    "token_expired": "Authentication token has expired",
+    "token_revoked": "Authentication token is for a deleted user or workspace or the app has been removed when using a `user` token.",
+    "two_factor_setup_required": "Two factor setup is required."
   }
 }
+

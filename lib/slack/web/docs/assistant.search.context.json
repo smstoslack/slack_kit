@@ -1,0 +1,161 @@
+{
+  "args": {
+    "action_token": {
+      "desc": "Send `action_token` as received in a message event.",
+      "example": "12345.98765.abcd2358fdea",
+      "required": false,
+      "type": "string"
+    },
+    "after": {
+      "desc": "UNIX timestamp filter. If present, filters for results after this date.",
+      "example": "1754670081",
+      "required": false,
+      "type": "integer"
+    },
+    "before": {
+      "desc": "UNIX timestamp filter. If present, filters for results before this date.",
+      "example": "1754670081",
+      "required": false,
+      "type": "integer"
+    },
+    "channel_types": {
+      "default": "public_channel",
+      "desc": "Mix and match channel types by providing a comma-separated list of any combination of `public_channel`, `private_channel`, `mpim`, `im`.",
+      "example": "public_channel,private_channel",
+      "required": false,
+      "type": "array"
+    },
+    "content_types": {
+      "default": "messages",
+      "desc": "Content types to include, a comma-separated list of any combination of `messages`, `files`, `channels`, `users`.",
+      "example": "messages,files",
+      "required": false,
+      "type": "array"
+    },
+    "context_channel_id": {
+      "desc": "Context channel ID to support scoping the search when applicable.",
+      "required": false
+    },
+    "cursor": {
+      "desc": "The cursor returned by the API. Leave this blank for the first request and use this to get the next page of results.",
+      "example": "asf91j9jfd",
+      "required": false,
+      "type": "string"
+    },
+    "disable_semantic_search": {
+      "desc": "Whether to disable semantic search. When true, only keyword-based search is used. Defaults to false.",
+      "required": false,
+      "type": "boolean"
+    },
+    "highlight": {
+      "desc": "Whether to highlight the search query in the results. Defaults to false if unspecified.",
+      "required": false,
+      "type": "boolean"
+    },
+    "include_archived_channels": {
+      "desc": "Whether to include archived channels in the search results.",
+      "required": false,
+      "type": "boolean"
+    },
+    "include_bots": {
+      "desc": "Whether the results should include bots.",
+      "example": "true",
+      "required": false,
+      "type": "boolean"
+    },
+    "include_context_messages": {
+      "desc": "Whether to include context messages surrounding the main message result. Defaults to false if unspecified.",
+      "example": "true",
+      "required": false,
+      "type": "boolean"
+    },
+    "include_deleted_users": {
+      "desc": "Whether to include deleted users in the user search results. Defaults to false.",
+      "example": "false",
+      "required": false,
+      "type": "boolean"
+    },
+    "include_message_blocks": {
+      "desc": "Whether to return the message blocks in the response.",
+      "required": false,
+      "type": "boolean"
+    },
+    "limit": {
+      "desc": "Number of results to return, up to a max of 20. Defaults to 20.",
+      "example": "20",
+      "required": false,
+      "type": "integer"
+    },
+    "modifiers": {
+      "desc": "A string containing only modifiers in the format of `modifier:value`. Search results returned will match the modifier value. For now modifiers only affect term clauses.",
+      "example": "has:pin before:yesterday",
+      "required": false,
+      "type": "string"
+    },
+    "query": {
+      "desc": "User prompt or search query",
+      "example": "What is project gizmo?",
+      "required": true,
+      "type": "string"
+    },
+    "sort": {
+      "default": "score",
+      "desc": "The field to sort the results by. Defaults to score. Can be one of: score, timestamp.",
+      "required": false,
+      "type": "string"
+    },
+    "sort_dir": {
+      "default": "desc",
+      "desc": "The direction to sort the results by. Defaults to desc.",
+      "required": false,
+      "type": "string"
+    },
+    "term_clauses": {
+      "desc": "A list of term clauses. A term clause is a string with search terms. Search results returned will match every term clause specified (i.e., conjunctive normal form).",
+      "required": false,
+      "type": "array"
+    }
+  },
+  "desc": "Searches messages, files, channels and users across your Slack organization.",
+  "errors": {
+    "access_denied": "Access to a resource specified in the request is denied.",
+    "accesslimited": "Access to this method is limited on the current network",
+    "account_inactive": "Authentication token is for a deleted user or workspace when using a `bot` token.",
+    "assistant_search_context_disabled": "We're having issues returning your search results. Please wait and try again.",
+    "context_channel_not_found": "Specified `context_channel_id` is invalid or the user lacks permission to view it.",
+    "deprecated_endpoint": "The endpoint has been deprecated.",
+    "ekm_access_denied": "Administrators have suspended the ability to post a message.",
+    "enterprise_is_restricted": "The method cannot be called from an Enterprise.",
+    "fatal_error": "The server could not complete your operation(s) without encountering a catastrophic error. It's possible some aspect of the operation succeeded before the error was raised.",
+    "feature_not_enabled": "The feature is not available on the current workspace.",
+    "internal_error": "Internal error.",
+    "invalid_action_token": "The `action_token` provided is not valid.",
+    "invalid_arg_name": "The method was passed an argument whose name falls outside the bounds of accepted or expected values. This includes very long names and names with non-alphanumeric characters other than `_`. If you get this error, it is typically an indication that you have made a _very_ malformed API call.",
+    "invalid_arguments": "The method was called with invalid arguments.",
+    "invalid_array_arg": "The method was passed an array as an argument. Please only input valid strings.",
+    "invalid_auth": "Some aspect of authentication cannot be validated. Either the provided token is invalid or the request originates from an IP address disallowed from making the request.",
+    "invalid_charset": "The method was called via a `POST` request, but the `charset` specified in the `Content-Type` header was invalid. Valid charset names are: `utf-8` `iso-8859-1`.",
+    "invalid_cursor": "The cursormark provided is not valid.",
+    "invalid_form_data": "The method was called via a `POST` request with `Content-Type` `application/x-www-form-urlencoded` or `multipart/form-data`, but the form data was either missing or syntactically invalid.",
+    "invalid_post_type": "The method was called via a `POST` request, but the specified `Content-Type` was invalid. Valid types are: `application/json` `application/x-www-form-urlencoded` `multipart/form-data` `text/plain`.",
+    "method_deprecated": "The method has been deprecated.",
+    "missing_post_type": "The method was called via a `POST` request and included a data payload, but the request did not include a `Content-Type` header.",
+    "missing_query": "Missing query.",
+    "missing_scope": "The requested channel types are not allowed by the provided scopes.",
+    "no_permission": "The workspace token used in this request does not have the permissions necessary to complete the request. Make sure your app is a member of the conversation it's attempting to post a message to.",
+    "not_allowed_token_type": "The token type used in this request is not allowed.",
+    "not_authed": "No authentication token provided.",
+    "org_login_required": "The workspace is undergoing an enterprise migration and will not be available until migration is complete.",
+    "query_too_long": "Query too long.",
+    "rate_limited": "Rate limited.",
+    "ratelimited": "The request has been ratelimited. Refer to the `Retry-After` header for when to retry the request.",
+    "request_timeout": "The method was called via a `POST` request, but the `POST` data was either missing or truncated.",
+    "service_unavailable": "The service is temporarily unavailable",
+    "team_access_not_granted": "The token used is not granted the specific workspace access required to complete this request.",
+    "team_added_to_org": "The workspace associated with your request is currently undergoing migration to an Enterprise Organization. Web API and other platform operations will be intermittently unavailable until the transition is complete.",
+    "token_expired": "Authentication token has expired",
+    "token_revoked": "Authentication token is for a deleted user or workspace or the app has been removed when using a `user` token.",
+    "two_factor_setup_required": "Two factor setup is required."
+  }
+}
+
