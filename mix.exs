@@ -8,12 +8,13 @@ defmodule Slack.Mixfile do
     [
       app: :slack_kit,
       version: @version,
-      elixir: "~> 1.7",
+      elixir: "~> 1.18",
       elixirc_paths: elixirc_paths(Mix.env()),
       name: "SlackKit",
       deps: deps(),
       docs: docs(),
-      package: package()
+      package: package(),
+      test_coverage: [tool: ExCoveralls]
     ]
   end
 
@@ -26,13 +27,26 @@ defmodule Slack.Mixfile do
     ]
   end
 
+  def cli do
+    [
+      preferred_envs: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test,
+        "coveralls.json": :test
+      ]
+    ]
+  end
+
   defp deps do
     [
       {:req, "~> 0.5"},
-      {:websocket_client, "~> 1.6"},
+      {:websockex, "~> 0.4"},
       {:jason, "~> 1.1"},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
       {:credo, "~> 1.7", only: [:dev, :test]},
+      {:excoveralls, "~> 0.18", only: :test},
       {:mix_audit, "~> 2.1", only: [:dev, :test], runtime: false},
       {:plug_cowboy, "~> 2.8", only: :test}
     ]
