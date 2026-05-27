@@ -2,7 +2,7 @@ defmodule Slack.Mixfile do
   use Mix.Project
 
   @source_url "https://github.com/smstoslack/slack_kit"
-  @version "0.25.0-alpha.0"
+  @version "1.0.0-alpha.0"
 
   def project do
     [

@@ -1,6 +1,6 @@
 # Changelog
 
-## Next
+## v1.0.0-alpha.0
 
 ## v0.25.0-alpha.0
 
