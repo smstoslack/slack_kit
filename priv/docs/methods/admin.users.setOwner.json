@@ -19,7 +19,6 @@
     "feature_not_enabled": "The Admin APIs feature is not enabled for this team.",
     "invalid_role_for_user": "The user cannot be made into an owner.",
     "not_an_admin": "This method can only be accessed by org owners and admins.",
-    "not_an_owner": "This method can only be accessed by org owners. The app's installing user must retain org owner status for this method to function.",
     "not_supported": "This is not a supported action.",
     "team_not_found": "`team_id` was not found.",
     "user_must_be_in_workspace": "This user must be a member of at least one workspace.",
@@ -27,13 +26,13 @@
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "admin.users:write",
-        "url": "https://docs.slack.dev/reference/scopes/admin.users.write"
+        "url": "https://docs.slack.dev/reference/scopes/admin.users.write.md"
       }
     ]
   }

@@ -7,7 +7,7 @@
     },
     "user": {
       "desc": "User to get info on",
-      "required": true,
+      "required": false,
       "type": "string"
     }
   },
@@ -19,19 +19,19 @@
   },
   "rate_limit": {
     "label": "Tier 4: 100+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "users:read",
-        "url": "https://docs.slack.dev/reference/scopes/users.read"
+        "url": "https://docs.slack.dev/reference/scopes/users.read.md"
       }
     ],
     "user": [
       {
         "name": "users:read",
-        "url": "https://docs.slack.dev/reference/scopes/users.read"
+        "url": "https://docs.slack.dev/reference/scopes/users.read.md"
       }
     ]
   }

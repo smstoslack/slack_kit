@@ -4,19 +4,19 @@
   "errors": { "invalid_team": "Cannot find a team associated with the authed token." },
   "rate_limit": {
     "label": "Tier 3: 50+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "team.billing:read",
-        "url": "https://docs.slack.dev/reference/scopes/team.billing.read"
+        "url": "https://docs.slack.dev/reference/scopes/team.billing.read.md"
       }
     ],
     "user": [
       {
         "name": "team.billing:read",
-        "url": "https://docs.slack.dev/reference/scopes/team.billing.read"
+        "url": "https://docs.slack.dev/reference/scopes/team.billing.read.md"
       }
     ]
   }

@@ -37,18 +37,19 @@
     "not_an_admin": "This method wasn't called by an admin.",
     "team_not_found": "\\`team\\_id was not found.",
     "user_already_team_member": "The given user is already active on the given team.",
+    "user_cannot_be_added_to_workspace": "The user can't be added to this workspace because of their account type or the workspace's configuration.",
     "user_is_bot": "The given user is a bot from an app. This api only works with humans.",
     "user_not_found": "`user_id` was not found."
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "admin.users:write",
-        "url": "https://docs.slack.dev/reference/scopes/admin.users.write"
+        "url": "https://docs.slack.dev/reference/scopes/admin.users.write.md"
       }
     ]
   }

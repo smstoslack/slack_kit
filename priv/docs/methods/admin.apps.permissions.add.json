@@ -1,0 +1,56 @@
+{
+  "args": {
+    "app_id": {
+      "desc": "Encoded ID of the app",
+      "example": "A0000000001",
+      "required": true,
+      "type": "string"
+    },
+    "channel_ids": {
+      "desc": "List of encoded channel IDs to add to the channel restriction list. Interpretation depends on the app's `channel_restriction_mode`, which is configured via the `admin.apps.permissions.set` method.",
+      "example": "C00000001,C00000002",
+      "required": false,
+      "type": "array"
+    },
+    "user_ids": {
+      "desc": "List of user IDs to allow for named\\_entities visibility. Pass either or both `user_ids` and `usergroup_ids` values to add those entities to the app's access list.",
+      "example": "['U00000001', 'U00000002', 'U00000003']",
+      "required": false,
+      "type": "array"
+    },
+    "usergroup_ids": {
+      "desc": "List of encoded usergroup IDs. Pass either or both `user_ids` and `usergroup_ids` values to add those entities to the app's access list.",
+      "example": "S00000001,S00000002",
+      "required": false,
+      "type": "array"
+    }
+  },
+  "desc": "Grant permission for entities to access an app that has its permission type set to named\\_entities",
+  "errors": {
+    "app_acl_not_found": "This app does not have an ACL.",
+    "app_not_found": "This app does not exist.",
+    "channel_not_found": "One or more channel IDs are not valid.",
+    "failed_to_update_channels": "An error occurred while updating the channel restriction list.",
+    "invalid_channel_restriction_mode": "Cannot add channels when channel\\_restriction\\_mode is all\\_channels. Use set to configure a restriction mode first.",
+    "invalid_entities": "Invalid entities.",
+    "invalid_permission_type": "This app requires permission\\_type to be set as named\\_entities before adding users.",
+    "no_valid_named_entities": "None of the provided named entities were valid",
+    "not_an_enterprise": "This feature is only available on Enterprise Grid plans.",
+    "restricted_action": "User does not have permission to perform this action.",
+    "too_many_named_entities": "Too many named entities passed into the app permissions setting.",
+    "user_not_found": "Value passed for `user_ids` was invalid."
+  },
+  "rate_limit": {
+    "label": "Tier 2: 20+ per minute",
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
+  },
+  "scopes": {
+    "user": [
+      {
+        "name": "admin.apps:write",
+        "url": "https://docs.slack.dev/reference/scopes/admin.apps.write.md"
+      }
+    ]
+  }
+}
+

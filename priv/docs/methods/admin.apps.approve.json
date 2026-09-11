@@ -1,5 +1,12 @@
 {
   "args": {
+    "allow_child_auto_install": {
+      "default": "false",
+      "desc": "Auto-create an Admin-Approved App automation rule that pre-approves future child app installs from this manager app.",
+      "example": "true",
+      "required": false,
+      "type": "boolean"
+    },
     "app_id": {
       "desc": "The id of the app to approve. Either `app_id` or `request_id` is required.",
       "example": "A12345",
@@ -13,7 +20,7 @@
       "type": "string"
     },
     "enterprise_id": {
-      "desc": "The ID of the enterprise to approve the app on. Exactly one of the `team_id` or `enterprise_id` arguments is required, not both.",
+      "desc": "The ID of the enterprise to approve the app on. One of `team_id` or `enterprise_id` arguments is required, not both.",
       "example": "E12345",
       "required": false
     },
@@ -24,7 +31,7 @@
       "type": "string"
     },
     "team_id": {
-      "desc": "The ID of the workspace to approve the app on. Exactly one of the `team_id` or `enterprise_id` arguments is required, not both.",
+      "desc": "The ID of the workspace to approve the app on. One of `team_id` or `enterprise_id` arguments is required, not both.",
       "example": "T12345",
       "required": false
     },
@@ -38,30 +45,33 @@
   "desc": "Approve an app for installation on a workspace.",
   "errors": {
     "app_management_app_not_installed_on_org": "The app management app must be installed on the org.",
+    "app_not_eligible_for_auto_install": "The app does not have the required scope to be eligible for auto-install rule creation.",
     "app_restricted_org_wide": "The app is already restricted org wide.",
+    "auto_install_rule_creation_failed": "The app was approved successfully, but the auto-install AAA rule could not be created. Please create the rule manually.",
     "custom_integration_not_allowed_at_enterprise": "Returned when the install request is for custom integration app.",
-    "feature_not_enabled": "Returned when the Admin APIs feature is not enabled for this team",
+    "feature_not_enabled": "Returned when the Admin APIs feature is not enabled for this team.",
     "invalid_app_id": "The `app_id` passed is invalid.",
     "invalid_request_id": "The `request_id` passed is invalid.",
-    "invalid_scopes": "Some of the provided scopes do not exist",
-    "not_an_admin": "This method is only accessible by org owners and admins",
+    "invalid_scopes": "Some of the provided scopes do not exist.",
+    "not_allowed_to_create_automation_rule": "The actor does not have permission to create AAA automation rules. The app was approved but the auto-install rule was not created.",
+    "not_an_admin": "This method is only accessible by org owners and admins.",
     "org_resolution_required": "The `team_id` is in an Enterprise org while `app_id` is certified.",
-    "request_already_resolved": "The app request has already been resolved",
-    "request_id_or_app_id_is_required": "Must include a `request_id` or `app_id`",
-    "request_id_required_for_custom_integrations": "A `request_id` is required for custom integrations",
+    "request_already_resolved": "The app request has already been resolved.",
+    "request_id_or_app_id_is_required": "Must include a `request_id` or `app_id`.",
+    "request_id_required_for_custom_integrations": "A `request_id` is required for custom integrations.",
     "team_not_found": "Returned when team id is not found.",
-    "too_many_ids_provided": "Please provide only `app_id` OR `request_id`",
-    "too_many_teams_provided": "Please provide only `team_id` OR `enterprise_id`"
+    "too_many_ids_provided": "Please provide only `app_id` OR `request_id`.",
+    "too_many_teams_provided": "Please provide only `team_id` OR `enterprise_id`."
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "admin.apps:write",
-        "url": "https://docs.slack.dev/reference/scopes/admin.apps.write"
+        "url": "https://docs.slack.dev/reference/scopes/admin.apps.write.md"
       }
     ]
   }

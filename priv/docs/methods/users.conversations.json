@@ -13,6 +13,13 @@
       "required": false,
       "type": "boolean"
     },
+    "exclude_muted": {
+      "default": "false",
+      "desc": "Set to `true` to exclude muted channels from the list",
+      "example": "true",
+      "required": false,
+      "type": "boolean"
+    },
     "limit": {
       "default": "100",
       "desc": "The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the list hasn't been reached. Must be an integer with a max value of 999.",
@@ -49,43 +56,43 @@
   },
   "rate_limit": {
     "label": "Tier 3: 50+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "channels:read",
-        "url": "https://docs.slack.dev/reference/scopes/channels.read"
+        "url": "https://docs.slack.dev/reference/scopes/channels.read.md"
       },
       {
         "name": "groups:read",
-        "url": "https://docs.slack.dev/reference/scopes/groups.read"
+        "url": "https://docs.slack.dev/reference/scopes/groups.read.md"
       },
       {
         "name": "im:read",
-        "url": "https://docs.slack.dev/reference/scopes/im.read"
+        "url": "https://docs.slack.dev/reference/scopes/im.read.md"
       },
       {
         "name": "mpim:read",
-        "url": "https://docs.slack.dev/reference/scopes/mpim.read"
+        "url": "https://docs.slack.dev/reference/scopes/mpim.read.md"
       }
     ],
     "user": [
       {
         "name": "channels:read",
-        "url": "https://docs.slack.dev/reference/scopes/channels.read"
+        "url": "https://docs.slack.dev/reference/scopes/channels.read.md"
       },
       {
         "name": "groups:read",
-        "url": "https://docs.slack.dev/reference/scopes/groups.read"
+        "url": "https://docs.slack.dev/reference/scopes/groups.read.md"
       },
       {
         "name": "im:read",
-        "url": "https://docs.slack.dev/reference/scopes/im.read"
+        "url": "https://docs.slack.dev/reference/scopes/im.read.md"
       },
       {
         "name": "mpim:read",
-        "url": "https://docs.slack.dev/reference/scopes/mpim.read"
+        "url": "https://docs.slack.dev/reference/scopes/mpim.read.md"
       }
     ]
   }

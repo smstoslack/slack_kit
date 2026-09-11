@@ -53,13 +53,13 @@
   "errors": { "no_query": "No query was provided." },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "search:read",
-        "url": "https://docs.slack.dev/reference/scopes/search.read"
+        "url": "https://docs.slack.dev/reference/scopes/search.read.md"
       }
     ]
   }

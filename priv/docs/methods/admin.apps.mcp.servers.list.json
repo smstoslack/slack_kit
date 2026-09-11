@@ -1,0 +1,36 @@
+{
+  "args": {
+    "cursor": {
+      "desc": "Set `cursor` to `next_cursor` returned by the previous call to list items in the next page",
+      "example": "5c3e53d5",
+      "required": false,
+      "type": "string"
+    },
+    "limit": {
+      "default": "100",
+      "desc": "The maximum number of items to return. Must be between 1 - 1000 both inclusive.",
+      "required": false,
+      "type": "integer"
+    }
+  },
+  "desc": "List third-party app MCP servers approved for an organization, derived from the org's MCP server allowlist. Entries reflect allowlist state, not install/scope liveness: servers of apps that are uninstalled (but not deleted) are still listed.",
+  "errors": {
+    "feature_not_enabled": "The MCP server admin API feature is not enabled for this team.",
+    "invalid_cursor": "Value passed for `cursor` was not valid or is no longer valid.",
+    "not_an_enterprise": "This feature is only available on Enterprise Grid plans.",
+    "restricted_action": "User does not have permission to perform this action."
+  },
+  "rate_limit": {
+    "label": "Tier 3: 50+ per minute",
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
+  },
+  "scopes": {
+    "user": [
+      {
+        "name": "admin.apps:read",
+        "url": "https://docs.slack.dev/reference/scopes/admin.apps.read.md"
+      }
+    ]
+  }
+}
+

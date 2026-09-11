@@ -29,7 +29,7 @@
   },
   "rate_limit": {
     "label": "Tier 4: 100+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {}
 }

@@ -1,0 +1,39 @@
+{
+  "args": {
+    "channel_ids": {
+      "desc": "An array of channel IDs on which to set the property.",
+      "required": true,
+      "type": "array"
+    },
+    "property": {
+      "desc": "The property for this channel in a key value format. Only one property can be updated at a time",
+      "example": "{\"exclude_from_slack_ai\": true }",
+      "required": true,
+      "type": "string"
+    }
+  },
+  "desc": "Set properties on channels in bulk.",
+  "errors": {
+    "action_already_in_progress": "Another bulk action request is currently in progress",
+    "disallowed_action": "This property cannot be set on this channel type.",
+    "feature_not_enabled": "The feature is not enabled",
+    "no_valid_channels": "All input channels are invalid",
+    "property_not_allowed": "The property passed in is not allowed to be updated.",
+    "restricted_action": "User does not have permission to perform this action",
+    "restricted_plan_level": "This API is only available to Enterprise+ customers.",
+    "too_many_properties": "Only one channel property can be updated at a time."
+  },
+  "rate_limit": {
+    "label": "Tier 2: 20+ per minute",
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
+  },
+  "scopes": {
+    "user": [
+      {
+        "name": "admin.conversations:write",
+        "url": "https://docs.slack.dev/reference/scopes/admin.conversations.write.md"
+      }
+    ]
+  }
+}
+

@@ -1,0 +1,36 @@
+{
+  "args": {
+    "team_ids": {
+      "desc": "A comma separated list of encoded team (workspace) IDs. Each workspace _MUST_ belong to the organization associated with the token.",
+      "example": "T12345678,T98765432",
+      "required": true,
+      "type": "array"
+    },
+    "usergroup_id": {
+      "desc": "An encoded usergroup (IDP Group) ID.",
+      "example": "S12345678",
+      "required": true,
+      "type": "string"
+    }
+  },
+  "desc": "Remove one or more default workspaces from an organization-wide IDP Group or Admin Group.",
+  "errors": {
+    "invalid_team_ids": "One or more team IDs provided were invalid; see the `errors` field in the response for the list of invalid team IDs.",
+    "no_team_ids_given": "The `team_ids` parameter was empty.",
+    "restricted_action": "The calling user cannot update the specified usergroup.",
+    "usergroup_not_found": "`usergroup_id` wasn't found."
+  },
+  "rate_limit": {
+    "label": "Tier 2: 20+ per minute",
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
+  },
+  "scopes": {
+    "user": [
+      {
+        "name": "admin.teams:write",
+        "url": "https://docs.slack.dev/reference/scopes/admin.teams.write.md"
+      }
+    ]
+  }
+}
+

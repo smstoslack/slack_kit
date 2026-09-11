@@ -1,7 +1,22 @@
 {
   "args": {
+    "format": {
+      "default": "csv",
+      "desc": "Format of the export. Defaults to `csv` for backward compatibility. Use `json` for a complete, hierarchical export.",
+      "required": false
+    },
     "include_archived": {
       "desc": "",
+      "required": false,
+      "type": "boolean"
+    },
+    "include_attachments": {
+      "desc": "Include file attachment metadata and access paths in the export. Only applies when `format` is `json`.",
+      "required": false,
+      "type": "boolean"
+    },
+    "include_threads": {
+      "desc": "Include each item's conversation thread in the export. Only applies when `format` is `json`.",
       "required": false,
       "type": "boolean"
     },
@@ -20,19 +35,19 @@
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "lists:read",
-        "url": "https://docs.slack.dev/reference/scopes/lists.read"
+        "url": "https://docs.slack.dev/reference/scopes/lists.read.md"
       }
     ],
     "user": [
       {
         "name": "lists:read",
-        "url": "https://docs.slack.dev/reference/scopes/lists.read"
+        "url": "https://docs.slack.dev/reference/scopes/lists.read.md"
       }
     ]
   }

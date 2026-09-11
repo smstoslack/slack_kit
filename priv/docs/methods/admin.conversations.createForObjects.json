@@ -24,20 +24,19 @@
   "errors": {
     "channel_already_exists": "Object is linked to a different channel.",
     "feature_not_enabled": "Feature not enabled.",
-    "invalid_org_id": "Value passed for `salesforce_org_id` is invalid.",
     "missing_record_channel_config": "Record Channels are not enabled for the given object type.",
-    "record_not_found": "Value passed for `object_id` is invalid.",
+    "record_not_found": "Value passed for `salesforce_org_id` or `object_id` is invalid.",
     "restricted_action": "User does not have access to perform this action."
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "admin.conversations:manage_objects",
-        "url": "https://docs.slack.dev/reference/scopes/admin.conversations.manage_objects"
+        "url": "https://docs.slack.dev/reference/scopes/admin.conversations.manage_objects.md"
       }
     ]
   }

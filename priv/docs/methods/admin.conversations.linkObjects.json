@@ -26,22 +26,24 @@
     "channel_not_found": "Value passed for `channel` is invalid.",
     "channel_not_org_wide_shared": "Channel is not Org-wide shared.",
     "channel_shared_with_nonapproved_team": "Channel is shared with a non-approved external team.",
+    "config_not_found": "Missing record configuration.",
     "invalid_channel_type": "Channel type cannot be linked.",
     "name_taken": "A channel cannot be created with the given name.",
     "not_allowed_for_grid_workspace": "Channel type is not allowed for this Enterprise org workspace.",
     "record_channel_already_exists": "Record is linked to a different channel.",
+    "record_channel_cannot_be_externally_shared": "Channel cannot be linked because it is externally shared.",
     "record_not_found": "Value passed for `record_id` is invalid.",
     "restricted_action": "User does not have access to perform this action."
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "admin.conversations:manage_objects",
-        "url": "https://docs.slack.dev/reference/scopes/admin.conversations.manage_objects"
+        "url": "https://docs.slack.dev/reference/scopes/admin.conversations.manage_objects.md"
       }
     ]
   }

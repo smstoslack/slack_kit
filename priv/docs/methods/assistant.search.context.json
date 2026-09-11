@@ -129,47 +129,47 @@
   },
   "rate_limit": {
     "label": "Special rate limits apply.",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "search:read.files",
-        "url": "https://docs.slack.dev/reference/scopes/search.read.files"
+        "url": "https://docs.slack.dev/reference/scopes/search.read.files.md"
       },
       {
         "name": "search:read.public",
-        "url": "https://docs.slack.dev/reference/scopes/search.read.public"
+        "url": "https://docs.slack.dev/reference/scopes/search.read.public.md"
       },
       {
         "name": "search:read.users",
-        "url": "https://docs.slack.dev/reference/scopes/search.read.users"
+        "url": "https://docs.slack.dev/reference/scopes/search.read.users.md"
       }
     ],
     "user": [
       {
         "name": "search:read.files",
-        "url": "https://docs.slack.dev/reference/scopes/search.read.files"
+        "url": "https://docs.slack.dev/reference/scopes/search.read.files.md"
       },
       {
         "name": "search:read.im",
-        "url": "https://docs.slack.dev/reference/scopes/search.read.im"
+        "url": "https://docs.slack.dev/reference/scopes/search.read.im.md"
       },
       {
         "name": "search:read.mpim",
-        "url": "https://docs.slack.dev/reference/scopes/search.read.mpim"
+        "url": "https://docs.slack.dev/reference/scopes/search.read.mpim.md"
       },
       {
         "name": "search:read.private",
-        "url": "https://docs.slack.dev/reference/scopes/search.read.private"
+        "url": "https://docs.slack.dev/reference/scopes/search.read.private.md"
       },
       {
         "name": "search:read.public",
-        "url": "https://docs.slack.dev/reference/scopes/search.read.public"
+        "url": "https://docs.slack.dev/reference/scopes/search.read.public.md"
       },
       {
         "name": "search:read.users",
-        "url": "https://docs.slack.dev/reference/scopes/search.read.users"
+        "url": "https://docs.slack.dev/reference/scopes/search.read.users.md"
       }
     ]
   }

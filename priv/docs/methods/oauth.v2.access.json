@@ -1,5 +1,11 @@
 {
   "args": {
+    "assertion": {
+      "desc": "Identity assertion JWT authorization grant",
+      "example": "eyJhbGciOiJSUzI1NiIsInR…",
+      "required": false,
+      "type": "string"
+    },
     "client_id": {
       "desc": "Issued when you created your application. If possible, avoid sending `client_id` and `client_secret` as parameters in your request and instead supply the Client ID and Client Secret using the HTTP Basic authentication scheme. If at all possible, avoid sending `client_id` and `client_secret` as parameters in your request.",
       "example": "2141029472.691202649728",
@@ -61,7 +67,7 @@
   },
   "rate_limit": {
     "label": "Special rate limits apply.",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {}
 }

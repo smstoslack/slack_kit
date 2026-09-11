@@ -1,0 +1,62 @@
+{
+  "args": {
+    "app_id": {
+      "desc": "Encoded ID of the app",
+      "example": "A0000000001",
+      "required": true,
+      "type": "string"
+    },
+    "permission_type": {
+      "desc": "The type of permission that defines who can use this MCP server _Acceptable values:_ `everyone` `no_one` `named_entities` `named_entities_exclude`. When the `permission_type` field is set to `named_entities` or `named_entities_exclude`, pass either or both `user_ids` and `usergroup_ids` values to define the entities the rule applies to.",
+      "required": true,
+      "type": "string"
+    },
+    "server_id": {
+      "desc": "Encoded ID of the MCP server",
+      "example": "Amcp0000000001",
+      "required": true,
+      "type": "string"
+    },
+    "user_ids": {
+      "desc": "List of user IDs to set for named\\_entities or named\\_entities\\_exclude. When the `permission_type` field is set to `named_entities` or `named_entities_exclude`, pass either or both `user_ids` and `usergroup_ids` values to define the entities the rule applies to.",
+      "example": "['U00000001', 'U00000002']",
+      "required": false,
+      "type": "array"
+    },
+    "usergroup_ids": {
+      "desc": "List of encoded usergroup IDs. When the `permission_type` field is set to `named_entities` or `named_entities_exclude`, pass either or both `user_ids` and `usergroup_ids` values to define the entities the rule applies to.",
+      "example": "S00000001,S00000002",
+      "required": false,
+      "type": "array"
+    }
+  },
+  "desc": "Set the access control permission for who can use an MCP server",
+  "errors": {
+    "app_not_found": "This app does not exist.",
+    "feature_not_enabled": "The MCP server ACL feature is not enabled for this team.",
+    "invalid_permission_type": "The permission\\_type value is not valid.",
+    "named_entities_cannot_be_empty": "Must pass at least one valid named entity when permission\\_type is named\\_entities or named\\_entities\\_exclude.",
+    "no_valid_named_entities": "None of the provided named entities were valid.",
+    "not_an_enterprise": "This feature is only available on Enterprise Grid plans.",
+    "restricted_action": "User does not have permission to perform this action.",
+    "server_acl_entities_not_in_scope": "One or more entities in the server ACL are not in scope of the app-level ACL.",
+    "server_acl_type_broader_than_app": "The chosen permission type is broader than the app-level ACL allows.",
+    "server_not_found": "The specified MCP server does not exist for this app.",
+    "too_many_named_entities": "Too many named entities provided.",
+    "user_not_found": "One or more user IDs are not valid.",
+    "usergroup_not_found": "One or more usergroup IDs are not valid."
+  },
+  "rate_limit": {
+    "label": "Tier 3: 50+ per minute",
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
+  },
+  "scopes": {
+    "user": [
+      {
+        "name": "admin.apps:write",
+        "url": "https://docs.slack.dev/reference/scopes/admin.apps.write.md"
+      }
+    ]
+  }
+}
+

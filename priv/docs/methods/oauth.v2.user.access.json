@@ -1,5 +1,11 @@
 {
   "args": {
+    "assertion": {
+      "desc": "Identity assertion JWT authorization grant.",
+      "example": "eyJhbGciOiJSUzI1NiIsInR…",
+      "required": false,
+      "type": "string"
+    },
     "client_id": {
       "desc": "Issued when you created your application. If possible, avoid sending `client_id` and `client_secret` as parameters in your request and instead supply the Client ID and Client Secret using the HTTP Basic authentication scheme.",
       "example": "2141029472.691202649728",
@@ -45,23 +51,33 @@
   },
   "desc": "Exchanges a temporary OAuth verifier code for a user access token.",
   "errors": {
+    "app_not_admin_approved": "The app has not been approved by an org admin, so no tokens can be issued for this user. Ask an org admin to approve the app before requesting a token with the `urn:ietf:params:oauth:grant-type:jwt-bearer` grant.",
+    "app_not_org_installed": "The app is not installed at the organization level. Using the `urn:ietf:params:oauth:grant-type:jwt-bearer` grant type requires org level app installs.",
     "bad_client_secret": "Value passed for `client_secret` was invalid.",
     "bad_redirect_uri": "Value passed for `redirect_uri` did not match the `redirect_uri` in the original request.",
     "cannot_install_an_org_installed_app": "Returned when the the org-installed app cannot be installed on a workspace.",
+    "client_id_mismatch": "Value passed for `client_id` did not match the `client_id` in the assertion.",
+    "ema_disabled": "Enterprise-managed auth is disabled.",
+    "ema_issuer_mismatch": "The issuer in the assertion did not match the issuer configured for enterprise-managed auth.",
+    "invalid_audience": "The audience in the assertion is not one this token endpoint supports.",
     "invalid_client_id": "Value passed for `client_id` was invalid.",
     "invalid_code": "Value passed for `code` was invalid.",
     "invalid_grant_type": "Value passed for `grant_type` was invalid.",
     "invalid_refresh_token": "The given refresh token is invalid.",
+    "no_app_scopes_requested": "None of the scopes requested in the identity assertion are configured on the app. Request only scopes the app already declares.",
+    "no_approved_scopes_requested": "The app is approved by org admins, but none of the requested scopes are approved ones. Ask an org admin to approve the requested scopes.",
+    "no_assertion": "Missing `assertion` in the request.",
     "no_scopes": "Missing `scope` in the request.",
     "no_user_scopes": "Missing user `scope` in the auth request.",
     "not_implemented": "Method not yet supported",
     "oauth_authorization_url_mismatch": "The OAuth flow was initiated on an incorrect version of the authorization url. The flow must be initiated via /oauth/v2/authorize .",
     "preview_feature_not_available": "Returned when the API method is not yet available on the team in context.",
-    "user_email_unverified": "The users email is unverified"
+    "user_email_unverified": "The users email is unverified",
+    "user_not_authenticated": "The user has never authenticated via single sign-on."
   },
   "rate_limit": {
     "label": "Special rate limits apply.",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {}
 }

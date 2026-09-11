@@ -1,0 +1,68 @@
+{
+  "args": {
+    "app_id": {
+      "desc": "Encoded ID of the app",
+      "example": "A0000000001",
+      "required": true,
+      "type": "string"
+    },
+    "channel_ids": {
+      "desc": "List of encoded channel IDs for channel restrictions. Semantics depend on channel\\_restriction\\_mode: allowlist for specific\\_channels, exclusion list for all\\_channels\\_except. `channel_ids` is required when `channel_restriction_mode` is `specific_channels` or `all_channels_except`, but is _not_ required for `all_channels`.",
+      "example": "C00000001,C00000002",
+      "required": false,
+      "type": "array"
+    },
+    "channel_restriction_mode": {
+      "desc": "The mode that defines where the app can be used in channels _Acceptable values:_ `all_channels` `specific_channels` `all_channels_except`. Where `permission_type` controls which users can access the app, `channel_restriction_mode` controls which channels it can be used in:. `channel_ids` is required when `channel_restriction_mode` is `specific_channels` or `all_channels_except`, but is _not_ required for `all_channels`.",
+      "required": false,
+      "type": "string"
+    },
+    "permission_type": {
+      "desc": "The type of permission that defines who can access the app _Acceptable values:_ `everyone` `named_entities` `no_one`. When the `permission_type` field is set to `named_entities`, pass either or both `user_ids` and `usergroup_ids` to define the specific entities that are granted access. Where `permission_type` controls which users can access the app, `channel_restriction_mode` controls which channels it can be used in:",
+      "required": true,
+      "type": "string"
+    },
+    "user_ids": {
+      "desc": "List of user IDs to allow for named\\_entities visibility. When the `permission_type` field is set to `named_entities`, pass either or both `user_ids` and `usergroup_ids` to define the specific entities that are granted access.",
+      "example": "['U00000001', 'U00000002', 'U00000003']",
+      "required": false,
+      "type": "array"
+    },
+    "usergroup_ids": {
+      "desc": "List of encoded usergroup IDs. When the `permission_type` field is set to `named_entities`, pass either or both `user_ids` and `usergroup_ids` to define the specific entities that are granted access.",
+      "example": "S00000001,S00000002",
+      "required": false,
+      "type": "array"
+    }
+  },
+  "desc": "Set the permission type for who can access an app",
+  "errors": {
+    "app_not_found": "This app does not exist.",
+    "channel_ids_required": "channel\\_ids is required when channel\\_restriction\\_mode is specific\\_channels or all\\_channels\\_except.",
+    "channel_not_found": "One or more channel IDs are not valid.",
+    "channel_restriction_requires_app_access": "Channel access cannot be configured while the app is set to no\\_one, since the app can't be used in any channel.",
+    "channel_restrictions_not_available": "Channel restrictions are not available for this workspace.",
+    "invalid_channel_restriction_mode": "The channel\\_restriction\\_mode value is not valid.",
+    "invalid_permission_type": "This app requires permission\\_type to be set as named\\_entities before adding users.",
+    "named_entities_cannot_be_empty": "Must pass at least one valid named entity.",
+    "no_valid_named_entities": "None of the provided named entities were valid",
+    "not_an_enterprise": "This feature is only available on Enterprise Grid plans.",
+    "restricted_action": "User does not have permission to perform this action.",
+    "too_many_named_entities": "Too many named\\_entities passed into the app permissions setting.",
+    "user_not_found": "This actor does not have access to at least one valid named entity.",
+    "usergroup_not_found": "The usergroup is not valid."
+  },
+  "rate_limit": {
+    "label": "Tier 2: 20+ per minute",
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
+  },
+  "scopes": {
+    "user": [
+      {
+        "name": "admin.apps:write",
+        "url": "https://docs.slack.dev/reference/scopes/admin.apps.write.md"
+      }
+    ]
+  }
+}
+

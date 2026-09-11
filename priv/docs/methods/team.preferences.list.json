@@ -4,19 +4,19 @@
   "errors": { "invalid_team": "Cannot find a workspace associated with the presented token." },
   "rate_limit": {
     "label": "Tier 3: 50+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "team.preferences:read",
-        "url": "https://docs.slack.dev/reference/scopes/team.preferences.read"
+        "url": "https://docs.slack.dev/reference/scopes/team.preferences.read.md"
       }
     ],
     "user": [
       {
         "name": "team.preferences:read",
-        "url": "https://docs.slack.dev/reference/scopes/team.preferences.read"
+        "url": "https://docs.slack.dev/reference/scopes/team.preferences.read.md"
       }
     ]
   }

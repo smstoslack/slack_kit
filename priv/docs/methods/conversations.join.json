@@ -16,19 +16,19 @@
   },
   "rate_limit": {
     "label": "Tier 3: 50+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "channels:join",
-        "url": "https://docs.slack.dev/reference/scopes/channels.join"
+        "url": "https://docs.slack.dev/reference/scopes/channels.join.md"
       }
     ],
     "user": [
       {
         "name": "channels:write",
-        "url": "https://docs.slack.dev/reference/scopes/channels.write"
+        "url": "https://docs.slack.dev/reference/scopes/channels.write.md"
       }
     ]
   }

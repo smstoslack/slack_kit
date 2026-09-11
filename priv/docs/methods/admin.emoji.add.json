@@ -7,7 +7,7 @@
     },
     "url": {
       "desc": "The URL of a file to use as an image for the emoji. Square images under 128KB and with transparent backgrounds work best.",
-      "required": true,
+      "required": false,
       "type": "string"
     }
   },
@@ -34,13 +34,13 @@
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "admin.teams:write",
-        "url": "https://docs.slack.dev/reference/scopes/admin.teams.write"
+        "url": "https://docs.slack.dev/reference/scopes/admin.teams.write.md"
       }
     ]
   }

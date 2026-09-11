@@ -9,8 +9,8 @@
       "required": true
     },
     "thread_ts": {
-      "desc": "Message timestamp of the thread to set suggested prompts for.",
-      "required": true,
+      "desc": "Message timestamp of the thread to set suggested prompts for. If not provided, the prompts will be set for the latest message in the channel.",
+      "required": false,
       "type": "string"
     },
     "title": {
@@ -23,17 +23,19 @@
   "errors": {
     "channel_not_found": "Error returned when given an invalid channel\\_id",
     "invalid_thread_ts": "Thread not found",
-    "message_not_found": "Error returned when given an invalid message"
+    "message_not_found": "Error returned when given an invalid message",
+    "missing_thread_ts": "Missing thread\\_ts",
+    "not_agent_app": "This method requires the app to be configured as an agent. Enable the Agent feature in your app configuration at https://api.slack.com/apps."
   },
   "rate_limit": {
     "label": "Tier 4: 100+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "assistant:write",
-        "url": "https://docs.slack.dev/reference/scopes/assistant.write"
+        "url": "https://docs.slack.dev/reference/scopes/assistant.write.md"
       }
     ]
   }

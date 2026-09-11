@@ -81,6 +81,12 @@
       "desc": "Provide another message's `ts` value to make this message a reply. Avoid using a reply's `ts` value; use its parent instead.",
       "required": false
     },
+    "unfurl_app_links": {
+      "desc": "Pass true to unfurl links from installed apps, or false to prevent app links from unfurling. When omitted, app links follow the `unfurl_links` setting.",
+      "example": "true",
+      "required": false,
+      "type": "boolean"
+    },
     "unfurl_links": {
       "desc": "Pass true to enable unfurling of primarily text-based content. If you want to suppress link unfurls in messages containing Block Kit blocks, set `unfurl_links` and `unfurl_media` to false.",
       "example": "true",
@@ -101,6 +107,7 @@
   },
   "desc": "Sends a message to a channel.",
   "errors": {
+    "app_access_restricted": "The user does not have permission to use this app.",
     "as_user_not_supported": "The `as_user` parameter does not function with workspace apps.",
     "attachment_payload_limit_exceeded": "Attachment payload size is too long.",
     "cannot_reply_to_message": "This message type cannot have thread replies.",
@@ -131,6 +138,7 @@
     "restricted_action_read_only_channel": "Cannot post any message into a read-only channel.",
     "restricted_action_thread_locked": "Cannot post replies to a thread that has been locked by admins.",
     "restricted_action_thread_only_channel": "Cannot post top-level messages into a thread-only channel.",
+    "send_on_behalf_not_allowed": "Cannot send on behalf of the provided user.",
     "slack_connect_canvas_sharing_blocked": "Admin has disabled Canvas File sharing in all Slack Connect communications.",
     "slack_connect_file_link_sharing_blocked": "Admin has disabled Slack File sharing in all Slack Connect communications.",
     "slack_connect_lists_sharing_blocked": "Admin has disabled Lists sharing in all Slack Connect communications.",
@@ -140,19 +148,19 @@
   },
   "rate_limit": {
     "label": "Special rate limits apply.",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "chat:write",
-        "url": "https://docs.slack.dev/reference/scopes/chat.write"
+        "url": "https://docs.slack.dev/reference/scopes/chat.write.md"
       }
     ],
     "user": [
       {
         "name": "chat:write",
-        "url": "https://docs.slack.dev/reference/scopes/chat.write"
+        "url": "https://docs.slack.dev/reference/scopes/chat.write.md"
       }
     ]
   }

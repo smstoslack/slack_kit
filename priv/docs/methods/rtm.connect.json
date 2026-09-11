@@ -16,7 +16,7 @@
   "errors": { "migration_in_progress": "Team is being migrated between servers. See the `team_migration_started` event documentation for details." },
   "rate_limit": {
     "label": "Tier 1: 1+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {}
 }

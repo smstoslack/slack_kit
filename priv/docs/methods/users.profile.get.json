@@ -17,19 +17,19 @@
   "errors": { "user_not_found": "Value passed for `user` was invalid." },
   "rate_limit": {
     "label": "Tier 4: 100+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "users.profile:read",
-        "url": "https://docs.slack.dev/reference/scopes/users.profile.read"
+        "url": "https://docs.slack.dev/reference/scopes/users.profile.read.md"
       }
     ],
     "user": [
       {
         "name": "users.profile:read",
-        "url": "https://docs.slack.dev/reference/scopes/users.profile.read"
+        "url": "https://docs.slack.dev/reference/scopes/users.profile.read.md"
       }
     ]
   }
