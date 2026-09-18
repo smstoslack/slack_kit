@@ -34,7 +34,7 @@
       "type": "integer"
     },
     "only_guests": {
-      "desc": "If true, returns only guests and their expiration dates that belong to the team\\_id",
+      "desc": "If true, returns only guests and their expiration dates that belong to the team\\_id.",
       "required": false,
       "type": "boolean"
     },
@@ -52,13 +52,13 @@
   },
   "rate_limit": {
     "label": "Tier 4: 100+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "admin.users:read",
-        "url": "https://docs.slack.dev/reference/scopes/admin.users.read"
+        "url": "https://docs.slack.dev/reference/scopes/admin.users.read.md"
       }
     ]
   }

@@ -10,7 +10,7 @@
       "type": "string"
     },
     "chunks": {
-      "desc": "Array of streaming chunks. The `blocks` array has a limit of 50, which is a separate limit from the `blocks` sent via the `chunks` parameter. Therefore you can have 50 `blocks` sent via the `chunks` parameter and 50 `blocks` sent via the `chat.stopStream` API method's `blocks` array, for 100 blocks total. Note that any blocks in the `blocks` array will be rendered after anything passed via `chunks` or `markdown_text` when the stream is completed.",
+      "desc": "Array of streaming chunks. Can include markdown text chunk objects, task update chunk objects, plan update chunks, or blocks chunks. The `blocks` array has a limit of 50, which is a separate limit from the `blocks` sent via the `chunks` parameter. Therefore you can have 50 `blocks` sent via the `chunks` parameter and 50 `blocks` sent via the `chat.stopStream` API method's `blocks` array, for 100 blocks total. Note that any blocks in the `blocks` array will be rendered after anything passed via `chunks` or `markdown_text` when the stream is completed.",
       "required": false,
       "type": "array"
     },
@@ -25,6 +25,13 @@
       "example": "{\"event_type\": \"task_created\", \"event_payload\": { \"id\": \"11223\", \"title\": \"Redesign Homepage\"}}",
       "required": false
     },
+    "session_status": {
+      "default": "active",
+      "desc": "The session status to set after stopping the stream.",
+      "example": "processing",
+      "required": false,
+      "type": "string"
+    },
     "ts": {
       "desc": "The timestamp of the streaming message.",
       "required": true
@@ -34,6 +41,7 @@
   "errors": {
     "as_user_not_supported": "The `as_user` parameter does not function with workspace apps.",
     "attachment_payload_limit_exceeded": "Attachment payload size is too long.",
+    "cannot_provide_both_markdown_text_and_chunks": "Cannot provide both `markdown_text` and `chunks` in the same request.",
     "cannot_reply_to_message": "This message type cannot have thread replies.",
     "channel_not_found": "Value passed for `channel` was invalid.",
     "channel_type_not_supported": "Channel type not supported.",
@@ -65,19 +73,20 @@
     "slack_connect_canvas_sharing_blocked": "Admin has disabled Canvas File sharing in all Slack Connect communications",
     "slack_connect_file_link_sharing_blocked": "Admin has disabled Slack File sharing in all Slack Connect communications",
     "slack_connect_lists_sharing_blocked": "Admin has disabled Lists sharing in all Slack Connect communications",
+    "streaming_mode_mismatch": "The streaming mode must be the same as the streaming mode used to start the stream. If you started the stream with `markdown_text`, you must append with `markdown_text`. If you started the stream with `chunks`, you must append with `chunks`.",
     "team_not_found": "This error occurs if, when using an org-wide token, the `channel_name` is passed instead of the `channel_id`.",
     "too_many_attachments": "Too many attachments were provided with this message. A maximum of 100 attachments are allowed on a message.",
     "too_many_contact_cards": "Too many contact\\_cards were provided with this message. A maximum of 10 contact cards are allowed on a message."
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "chat:write",
-        "url": "https://docs.slack.dev/reference/scopes/chat.write"
+        "url": "https://docs.slack.dev/reference/scopes/chat.write.md"
       }
     ]
   }

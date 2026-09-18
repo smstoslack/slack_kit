@@ -43,43 +43,43 @@
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "channels:read",
-        "url": "https://docs.slack.dev/reference/scopes/channels.read"
+        "url": "https://docs.slack.dev/reference/scopes/channels.read.md"
       },
       {
         "name": "groups:read",
-        "url": "https://docs.slack.dev/reference/scopes/groups.read"
+        "url": "https://docs.slack.dev/reference/scopes/groups.read.md"
       },
       {
         "name": "im:read",
-        "url": "https://docs.slack.dev/reference/scopes/im.read"
+        "url": "https://docs.slack.dev/reference/scopes/im.read.md"
       },
       {
         "name": "mpim:read",
-        "url": "https://docs.slack.dev/reference/scopes/mpim.read"
+        "url": "https://docs.slack.dev/reference/scopes/mpim.read.md"
       }
     ],
     "user": [
       {
         "name": "channels:read",
-        "url": "https://docs.slack.dev/reference/scopes/channels.read"
+        "url": "https://docs.slack.dev/reference/scopes/channels.read.md"
       },
       {
         "name": "groups:read",
-        "url": "https://docs.slack.dev/reference/scopes/groups.read"
+        "url": "https://docs.slack.dev/reference/scopes/groups.read.md"
       },
       {
         "name": "im:read",
-        "url": "https://docs.slack.dev/reference/scopes/im.read"
+        "url": "https://docs.slack.dev/reference/scopes/im.read.md"
       },
       {
         "name": "mpim:read",
-        "url": "https://docs.slack.dev/reference/scopes/mpim.read"
+        "url": "https://docs.slack.dev/reference/scopes/mpim.read.md"
       }
     ]
   }

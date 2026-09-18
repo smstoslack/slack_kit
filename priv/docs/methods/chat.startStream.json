@@ -1,12 +1,12 @@
 {
   "args": {
     "channel": {
-      "desc": "An encoded ID that represents a channel thread or DM.",
+      "desc": "An encoded ID that represents a channel, thread, or DM.",
       "required": true,
       "type": "string"
     },
     "chunks": {
-      "desc": "Array of streaming chunks.",
+      "desc": "Array of streaming chunks. Can include markdown text chunk objects, task update chunk objects, plan update chunks, or blocks chunks.",
       "required": false,
       "type": "array"
     },
@@ -40,15 +40,15 @@
     },
     "task_display_mode": {
       "default": "timeline",
-      "desc": "Specifies how tasks are displayed in the message. A `timeline` displays individual tasks with text in sequential order, `plan` displays all tasks together, with the first tasks's placement determining the placement of the rest of the tasks, and `dense` collapses consecutive tool calls into a single summarized task card.",
+      "desc": "Specifies how tasks are displayed in the message. `timeline` task updates render as individual task cards interleaved with streamed text. `plan` task updates render together in a plan block.",
       "example": "plan",
       "required": false,
       "type": "string"
     },
     "thread_ts": {
-      "desc": "Provide another message's `ts` value to reply to. Streamed messages should always be replies to a user request.",
+      "desc": "Provide another message's `ts` value to reply to. Omit it to stream a top-level message instead of a thread reply; this is only supported in channels where the whole channel is one session, such as Slack Code, and returns `invalid_thread_ts` elsewhere. Passing `\"0\"` is equivalent to omitting it.",
       "example": "1721609600.123456",
-      "required": true,
+      "required": false,
       "type": "string"
     },
     "username": {
@@ -60,6 +60,7 @@
   },
   "desc": "Starts a new streaming conversation.",
   "errors": {
+    "cannot_provide_both_markdown_text_and_chunks": "Cannot provide both `markdown_text` and `chunks` in the same request.",
     "channel_not_found": "Value passed for `channel` was invalid.",
     "channel_type_not_supported": "Channel type not supported",
     "duplicate_channel_not_found": "Channel associated with `client_msg_id` was invalid.",
@@ -95,13 +96,13 @@
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "chat:write",
-        "url": "https://docs.slack.dev/reference/scopes/chat.write"
+        "url": "https://docs.slack.dev/reference/scopes/chat.write.md"
       }
     ]
   }

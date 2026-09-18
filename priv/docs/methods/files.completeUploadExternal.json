@@ -23,6 +23,18 @@
       "required": true,
       "type": "array"
     },
+    "icon_emoji": {
+      "desc": "Emoji to use as the icon for the file share message. Overrides `icon_url`. Requires the `chat:write.customize` scope.",
+      "example": ":chart_with_upwards_trend:",
+      "required": false,
+      "type": "string"
+    },
+    "icon_url": {
+      "desc": "URL to an image to use as the icon for the file share message. Requires the `chat:write.customize` scope.",
+      "example": "http://lorempixel.com/48/48",
+      "required": false,
+      "type": "string"
+    },
     "initial_comment": {
       "desc": "The message text introducing the file in specified channels.",
       "required": false,
@@ -33,6 +45,11 @@
       "example": "1524523204.000192",
       "required": false,
       "type": "string"
+    },
+    "username": {
+      "desc": "Set your bot's user name for the file share message. Requires the `chat:write.customize` scope.",
+      "example": "My Bot",
+      "required": false
     }
   },
   "desc": "Finishes an upload started with files.getUploadURLExternal",
@@ -46,23 +63,24 @@
     "invalid_blocks": "Provided blocks are in the incorrect format.",
     "invalid_channel": "Channel could not be found or channel specified is invalid.",
     "not_in_channel": "User/bot membership is required for the specified channel.",
-    "posting_to_channel_denied": "User is not authorized to post to channel."
+    "posting_to_channel_denied": "User is not authorized to post to channel.",
+    "user_is_external_guest": "External guests cannot upload or share files."
   },
   "rate_limit": {
     "label": "Tier 4: 100+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "files:write",
-        "url": "https://docs.slack.dev/reference/scopes/files.write"
+        "url": "https://docs.slack.dev/reference/scopes/files.write.md"
       }
     ],
     "user": [
       {
         "name": "files:write",
-        "url": "https://docs.slack.dev/reference/scopes/files.write"
+        "url": "https://docs.slack.dev/reference/scopes/files.write.md"
       }
     ]
   }

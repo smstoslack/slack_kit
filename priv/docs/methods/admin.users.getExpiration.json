@@ -8,7 +8,7 @@
     "user_id": {
       "desc": "The ID of the guest user to get the expiration for.",
       "example": "U123ABC456",
-      "required": false
+      "required": true
     }
   },
   "desc": "Fetches the expiration timestamp for a guest",
@@ -23,13 +23,13 @@
   },
   "rate_limit": {
     "label": "Tier 4: 100+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "admin.users:read",
-        "url": "https://docs.slack.dev/reference/scopes/admin.users.read"
+        "url": "https://docs.slack.dev/reference/scopes/admin.users.read.md"
       }
     ]
   }

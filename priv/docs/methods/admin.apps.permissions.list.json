@@ -1,0 +1,30 @@
+{
+  "args": {
+    "app_id": {
+      "desc": "Encoded ID of the app",
+      "example": "A0000000001",
+      "required": true,
+      "type": "string"
+    }
+  },
+  "desc": "Returns the permission type of an app and if applicable, includes the entities that have been granted access",
+  "errors": {
+    "app_not_found": "This app does not exist.",
+    "invalid_permission_type": "The ACL has an invalid permission type.",
+    "not_an_enterprise": "This feature is only available on Enterprise Grid plans.",
+    "restricted_action": "User does not have permission to perform this action."
+  },
+  "rate_limit": {
+    "label": "Tier 3: 50+ per minute",
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
+  },
+  "scopes": {
+    "user": [
+      {
+        "name": "admin.apps:read",
+        "url": "https://docs.slack.dev/reference/scopes/admin.apps.read.md"
+      }
+    ]
+  }
+}
+

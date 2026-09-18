@@ -17,13 +17,13 @@
   "errors": { "missing_args": "Either app\\_ids or rich\\_link\\_preview\\_types must be provided" },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "admin.apps:read",
-        "url": "https://docs.slack.dev/reference/scopes/admin.apps.read"
+        "url": "https://docs.slack.dev/reference/scopes/admin.apps.read.md"
       }
     ]
   }

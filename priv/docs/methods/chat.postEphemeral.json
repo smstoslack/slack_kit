@@ -45,6 +45,11 @@
       "required": false,
       "type": "string"
     },
+    "metadata": {
+      "desc": "JSON object with an `entities` array of work object entity metadata, presented as a URL-encoded string. Only entity metadata is supported: ephemeral messages are not persisted and never dispatch `message_metadata_*` events, so `event_type`/`event_payload` message metadata is ignored here. Each entity requires `entity_type`, `entity_payload`, `external_ref`, and `url`.",
+      "example": "{\"entities\": []}",
+      "required": false
+    },
     "parse": {
       "desc": "Change how messages are treated. Defaults to `none`. See below. _Acceptable values:_ `none` `full` `mrkdwn` `false`. You can specify values for `parse` and `link_names` to change formatting behavior.",
       "example": "full",
@@ -91,19 +96,19 @@
   },
   "rate_limit": {
     "label": "Tier 4: 100+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "chat:write",
-        "url": "https://docs.slack.dev/reference/scopes/chat.write"
+        "url": "https://docs.slack.dev/reference/scopes/chat.write.md"
       }
     ],
     "user": [
       {
         "name": "chat:write",
-        "url": "https://docs.slack.dev/reference/scopes/chat.write"
+        "url": "https://docs.slack.dev/reference/scopes/chat.write.md"
       }
     ]
   }

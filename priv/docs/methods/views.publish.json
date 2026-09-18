@@ -6,6 +6,11 @@
       "required": false,
       "type": "string"
     },
+    "interactivity_pointer": {
+      "desc": "",
+      "required": false,
+      "type": "string"
+    },
     "user_id": {
       "desc": "`id` of the user you want publish a view to.",
       "example": "U0BPQUNTA",
@@ -28,7 +33,7 @@
   },
   "rate_limit": {
     "label": "Tier 4: 100+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {}
 }

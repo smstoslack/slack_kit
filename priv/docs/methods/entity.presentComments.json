@@ -1,0 +1,59 @@
+{
+  "args": {
+    "can_post_comment": {
+      "desc": "Indicates whether the user has permissions to post comments",
+      "required": false,
+      "type": "boolean"
+    },
+    "comments": {
+      "desc": "Array of comments to present to the user. See the comment schema for the full list of properties.",
+      "required": true,
+      "type": "array"
+    },
+    "cursor": {
+      "desc": "App supplied cursor used for pagination, will be sent in the next request for comments",
+      "required": false,
+      "type": "string"
+    },
+    "delete_action_id": {
+      "desc": "The block action id that will be sent when a delete request is initiated for a comment.",
+      "required": false,
+      "type": "string"
+    },
+    "error": {
+      "desc": "",
+      "required": false
+    },
+    "trigger_id": {
+      "desc": "A reference to the original user action that initiated the request",
+      "required": true,
+      "type": "string"
+    },
+    "user_auth_required": {
+      "default": "0",
+      "desc": "Set to true (or 1) to indicate that the user must authenticate to see the comments data.",
+      "required": false,
+      "type": "boolean"
+    },
+    "user_auth_url": {
+      "desc": "A custom URL to which users are directed for authentication if required.",
+      "example": "https://example.com/onboarding?user_id=xxx",
+      "required": false,
+      "type": "string"
+    }
+  },
+  "desc": "Provide comments for work objects. Apps call this endpoint to send per-user flexpane comment data to the client.",
+  "errors": {
+    "invalid_app_id": "App ID is not a valid format",
+    "invalid_trigger_id": "Trigger id is not valid",
+    "method_not_found": "when the API isn't available to the caller",
+    "missing_delete_action_id": "delete\\_action\\_id is required when any comment is marked can\\_delete",
+    "user_auth_url_missing": "User auth url is required if user\\_auth\\_required is true"
+  },
+  "rate_limit": {
+    "label": "Tier 3: 50+ per minute",
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
+  },
+  "scopes": {}
+}
+

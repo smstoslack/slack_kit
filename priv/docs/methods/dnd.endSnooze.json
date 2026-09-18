@@ -4,13 +4,13 @@
   "errors": { "snooze_end_failed": "There was a problem setting the user's Do Not Disturb status" },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "dnd:write",
-        "url": "https://docs.slack.dev/reference/scopes/dnd.write"
+        "url": "https://docs.slack.dev/reference/scopes/dnd.write.md"
       }
     ]
   }

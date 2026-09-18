@@ -1,0 +1,30 @@
+{
+  "args": {
+    "app_id": {
+      "desc": "Encoded ID of the managed app to configure",
+      "required": true
+    },
+    "permissions": {
+      "desc": "Who can interact with the app. Use everyone to allow all members, or app\\_owner to restrict access to the app's owner. _Acceptable values:_ `everyone` `app_owner`",
+      "example": "everyone",
+      "required": true,
+      "type": "string"
+    }
+  },
+  "desc": "Set who can interact with a managed app. Lets the builder who created a managed app on a partner platform configure the app's permissions as themselves, using a user token from the manager app. Permissions can only be set before the app is installed: if the app is already installed, this method makes no change and returns the app's current permissions.",
+  "errors": {
+    "app_not_found": "This app does not exist.",
+    "app_not_managed": "The specified app is not currently managed by any manager app.",
+    "app_not_owned_by_manager_app": "The specified app is not managed by the calling manager app. A manager app can only set permissions for apps that it originally created and currently manages.",
+    "app_owner_not_found": "The app's owner could not be resolved, so app\\_owner cannot be applied.",
+    "enterprise_only_feature": "App permissions are only available on Enterprise Grid plans. Upgrade the app's org to configure who can interact with it.",
+    "feature_not_enabled": "This method is not enabled for the manager app's organization.",
+    "manager_app_not_eligible": "The manager app the token was issued to is not eligible to configure app permissions."
+  },
+  "rate_limit": {
+    "label": "Tier 2: 20+ per minute",
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
+  },
+  "scopes": {}
+}
+

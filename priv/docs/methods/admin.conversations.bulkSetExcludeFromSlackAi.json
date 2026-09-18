@@ -16,19 +16,20 @@
   "desc": "Exclude channels from Slack AI in bulk",
   "errors": {
     "action_already_in_progress": "Another bulk action request is currently in progress",
+    "disallowed_action": "This property cannot be set on DMs or MPDMs.",
     "feature_not_enabled": "The feature is not enabled",
     "no_valid_channels": "All input channels are invalid",
     "restricted_action": "User does not have permission to perform this action"
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "admin.conversations:write",
-        "url": "https://docs.slack.dev/reference/scopes/admin.conversations.write"
+        "url": "https://docs.slack.dev/reference/scopes/admin.conversations.write.md"
       }
     ]
   }

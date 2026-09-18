@@ -36,23 +36,24 @@
     "snippet_too_large": "The provided `length` is too large to create a snippet, which are limited to 1MB.",
     "storage_limit_reached": "File storage limit has been reached. This occurs when free teams have uploaded 5GB of files.",
     "unknown_snippet_type": "The provided `snippet_type` is not a supported type.",
-    "unknown_subtype": "The provided `subtype` is not a supported type."
+    "unknown_subtype": "The provided `subtype` is not a supported type.",
+    "user_is_external_guest": "External guests cannot upload or share files."
   },
   "rate_limit": {
     "label": "Tier 4: 100+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "files:write",
-        "url": "https://docs.slack.dev/reference/scopes/files.write"
+        "url": "https://docs.slack.dev/reference/scopes/files.write.md"
       }
     ],
     "user": [
       {
         "name": "files:write",
-        "url": "https://docs.slack.dev/reference/scopes/files.write"
+        "url": "https://docs.slack.dev/reference/scopes/files.write.md"
       }
     ]
   }

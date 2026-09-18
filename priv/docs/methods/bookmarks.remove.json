@@ -23,23 +23,24 @@
     "not_found": "Bookmark cannot be found.",
     "not_implemented": "bookmarking not available for the user.",
     "permission_denied": "No permission to perform this operation.",
+    "restricted_action": "Members from an external organization cannot remove workflow bookmarks from this channel.",
     "user_not_found": "User cannot be found."
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "bookmarks:write",
-        "url": "https://docs.slack.dev/reference/scopes/bookmarks.write"
+        "url": "https://docs.slack.dev/reference/scopes/bookmarks.write.md"
       }
     ],
     "user": [
       {
         "name": "bookmarks:write",
-        "url": "https://docs.slack.dev/reference/scopes/bookmarks.write"
+        "url": "https://docs.slack.dev/reference/scopes/bookmarks.write.md"
       }
     ]
   }

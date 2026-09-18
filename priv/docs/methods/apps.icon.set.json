@@ -16,7 +16,9 @@
   },
   "desc": "Sets the app icon",
   "errors": {
+    "app_not_owned_by_manager_app": "The specified app is not managed by the calling manager app. A manager app can only set icons for apps that it originally created via apps.manifest.create.",
     "error_bad_format": "Icon must be a valid image file.",
+    "icon_not_accessible": "The icon URL is not accessible or returned an error (e.g. 404 Not Found). Please verify the URL is publicly reachable and returns a valid image.",
     "invalid_app": "App does not exist.",
     "invalid_app_id": "App ID is not valid.",
     "invalid_icon_size": "Icon dimensions must be between 512x512px and 2000x2000px.",
@@ -26,13 +28,13 @@
   },
   "rate_limit": {
     "label": "Tier 1: 1+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "app_configurations:write",
-        "url": "https://docs.slack.dev/reference/scopes/app_configurations.write"
+        "url": "https://docs.slack.dev/reference/scopes/app_configurations.write.md"
       }
     ]
   }

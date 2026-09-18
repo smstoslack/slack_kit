@@ -13,7 +13,7 @@
       "type": "boolean"
     },
     "users": {
-      "desc": "A comma separated list of user IDs. Up to 100 users may be listed.",
+      "desc": "A comma separated list of user IDs. Up to 1000 users may be listed.",
       "required": true,
       "type": "string"
     }
@@ -21,6 +21,7 @@
   "desc": "Invites users to a channel.",
   "errors": {
     "already_in_channel": "Invited user is already in the channel.",
+    "app_cannot_join_channel": "This app cannot be invited to this channel.",
     "cant_invite": "User cannot be invited to this channel.",
     "cant_invite_self": "Authenticated user cannot invite themselves to a channel.",
     "channel_not_found": "Value passed for `channel` was invalid.",
@@ -38,59 +39,59 @@
   },
   "rate_limit": {
     "label": "Tier 3: 50+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "channels:manage",
-        "url": "https://docs.slack.dev/reference/scopes/channels.manage"
+        "url": "https://docs.slack.dev/reference/scopes/channels.manage.md"
       },
       {
         "name": "channels:write.invites",
-        "url": "https://docs.slack.dev/reference/scopes/channels.write.invites"
+        "url": "https://docs.slack.dev/reference/scopes/channels.write.invites.md"
       },
       {
         "name": "groups:write",
-        "url": "https://docs.slack.dev/reference/scopes/groups.write"
+        "url": "https://docs.slack.dev/reference/scopes/groups.write.md"
       },
       {
         "name": "groups:write.invites",
-        "url": "https://docs.slack.dev/reference/scopes/groups.write.invites"
+        "url": "https://docs.slack.dev/reference/scopes/groups.write.invites.md"
       },
       {
         "name": "im:write",
-        "url": "https://docs.slack.dev/reference/scopes/im.write"
+        "url": "https://docs.slack.dev/reference/scopes/im.write.md"
       },
       {
         "name": "mpim:write",
-        "url": "https://docs.slack.dev/reference/scopes/mpim.write"
+        "url": "https://docs.slack.dev/reference/scopes/mpim.write.md"
       }
     ],
     "user": [
       {
         "name": "channels:write",
-        "url": "https://docs.slack.dev/reference/scopes/channels.write"
+        "url": "https://docs.slack.dev/reference/scopes/channels.write.md"
       },
       {
         "name": "channels:write.invites",
-        "url": "https://docs.slack.dev/reference/scopes/channels.write.invites"
+        "url": "https://docs.slack.dev/reference/scopes/channels.write.invites.md"
       },
       {
         "name": "groups:write",
-        "url": "https://docs.slack.dev/reference/scopes/groups.write"
+        "url": "https://docs.slack.dev/reference/scopes/groups.write.md"
       },
       {
         "name": "groups:write.invites",
-        "url": "https://docs.slack.dev/reference/scopes/groups.write.invites"
+        "url": "https://docs.slack.dev/reference/scopes/groups.write.invites.md"
       },
       {
         "name": "im:write",
-        "url": "https://docs.slack.dev/reference/scopes/im.write"
+        "url": "https://docs.slack.dev/reference/scopes/im.write.md"
       },
       {
         "name": "mpim:write",
-        "url": "https://docs.slack.dev/reference/scopes/mpim.write"
+        "url": "https://docs.slack.dev/reference/scopes/mpim.write.md"
       }
     ]
   }

@@ -23,21 +23,24 @@
   "desc": "Associate one or more default workspaces with an organization-wide IDP group.",
   "errors": {
     "auto_provision_failure": "A failure occurred while assigning IDP group members to a specific workspace; see `errors` element for a list of failed team IDs.",
+    "auto_provision_required": "The IDP group requires a mandatory workspace link, so `auto_provision` must be `true`.",
     "invalid_team_ids": "One or more team IDs provided were invalid; see the `errors` field in the response for the list of invalid team IDs.",
+    "multi_workspace_restriction": "The IDP group has members that cannot be linked to more than one workspace.",
     "no_team_ids_given": "The `team_ids` parameter was empty.",
     "restricted_action": "The calling user cannot update the specified usergroup.",
     "team_limit_exceeded": "The number of teams associated with the org group would exceed the limit.",
-    "usergroup_not_found": "`usergroup_id` wasn't found."
+    "usergroup_not_found": "`usergroup_id` wasn't found.",
+    "workspace_not_eligible": "The workspace is not eligible to be linked to this IDP group; it is not on the org's allow-list of eligible workspaces."
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "admin.teams:write",
-        "url": "https://docs.slack.dev/reference/scopes/admin.teams.write"
+        "url": "https://docs.slack.dev/reference/scopes/admin.teams.write.md"
       }
     ]
   }

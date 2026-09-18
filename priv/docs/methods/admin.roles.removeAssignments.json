@@ -21,7 +21,7 @@
   },
   "desc": "Removes a set of users from a role for the given scopes and entities",
   "errors": {
-    "cannot_modify_role_admin": "Cannot modify role admin.",
+    "cannot_modify_role_admin": "The user does not have permission to modify the admin role.",
     "failed_for_some_entities": "At least one role scope ID was invalid",
     "failed_for_some_users": "At least one user ID was invalid",
     "failed_for_some_users_and_entities": "At least one role scope ID was invalid",
@@ -35,13 +35,13 @@
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "admin.roles:write",
-        "url": "https://docs.slack.dev/reference/scopes/admin.roles.write"
+        "url": "https://docs.slack.dev/reference/scopes/admin.roles.write.md"
       }
     ]
   }

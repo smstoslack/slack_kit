@@ -33,13 +33,13 @@
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "admin.conversations:write",
-        "url": "https://docs.slack.dev/reference/scopes/admin.conversations.write"
+        "url": "https://docs.slack.dev/reference/scopes/admin.conversations.write.md"
       }
     ]
   }

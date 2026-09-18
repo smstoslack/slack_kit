@@ -11,19 +11,19 @@
   "errors": { "not_implemented": "This method is not available." },
   "rate_limit": {
     "label": "Tier 3: 50+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "calls:read",
-        "url": "https://docs.slack.dev/reference/scopes/calls.read"
+        "url": "https://docs.slack.dev/reference/scopes/calls.read.md"
       }
     ],
     "user": [
       {
         "name": "calls:read",
-        "url": "https://docs.slack.dev/reference/scopes/calls.read"
+        "url": "https://docs.slack.dev/reference/scopes/calls.read.md"
       }
     ]
   }

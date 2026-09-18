@@ -10,19 +10,19 @@
   "errors": { "unable_to_fetch_custom_emojis": "Unable to fetch custom emojis for team." },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "emoji:read",
-        "url": "https://docs.slack.dev/reference/scopes/emoji.read"
+        "url": "https://docs.slack.dev/reference/scopes/emoji.read.md"
       }
     ],
     "user": [
       {
         "name": "emoji:read",
-        "url": "https://docs.slack.dev/reference/scopes/emoji.read"
+        "url": "https://docs.slack.dev/reference/scopes/emoji.read.md"
       }
     ]
   }

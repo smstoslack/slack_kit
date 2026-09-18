@@ -43,17 +43,18 @@
   "errors": {
     "channel_not_found": "Error returned when given an invalid channel\\_id",
     "invalid_thread_ts": "Error returned when given an invalid thread\\_ts",
+    "method_not_supported_for_channel_type": "This type of conversation cannot be used with this method. Use `agents.sessions.setStatus` to set status in a session channel.",
     "reserved_username": "Reserved usernames are not allowed to be used."
   },
   "rate_limit": {
     "label": "Special rate limits apply.",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "chat:write",
-        "url": "https://docs.slack.dev/reference/scopes/chat.write"
+        "url": "https://docs.slack.dev/reference/scopes/chat.write.md"
       }
     ]
   }
