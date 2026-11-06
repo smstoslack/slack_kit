@@ -1,0 +1,57 @@
+{
+  "args": {
+    "description": {
+      "desc": "The usergroup's purpose or description.",
+      "required": false,
+      "type": "string"
+    },
+    "handle": {
+      "desc": "The handle used for mentioning the group in a channel, must be unique.",
+      "required": false,
+      "type": "string"
+    },
+    "id": {
+      "desc": "ID of the usergroup to update",
+      "example": "S0604QSJC",
+      "required": true,
+      "type": "string"
+    },
+    "is_visible": {
+      "desc": "Configure whether or not this usergroup should be visible in the client.",
+      "example": "true",
+      "required": false,
+      "type": "boolean"
+    },
+    "name": {
+      "desc": "The name of the group.",
+      "required": false,
+      "type": "string"
+    }
+  },
+  "desc": "Update one or more properties of an existing organizational usergroup.",
+  "errors": {
+    "cannot_modify_pref_after_creation": "This preference can only be set when the group is created and cannot be changed afterward.",
+    "feature_not_enabled": "The Admin APIs feature is not enabled for this workspace.",
+    "handle_already_exists": "The handle specified is used by another usergroup or entity and cannot be updated.",
+    "invalid_usergroup": "A usergroup with the specified ID does not exist.",
+    "name_already_exists": "The name specified is used by another usergroup and cannot be updated.",
+    "not_an_enterprise": "The token passed in does not belong to an Enterprise organization.",
+    "restricted_action": "The calling user cannot modify the specified usergroup, or the usergroup is managed by an identity provider (IdP) and its name cannot be changed through this API.",
+    "too_many_usergroup_members_to_make_visible": "Tried to set the group to visible but the group has too many members",
+    "user_channel_limit_exceeded": "Adding these channels would cause one or more members to exceed their channel limit.",
+    "visible_group_needs_handle": "Tried to set the group to visible but did not provide a handle."
+  },
+  "rate_limit": {
+    "label": "Tier 1: 1+ per minute",
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
+  },
+  "scopes": {
+    "user": [
+      {
+        "name": "admin.usergroups:write",
+        "url": "https://docs.slack.dev/reference/scopes/admin.usergroups.write.md"
+      }
+    ]
+  }
+}
+

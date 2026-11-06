@@ -25,7 +25,7 @@
     "enterprise_not_found": "The provided `enterprise_id` was not found.",
     "feature_not_enabled": "The Admin APIs feature is not enabled for this team.",
     "must_revoke_access": "Organization-deployed apps cannot be uninstalled from specific workspaces using this API.",
-    "permission_denied": "You do not have permission to uninstall applications from the reqeusted org or workspaces.",
+    "permission_denied": "You do not have permission to uninstall applications from the requested org or workspaces.",
     "restricted_action": "the user is not authorized to perform this action",
     "specify_enterprise_or_teams": "Provide exactly one of `enterprise_id` or `team_ids`.",
     "teams_not_found": "One or more of the provided `team_ids` were not found.",
@@ -33,13 +33,13 @@
   },
   "rate_limit": {
     "label": "Tier 1: 1+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "admin.apps:write",
-        "url": "https://docs.slack.dev/reference/scopes/admin.apps.write"
+        "url": "https://docs.slack.dev/reference/scopes/admin.apps.write.md"
       }
     ]
   }

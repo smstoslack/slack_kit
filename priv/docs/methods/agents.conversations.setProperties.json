@@ -1,0 +1,51 @@
+{
+  "args": {
+    "agent_resource": {
+      "desc": "Agent resource properties to set. Only provided fields are updated.",
+      "required": false,
+      "type": "object"
+    },
+    "channel_id": {
+      "desc": "ID of the code channel to update.",
+      "required": true,
+      "type": "string"
+    },
+    "code_channel": {
+      "desc": "Code channel properties to set. Only provided fields are updated.",
+      "required": false,
+      "type": "object"
+    },
+    "status": {
+      "desc": "New status for the agent session. _Acceptable values:_ `active` `processing` `suspended` `closed`. The `status` and `title` arguments are being deprecated as part of the sessions API unification.",
+      "required": false,
+      "type": "string"
+    },
+    "title": {
+      "desc": "New display title for the agent session. The `status` and `title` arguments are being deprecated as part of the sessions API unification.",
+      "required": false,
+      "type": "string"
+    }
+  },
+  "desc": "Set properties on a code channel.",
+  "errors": {
+    "channel_not_found": "The specified channel\\_id does not correspond to a valid channel.",
+    "invalid_status": "Value passed for `status` was not a valid agent session status.",
+    "invalid_title": "Value passed for `title` was invalid.",
+    "no_properties_provided": "At least one property field must be provided.",
+    "not_agent_channel": "The specified channel is not a code channel.",
+    "not_authorized": "The caller is not an authorized agent bot for this channel."
+  },
+  "rate_limit": {
+    "label": "Special rate limits apply.",
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
+  },
+  "scopes": {
+    "bot": [
+      {
+        "name": "code_channels:manage",
+        "url": "https://docs.slack.dev/reference/scopes/code_channels.manage.md"
+      }
+    ]
+  }
+}
+

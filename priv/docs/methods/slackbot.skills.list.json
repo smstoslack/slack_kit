@@ -1,0 +1,52 @@
+{
+  "args": {
+    "category": {
+      "desc": "Only return skills in this category.",
+      "required": false,
+      "type": "string"
+    },
+    "cursor": {
+      "desc": "Paginate through collections of data by setting the `cursor` parameter to a `next_cursor` attribute returned by a previous request's `response_metadata`. Must be used with the same `filter` and `category`.",
+      "required": false,
+      "type": "string"
+    },
+    "filter": {
+      "default": "library",
+      "desc": "`library`: skills enabled for the caller, including auto-enabled skills and skills from skill sets. `owned`: skills the caller created. `catalog`: the organization's official skills.",
+      "required": false,
+      "type": "string"
+    },
+    "limit": {
+      "default": "100",
+      "desc": "The maximum number of skills to return. Fewer may be returned even when more remain.",
+      "required": false,
+      "type": "integer"
+    }
+  },
+  "desc": "Lists Slackbot skills from the caller's point of view. Instructions are not included.",
+  "errors": {
+    "feature_not_enabled": "The Skills API isn't enabled for this organization.",
+    "invalid_category": "The category isn't one of the supported skill categories.",
+    "invalid_cursor": "The cursor is malformed, expired, or was issued for a different filter or category.",
+    "restricted_action": "The caller isn't allowed to use skills."
+  },
+  "rate_limit": {
+    "label": "Tier 3: 50+ per minute",
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
+  },
+  "scopes": {
+    "bot": [
+      {
+        "name": "skills:read",
+        "url": "https://docs.slack.dev/reference/scopes/skills.read.md"
+      }
+    ],
+    "user": [
+      {
+        "name": "skills:read",
+        "url": "https://docs.slack.dev/reference/scopes/skills.read.md"
+      }
+    ]
+  }
+}
+

@@ -10,23 +10,24 @@
   "errors": {
     "canvas_deleting_disabled": "This functionality is disabled.",
     "canvas_not_found": "The canvas does not exist, or is not visible to the calling user.",
-    "restricted_action": "User does not have permission to perform this action."
+    "restricted_action": "User does not have permission to perform this action.",
+    "use_skills_api": "When the Skills API is enabled for the caller, skill canvases must be deleted with slackbot.skills.delete using a user OAuth token with skills:write. Pass the canvas ID as skill\\_id. The success response remains ok: true. The skill and its canvas have not been deleted."
   },
   "rate_limit": {
     "label": "Tier 3: 50+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "canvases:write",
-        "url": "https://docs.slack.dev/reference/scopes/canvases.write"
+        "url": "https://docs.slack.dev/reference/scopes/canvases.write.md"
       }
     ],
     "user": [
       {
         "name": "canvases:write",
-        "url": "https://docs.slack.dev/reference/scopes/canvases.write"
+        "url": "https://docs.slack.dev/reference/scopes/canvases.write.md"
       }
     ]
   }

@@ -1,0 +1,40 @@
+{
+  "args": {
+    "id": {
+      "desc": "ID of the usergroup to add users to",
+      "example": "S0123ABC456",
+      "required": true,
+      "type": "string"
+    },
+    "users": {
+      "desc": "The encoded user IDs to add to the usergroup, provided as a JSON array or a comma-separated string. _Maximum:_ `15000`",
+      "example": "U1111AAA111,U222BBB222",
+      "required": true,
+      "type": "array"
+    }
+  },
+  "desc": "Add members to an existing organizational usergroup. This method is only available to Enterprise Grid organizations.",
+  "errors": {
+    "cannot_modify_role_admin": "The user does not have permission to modify the roles admin role.",
+    "feature_not_enabled": "The Admin APIs feature is not enabled for this workspace.",
+    "invalid_usergroup": "A usergroup with the specified ID does not exist.",
+    "invalid_users": "One or more users provided can not be added to the usergroup.",
+    "member_count_would_exceed_visible_limit": "The usergroup is visible and the member count would exceed the limit.",
+    "not_an_enterprise": "The token passed in does not belong to an Enterprise organization.",
+    "restricted_action": "The calling user cannot modify the specified usergroup, or the usergroup's membership is managed by an identity provider (IdP) and can only be changed through SCIM.",
+    "user_not_found": "One or more users provided are invalid or are not a member of the organization."
+  },
+  "rate_limit": {
+    "label": "Tier 2: 20+ per minute",
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
+  },
+  "scopes": {
+    "user": [
+      {
+        "name": "admin.usergroups:write",
+        "url": "https://docs.slack.dev/reference/scopes/admin.usergroups.write.md"
+      }
+    ]
+  }
+}
+

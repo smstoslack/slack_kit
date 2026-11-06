@@ -8,23 +8,24 @@
   },
   "desc": "Get conversation preferences for a public or private channel.",
   "errors": {
-    "channel_not_found": "The value passed for `channel_id` was invalid.",
+    "channel_not_found": "The value passed for `channel_id` was invalid, or the channel belongs to a workspace other than the token's workspace and isn't shared with it.",
     "channel_type_not_supported": "The provided `channel_id` was a DM, MPDM, or the 'general' channel.",
     "could_not_get_conversation_prefs": "There was an error getting the conversation preferences for this channel.",
     "feature_not_enabled": "The token provided does not have access to this method.",
     "not_an_admin": "The token provided is not associated with an Org Admin or Owner.",
     "not_an_enterprise": "This endpoint can only be called by an Enterprise organization.",
-    "restricted_action": "A workspace preference prevents the authenticated user from listing preferences."
+    "restricted_action": "A workspace preference prevents the authenticated user from listing preferences.",
+    "target_team_not_on_org": "The specified target\\_team is not part of the organization."
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "admin.conversations:read",
-        "url": "https://docs.slack.dev/reference/scopes/admin.conversations.read"
+        "url": "https://docs.slack.dev/reference/scopes/admin.conversations.read.md"
       }
     ]
   }

@@ -1,0 +1,37 @@
+{
+  "args": {
+    "channel_id": {
+      "desc": "ID of conversation to remove users from.",
+      "required": true
+    },
+    "user_ids": {
+      "desc": "The users to remove from the channel. _Minimum:_ `1` _Maximum:_ `100`",
+      "required": true,
+      "type": "array"
+    }
+  },
+  "desc": "Remove multiple users from a conversation. Admin version of conversations.kick with support for bulk user removal.",
+  "errors": {
+    "channel_not_found": "The value passed for `channel_id` was invalid.",
+    "channel_type_not_supported": "The provided `channel_id` is a DM, MPDM, or cannot be used with this method.",
+    "external_channel_migrating": "The channel is an externally shared channel that is currently being migrated and members can't be removed.",
+    "failed_for_all_users": "All users could not be removed from the channel. Check `failed_user_ids` for details.",
+    "not_supported": "This type of channel doesn't support removing members through this method.",
+    "permission_denied": "The user does not have permission to remove members from the channel.",
+    "restricted_action": "The authenticated user lacks channel management permissions for this channel type, or a team preference prevents them from removing members.",
+    "too_many_users": "Too many user IDs provided (maximum 100)."
+  },
+  "rate_limit": {
+    "label": "Tier 2: 20+ per minute",
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
+  },
+  "scopes": {
+    "user": [
+      {
+        "name": "admin.conversations:write",
+        "url": "https://docs.slack.dev/reference/scopes/admin.conversations.write.md"
+      }
+    ]
+  }
+}
+

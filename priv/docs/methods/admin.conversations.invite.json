@@ -6,7 +6,7 @@
       "required": true
     },
     "user_ids": {
-      "desc": "The users to invite.",
+      "desc": "The users to invite. _Minimum:_ `1` _Maximum:_ `1000`",
       "example": "U1234,U2345,U3456",
       "required": true,
       "type": "array"
@@ -24,13 +24,13 @@
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "admin.conversations:write",
-        "url": "https://docs.slack.dev/reference/scopes/admin.conversations.write"
+        "url": "https://docs.slack.dev/reference/scopes/admin.conversations.write.md"
       }
     ]
   }

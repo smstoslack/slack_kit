@@ -53,26 +53,25 @@
   },
   "desc": "List files for a team, in a channel, or from a user with applied filters.",
   "errors": {
-    "missing_argument": "A required argument is missing.",
     "slack_connect_canvas_sharing_blocked": "Admin has disabled sharing of Canvas links in all Slack Connect communications",
     "unknown_type": "Value passed for `types` was invalid",
     "user_not_found": "Value passed for `user` was invalid"
   },
   "rate_limit": {
     "label": "Tier 3: 50+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "files:read",
-        "url": "https://docs.slack.dev/reference/scopes/files.read"
+        "url": "https://docs.slack.dev/reference/scopes/files.read.md"
       }
     ],
     "user": [
       {
         "name": "files:read",
-        "url": "https://docs.slack.dev/reference/scopes/files.read"
+        "url": "https://docs.slack.dev/reference/scopes/files.read.md"
       }
     ]
   }

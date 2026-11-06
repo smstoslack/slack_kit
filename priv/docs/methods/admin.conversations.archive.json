@@ -10,22 +10,23 @@
   "errors": {
     "already_archived": "This channel has already been archived.",
     "cant_archive_general": "You cannot archive the 'general' channel.",
-    "channel_not_found": "The value passed for `channel` was invalid.",
+    "channel_not_found": "The value passed for `channel` was invalid, or the channel belongs to a workspace other than the token's workspace and isn't shared with it.",
     "channel_type_not_supported": "The value passed for `channel` was an MPDM, DM, or the 'general' channel.",
     "could_not_archive_channel": "The provided channel could not be archived.",
     "default_org_wide_channel": "The default org-wide channel cannot be archived.",
     "feature_not_enabled": "The token provided does not have access to this method.",
-    "restricted_action": "A workspace preference prevents the authenticated user from archiving this channel."
+    "restricted_action": "A workspace preference prevents the authenticated user from archiving this channel.",
+    "target_team_not_on_org": "The specified target\\_team is not part of the organization."
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "admin.conversations:write",
-        "url": "https://docs.slack.dev/reference/scopes/admin.conversations.write"
+        "url": "https://docs.slack.dev/reference/scopes/admin.conversations.write.md"
       }
     ]
   }

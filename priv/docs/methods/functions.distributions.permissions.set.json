@@ -19,7 +19,7 @@
       "type": "string"
     },
     "org_ids": {
-      "desc": "List of org IDs to allow for named\\_entities permission",
+      "desc": "List of org IDs to allow for named\\_entities permission _Maximum:_ `50`",
       "example": "E00000001,E00000002,E00000003",
       "required": false,
       "type": "array"
@@ -30,7 +30,7 @@
       "type": "string"
     },
     "team_ids": {
-      "desc": "List of team IDs to allow for named\\_entities permission",
+      "desc": "List of team IDs to allow for named\\_entities permission _Maximum:_ `50`",
       "example": "T00000001,T00000002,T00000003",
       "required": false,
       "type": "array"
@@ -44,6 +44,7 @@
   },
   "desc": "Set the access type of a custom slack function and define the users, team or org ids to be granted access if permission\\_type is set to named\\_entities",
   "errors": {
+    "app_edit_disabled": "The app is managed in Salesforce, so access to its functions can't be changed here.",
     "app_not_found": "This app does not exist.",
     "function_not_found": "This function does not exist.",
     "invalid_named_entities": "One or more of the named entities was not found",
@@ -54,7 +55,7 @@
   },
   "rate_limit": {
     "label": "Tier 3: 50+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {}
 }

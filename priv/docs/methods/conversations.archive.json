@@ -17,47 +17,47 @@
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "channels:manage",
-        "url": "https://docs.slack.dev/reference/scopes/channels.manage"
+        "url": "https://docs.slack.dev/reference/scopes/channels.manage.md"
       },
       {
         "name": "channels:write",
-        "url": "https://docs.slack.dev/reference/scopes/channels.write"
+        "url": "https://docs.slack.dev/reference/scopes/channels.write.md"
       },
       {
         "name": "groups:write",
-        "url": "https://docs.slack.dev/reference/scopes/groups.write"
+        "url": "https://docs.slack.dev/reference/scopes/groups.write.md"
       },
       {
         "name": "im:write",
-        "url": "https://docs.slack.dev/reference/scopes/im.write"
+        "url": "https://docs.slack.dev/reference/scopes/im.write.md"
       },
       {
         "name": "mpim:write",
-        "url": "https://docs.slack.dev/reference/scopes/mpim.write"
+        "url": "https://docs.slack.dev/reference/scopes/mpim.write.md"
       }
     ],
     "user": [
       {
         "name": "channels:write",
-        "url": "https://docs.slack.dev/reference/scopes/channels.write"
+        "url": "https://docs.slack.dev/reference/scopes/channels.write.md"
       },
       {
         "name": "groups:write",
-        "url": "https://docs.slack.dev/reference/scopes/groups.write"
+        "url": "https://docs.slack.dev/reference/scopes/groups.write.md"
       },
       {
         "name": "im:write",
-        "url": "https://docs.slack.dev/reference/scopes/im.write"
+        "url": "https://docs.slack.dev/reference/scopes/im.write.md"
       },
       {
         "name": "mpim:write",
-        "url": "https://docs.slack.dev/reference/scopes/mpim.write"
+        "url": "https://docs.slack.dev/reference/scopes/mpim.write.md"
       }
     ]
   }

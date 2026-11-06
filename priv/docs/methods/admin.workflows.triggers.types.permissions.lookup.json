@@ -1,7 +1,7 @@
 {
   "args": {
     "trigger_type_ids": {
-      "desc": "The trigger type IDs for which to get the permissions.",
+      "desc": "The trigger type IDs for which to get the permissions. _Minimum:_ `1` _Maximum:_ `1000`",
       "example": "['FTT01', 'FTT02', 'FTT03']",
       "required": true,
       "type": "array"
@@ -14,13 +14,13 @@
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "client",
-        "url": "https://docs.slack.dev/reference/scopes/client"
+        "url": "https://docs.slack.dev/reference/scopes/client.md"
       }
     ]
   }

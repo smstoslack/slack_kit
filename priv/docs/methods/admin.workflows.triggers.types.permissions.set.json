@@ -11,7 +11,7 @@
       "type": "object"
     },
     "user_ids": {
-      "desc": "List of user IDs to allow for named\\_entities visibility",
+      "desc": "List of user IDs to allow for named\\_entities visibility _Maximum:_ `50`",
       "example": "['U00000001', 'U00000002', 'U00000003']",
       "required": false,
       "type": "array"
@@ -30,17 +30,18 @@
     "required_visibility": "Visibility is required on this resource.",
     "restricted_action": "This actor does not have access to the permissions on this resource.",
     "trigger_type_id_not_found": "The referenced trigger type ID does not exist.",
+    "user_not_found": "A value passed in `user_ids` was invalid.",
     "visibility_is_not_named_entities": "The visibility should be named entities when the user\\_ids, team\\_ids, or org\\_ids args are set"
   },
   "rate_limit": {
     "label": "Tier 3: 50+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "client",
-        "url": "https://docs.slack.dev/reference/scopes/client"
+        "url": "https://docs.slack.dev/reference/scopes/client.md"
       }
     ]
   }

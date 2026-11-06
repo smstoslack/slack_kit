@@ -22,7 +22,7 @@
       "type": "boolean"
     },
     "invite_ids": {
-      "desc": "An optional list of invitation ids to look up",
+      "desc": "An optional list of invitation ids to look up _Minimum:_ `1` _Maximum:_ `1000`",
       "required": false,
       "type": "array"
     },
@@ -45,13 +45,13 @@
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "conversations.connect:manage",
-        "url": "https://docs.slack.dev/reference/scopes/conversations.connect.manage"
+        "url": "https://docs.slack.dev/reference/scopes/conversations.connect.manage.md"
       }
     ]
   }

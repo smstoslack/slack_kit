@@ -41,19 +41,18 @@
     "invalid_cursor": "Value passed for `cursor` was not valid or is no longer valid.",
     "invalid_limit": "The value passed for `limit` was not valid.",
     "invalid_team_id": "The value passed for `team_id` is not valid given the token context.",
-    "missing_argument": "A required argument is missing.",
     "over_pagination_limit": "It is not possible to request more than 1000 items per page or more than 100 pages.",
     "paid_only": "This is only available to paid teams."
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "admin",
-        "url": "https://docs.slack.dev/reference/scopes/admin"
+        "url": "https://docs.slack.dev/reference/scopes/admin.md"
       }
     ]
   }

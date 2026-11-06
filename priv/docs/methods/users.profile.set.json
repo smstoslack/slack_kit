@@ -28,6 +28,7 @@
   "errors": {
     "cannot_update_admin_user": "Only a primary owner can update the profile of an admin.",
     "email_taken": "email taken",
+    "frontline_member_username_change_not_allowed": "Frontline members cannot change their own username. Only an admin can change it.",
     "invalid_emoji_not_allowed": "Invalid emoji not allowed.",
     "invalid_ooo_message": "Invalid Out of Office message.",
     "invalid_profile": "Profile object passed in is not valid JSON (make sure it is URL encoded!).",
@@ -46,13 +47,13 @@
   },
   "rate_limit": {
     "label": "Tier 3: 50+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "users.profile:write",
-        "url": "https://docs.slack.dev/reference/scopes/users.profile.write"
+        "url": "https://docs.slack.dev/reference/scopes/users.profile.write.md"
       }
     ]
   }

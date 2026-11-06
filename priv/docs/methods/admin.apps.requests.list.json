@@ -34,6 +34,7 @@
     "enterprise_not_found": "Returned when enterprise id is not found.",
     "feature_not_enabled": "Returned when the Admin APIs feature is not enabled for this team",
     "invalid_cursor": "Value passed for `cursor` was not valid or is no longer valid.",
+    "invalid_scopes": "One or more of the given scopes is not a recognized OAuth scope",
     "no_team_or_enterprise_provided": "Must provide team ID or enterprise ID",
     "not_allowed": "The user is not allowed to access this API method",
     "not_an_admin": "This method is only accessible by org owners and admins",
@@ -44,13 +45,13 @@
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "admin.apps:read",
-        "url": "https://docs.slack.dev/reference/scopes/admin.apps.read"
+        "url": "https://docs.slack.dev/reference/scopes/admin.apps.read.md"
       }
     ]
   }

@@ -1,7 +1,7 @@
 {
   "args": {
     "workflow_ids": {
-      "desc": "Array of workflow IDs to unpublish",
+      "desc": "Array of workflow IDs to unpublish _Minimum:_ `1` _Maximum:_ `50`",
       "required": true,
       "type": "array"
     }
@@ -13,13 +13,13 @@
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "admin.workflows:write",
-        "url": "https://docs.slack.dev/reference/scopes/admin.workflows.write"
+        "url": "https://docs.slack.dev/reference/scopes/admin.workflows.write.md"
       }
     ]
   }

@@ -20,20 +20,20 @@
   "desc": "Upgrade or downgrade Slack Connect channel permissions between 'can post only' and 'can post and invite'.",
   "errors": {
     "channel_not_found": "Cannot find channel",
-    "invalid_action": "The user did not provid a valid action. Valid actions are 'upgrade' or 'downgrade'.",
+    "invalid_action": "The user did not provide a valid action. Valid actions are 'upgrade' or 'downgrade'.",
     "invalid_target_team": "The target team provided is not valid for the channel.",
     "not_supported": "Attempting to upgrade a channel that cannot be upgraded",
     "restricted_action": "A team preference prevents the user from taking this action."
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "conversations.connect:manage",
-        "url": "https://docs.slack.dev/reference/scopes/conversations.connect.manage"
+        "url": "https://docs.slack.dev/reference/scopes/conversations.connect.manage.md"
       }
     ]
   }

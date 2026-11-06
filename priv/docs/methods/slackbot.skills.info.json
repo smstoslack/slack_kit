@@ -1,0 +1,34 @@
+{
+  "args": {
+    "skill_id": {
+      "desc": "Skill to fetch: a canvas file ID or a `builtin:` reference.",
+      "required": true,
+      "type": "string"
+    }
+  },
+  "desc": "Returns one Slackbot skill, including its instructions.",
+  "errors": {
+    "feature_not_enabled": "The Skills API isn't enabled for this organization.",
+    "restricted_action": "The caller isn't allowed to use skills.",
+    "skill_not_found": "The skill doesn't exist or the caller can't see it."
+  },
+  "rate_limit": {
+    "label": "Tier 3: 50+ per minute",
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
+  },
+  "scopes": {
+    "bot": [
+      {
+        "name": "skills:read",
+        "url": "https://docs.slack.dev/reference/scopes/skills.read.md"
+      }
+    ],
+    "user": [
+      {
+        "name": "skills:read",
+        "url": "https://docs.slack.dev/reference/scopes/skills.read.md"
+      }
+    ]
+  }
+}
+

@@ -1,7 +1,7 @@
 {
   "args": {
     "channel": {
-      "desc": "Channel to pin the messsage to. You must also include a `timestamp` when pinning messages. Both the `channel` and `timestamp` arguments are functionally required. The provided `channel` should be the ID of a public or private channel you want to pin to and the `timestamp` should be the `ts` value of a message within that conversation.",
+      "desc": "Channel to pin the message to. You must also include a `timestamp` when pinning messages. Both the `channel` and `timestamp` arguments are functionally required. The provided `channel` should be the ID of a public or private channel you want to pin to and the `timestamp` should be the `ts` value of a message within that conversation.",
       "required": true,
       "type": "string"
     },
@@ -28,19 +28,19 @@
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "pins:write",
-        "url": "https://docs.slack.dev/reference/scopes/pins.write"
+        "url": "https://docs.slack.dev/reference/scopes/pins.write.md"
       }
     ],
     "user": [
       {
         "name": "pins:write",
-        "url": "https://docs.slack.dev/reference/scopes/pins.write"
+        "url": "https://docs.slack.dev/reference/scopes/pins.write.md"
       }
     ]
   }

@@ -9,18 +9,17 @@
   "desc": "Disconnect an external organization.",
   "errors": {
     "invalid_target_team": "target team is invalid",
-    "missing_argument": "A required argument is missing.",
     "restricted_action": "The actor is restricted from archiving or disconnecting."
   },
   "rate_limit": {
     "label": "Tier 1: 1+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "conversations.connect:manage",
-        "url": "https://docs.slack.dev/reference/scopes/conversations.connect.manage"
+        "url": "https://docs.slack.dev/reference/scopes/conversations.connect.manage.md"
       }
     ]
   }

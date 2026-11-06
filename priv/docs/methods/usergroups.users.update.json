@@ -36,9 +36,9 @@
   },
   "desc": "Update the list of users for a user group.",
   "errors": {
+    "cannot_modify_role_admin": "The user does not have permission to modify the roles admin role.",
     "failed_for_some_users": "User(s) are not in the workspace where this usergroup exists",
     "invalid_users": "Value passed for `users` was empty or invalid.",
-    "missing_argument": "A required argument is missing.",
     "no_users_provided": "Either the `users` field wasn't provided or an empty value was passed.",
     "permission_denied": "The user does not have permission to update the list of users for a user group. Check workspace settings to confirm whether the calling user has permission.",
     "plan_upgrade_required": "This workspace does not have access to user groups, as that feature is only available on Standard and above plans.",
@@ -46,19 +46,19 @@
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "usergroups:write",
-        "url": "https://docs.slack.dev/reference/scopes/usergroups.write"
+        "url": "https://docs.slack.dev/reference/scopes/usergroups.write.md"
       }
     ],
     "user": [
       {
         "name": "usergroups:write",
-        "url": "https://docs.slack.dev/reference/scopes/usergroups.write"
+        "url": "https://docs.slack.dev/reference/scopes/usergroups.write.md"
       }
     ]
   }

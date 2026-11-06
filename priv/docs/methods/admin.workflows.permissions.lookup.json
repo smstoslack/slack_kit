@@ -7,7 +7,7 @@
       "type": "integer"
     },
     "workflow_ids": {
-      "desc": "An array of workflow IDs to look up permissions for",
+      "desc": "An array of workflow IDs to look up permissions for _Minimum:_ `1` _Maximum:_ `50`",
       "required": true,
       "type": "array"
     }
@@ -16,13 +16,13 @@
   "errors": {},
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "admin.workflows:read",
-        "url": "https://docs.slack.dev/reference/scopes/admin.workflows.read"
+        "url": "https://docs.slack.dev/reference/scopes/admin.workflows.read.md"
       }
     ]
   }

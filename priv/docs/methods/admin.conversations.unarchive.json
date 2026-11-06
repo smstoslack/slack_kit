@@ -9,22 +9,23 @@
   "desc": "Unarchive a public or private channel.",
   "errors": {
     "channel_not_archived": "The passed channel is not currently archived.",
-    "channel_not_found": "The value passed for `channel_id` was invalid.",
+    "channel_not_found": "The value passed for `channel_id` was invalid, or the channel belongs to a workspace other than the token's workspace and isn't shared with it.",
     "channel_type_not_supported": "The value passed for `channel` was a DM, MPDM, or the 'general' channel",
     "could_not_unarchive_channel": "The channel could not be unarchived.",
     "default_org_wide_channel": "You can't unarchive a default org-wide channel.",
     "feature_not_enabled": "The token provided doesn't have access to this method.",
-    "restricted_action": "A workspace preference prevents the authenticated user from unarchiving."
+    "restricted_action": "A workspace preference prevents the authenticated user from unarchiving.",
+    "target_team_not_on_org": "The specified target\\_team is not part of the organization."
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "admin.conversations:write",
-        "url": "https://docs.slack.dev/reference/scopes/admin.conversations.write"
+        "url": "https://docs.slack.dev/reference/scopes/admin.conversations.write.md"
       }
     ]
   }

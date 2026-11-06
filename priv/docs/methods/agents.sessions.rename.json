@@ -1,0 +1,45 @@
+{
+  "args": {
+    "channel_id": {
+      "desc": "ID of the channel containing the agent session. Required for public channels.",
+      "required": false,
+      "type": "string"
+    },
+    "thread_ts": {
+      "desc": "Timestamp of the thread root message the session is scoped to. Required for thread-based sessions in regular channels and DMs. Must be omitted for session channels.",
+      "example": "1234567890.123456",
+      "required": false,
+      "type": "string"
+    },
+    "title": {
+      "desc": "New title for the agent session (1-200 characters). For a session channel, this also renames the channel.",
+      "required": true,
+      "type": "string"
+    }
+  },
+  "desc": "Rename an agent session.",
+  "errors": {
+    "channel_not_found": "The specified channel does not exist or is not accessible.",
+    "feature_disabled": "The agent tasks feature is not enabled for this workspace.",
+    "invalid_name": "The `title` value is not valid for a channel name.",
+    "is_archived": "Cannot rename an archived channel.",
+    "name_taken": "The new channel name is already taken.",
+    "not_authorized": "The calling app is not an authorized agent for this session.",
+    "session_not_found": "No agent session exists for the specified channel and thread.",
+    "thread_ts_not_allowed": "`thread_ts` must not be provided for session channels.",
+    "thread_ts_required": "`thread_ts` is required for thread-based sessions in regular channels and DMs."
+  },
+  "rate_limit": {
+    "label": "Tier 3: 50+ per minute",
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
+  },
+  "scopes": {
+    "bot": [
+      {
+        "name": "chat:write",
+        "url": "https://docs.slack.dev/reference/scopes/chat.write.md"
+      }
+    ]
+  }
+}
+

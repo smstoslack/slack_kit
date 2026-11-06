@@ -1,0 +1,34 @@
+{
+  "args": {
+    "blocks": {
+      "desc": "A JSON-encoded array of structured blocks. Provide exactly one of `blocks`, `view`, or `message`.",
+      "example": "[{\"type\": \"section\", \"text\": {\"type\": \"plain_text\", \"text\": \"Hello world\"}}]",
+      "required": false,
+      "type": "string"
+    },
+    "message": {
+      "desc": "A JSON-encoded message payload to validate. Provide exactly one of `blocks`, `view`, or `message`.",
+      "example": "{\"blocks\": [{\"type\": \"section\", \"text\": {\"type\": \"plain_text\", \"text\": \"Hello world\"}}]}",
+      "required": false,
+      "type": "string"
+    },
+    "view": {
+      "desc": "A JSON-encoded view payload to validate. Provide exactly one of `blocks`, `view`, or `message`.",
+      "example": "{\"type\": \"modal\", \"title\": {\"type\": \"plain_text\", \"text\": \"My Modal\"}, \"blocks\": [{\"type\": \"section\", \"text\": {\"type\": \"plain_text\", \"text\": \"Hello\"}}]}",
+      "required": false,
+      "type": "string"
+    }
+  },
+  "desc": "Validates blocks, messages, and views Block Kit JSON payloads.",
+  "errors": {
+    "invalid_blocks": "The blocks array failed validation. The `errors` field contains a list of issues, each with a JSON pointer path to the invalid element, the constraint that failed, and the expected value.",
+    "invalid_message": "The message payload failed validation. The `errors` field contains a list of issues, each with a JSON pointer path to the invalid element, the constraint that failed, and the expected value.",
+    "invalid_view": "The view payload failed validation. The `errors` field contains a list of issues, each with a JSON pointer path to the invalid element, the constraint that failed, and the expected value."
+  },
+  "rate_limit": {
+    "label": "Special rate limits apply.",
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
+  },
+  "scopes": {}
+}
+

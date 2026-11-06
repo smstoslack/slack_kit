@@ -27,6 +27,7 @@
   },
   "desc": "Grant users access to a custom slack function if its permission\\_type is set to named\\_entities",
   "errors": {
+    "app_edit_disabled": "The app is managed in Salesforce, so access to its functions can't be changed here.",
     "app_not_found": "This app does not exist.",
     "function_not_found": "This function does not exist.",
     "invalid_permission_type": "This function requires permission\\_type to be set as named\\_entities before adding users.",
@@ -35,7 +36,7 @@
   },
   "rate_limit": {
     "label": "Tier 3: 50+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {}
 }

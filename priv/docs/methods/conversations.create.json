@@ -26,54 +26,53 @@
     "invalid_name_punctuation": "Value passed for `name` contained only punctuation.",
     "invalid_name_required": "Value passed for `name` was empty.",
     "invalid_name_specials": "Value passed for `name` contained unallowed special characters or upper case characters.",
-    "missing_argument": "A required argument is missing.",
     "name_taken": "A channel cannot be created with the given name.",
     "no_channel": "Value passed for `name` was empty.",
     "restricted_action": "A team (workspace) preference prevents the authenticated user from creating channels."
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "channels:manage",
-        "url": "https://docs.slack.dev/reference/scopes/channels.manage"
+        "url": "https://docs.slack.dev/reference/scopes/channels.manage.md"
       },
       {
         "name": "channels:write",
-        "url": "https://docs.slack.dev/reference/scopes/channels.write"
+        "url": "https://docs.slack.dev/reference/scopes/channels.write.md"
       },
       {
         "name": "groups:write",
-        "url": "https://docs.slack.dev/reference/scopes/groups.write"
+        "url": "https://docs.slack.dev/reference/scopes/groups.write.md"
       },
       {
         "name": "im:write",
-        "url": "https://docs.slack.dev/reference/scopes/im.write"
+        "url": "https://docs.slack.dev/reference/scopes/im.write.md"
       },
       {
         "name": "mpim:write",
-        "url": "https://docs.slack.dev/reference/scopes/mpim.write"
+        "url": "https://docs.slack.dev/reference/scopes/mpim.write.md"
       }
     ],
     "user": [
       {
         "name": "channels:write",
-        "url": "https://docs.slack.dev/reference/scopes/channels.write"
+        "url": "https://docs.slack.dev/reference/scopes/channels.write.md"
       },
       {
         "name": "groups:write",
-        "url": "https://docs.slack.dev/reference/scopes/groups.write"
+        "url": "https://docs.slack.dev/reference/scopes/groups.write.md"
       },
       {
         "name": "im:write",
-        "url": "https://docs.slack.dev/reference/scopes/im.write"
+        "url": "https://docs.slack.dev/reference/scopes/im.write.md"
       },
       {
         "name": "mpim:write",
-        "url": "https://docs.slack.dev/reference/scopes/mpim.write"
+        "url": "https://docs.slack.dev/reference/scopes/mpim.write.md"
       }
     ]
   }

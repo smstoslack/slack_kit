@@ -1,0 +1,69 @@
+{
+  "args": {
+    "is_private": {
+      "desc": "Whether the code channel is private. When omitted, the channel matches the privacy of `origin_channel_id`, or is public if no origin is given. An explicit value is always honored, even if it differs from the origin channel's privacy: passing `false` creates a public channel from a private origin.",
+      "example": "true",
+      "required": false,
+      "type": "boolean"
+    },
+    "name": {
+      "desc": "A friendly display name for the code channel. Optional when `origin_channel_id` and `origin_message_ts` are provided — in that case the channel is named from the origin message and re-titled automatically. Required when no origin link is given.",
+      "example": "Help me debug auth flow",
+      "required": true,
+      "type": "string"
+    },
+    "origin_channel_id": {
+      "desc": "The channel ID where the agent session was initiated from. Must be provided together with `origin_message_ts`. The channel must be accessible to the calling user and must not be externally shared (Slack Connect). When `team_id` is omitted with an org token, the channel is created in the same workspace as this origin channel. Pass `origin_channel_id` and `origin_message_ts` to link the session back to the triggering message. If either `origin_channel_id` or `origin_message_ts` cannot be resolved, the request fails with `invalid_origin_link` and no channel is created.",
+      "example": "C1234567890",
+      "required": false,
+      "type": "string"
+    },
+    "origin_message_ts": {
+      "desc": "The message timestamp in the origin channel that started the agent session. Must be provided together with `origin_channel_id`. The author of this message is automatically invited to the newly created code channel. Pass `origin_channel_id` and `origin_message_ts` to link the session back to the triggering message. If either `origin_channel_id` or `origin_message_ts` cannot be resolved, the request fails with `invalid_origin_link` and no channel is created.",
+      "example": "1234567890.123456",
+      "required": false,
+      "type": "string"
+    },
+    "session_id": {
+      "desc": "An opaque identifier for the agent session. When provided, the call is idempotent: if a channel already exists for this `session_id`, it is returned instead of creating a new one.",
+      "example": "ses_abc123",
+      "required": false,
+      "type": "string"
+    },
+    "team_id": {
+      "desc": "Encoded team id to create the channel in. Required for org tokens when `origin_channel_id` is not provided. When omitted, the workspace is derived from the origin channel.",
+      "example": "T1234567890",
+      "required": false,
+      "type": "string"
+    }
+  },
+  "desc": "Create a dedicated code channel for an agent session.",
+  "errors": {
+    "channel_creation_failed": "The code channel could not be created.",
+    "channel_not_viewable": "A channel exists for this session but the caller does not have permission to view it.",
+    "feature_disabled": "The caller is not authorized to create code channels. The app must be a recognized agent session app, or the user must have the feature enabled.",
+    "invalid_agent": "The agent bot user associated with the calling app is not a valid bot.",
+    "invalid_origin_link": "The origin link is invalid. Either origin\\_channel\\_id and origin\\_message\\_ts were not provided together, the channel does not exist or is not accessible to the caller, or the message was not found at the given timestamp.",
+    "invite_failed": "The channel was created but the agent bot could not be invited.",
+    "name_or_origin_required": "A name must be provided unless an origin link (origin\\_channel\\_id and origin\\_message\\_ts) is given to derive the channel name from.",
+    "no_shared_workspace": "No workspace could be found where both the app and the requesting user are present. The org app must have a workspace grant for at least one workspace the user belongs to.",
+    "open_failed": "The channel was created but could not be opened in the sidebar.",
+    "origin_channel_externally_shared": "The origin message is in an externally shared (Slack Connect) channel, DM, or group DM. Code channels cannot be created from a Slack Connect conversation.",
+    "origin_channel_is_file_channel": "The origin message is a comment on a file or canvas. Code channels cannot be created from a file channel — when the canvas belongs to a code channel, continue that session instead.",
+    "restricted_action": "The calling user is not permitted to create channels of the requested type in this workspace.",
+    "user_not_enabled": "The author of the origin message does not have the code channels feature enabled."
+  },
+  "rate_limit": {
+    "label": "Special rate limits apply.",
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
+  },
+  "scopes": {
+    "bot": [
+      {
+        "name": "code_channels:manage",
+        "url": "https://docs.slack.dev/reference/scopes/code_channels.manage.md"
+      }
+    ]
+  }
+}
+

@@ -70,19 +70,20 @@
     "failed_to_validate_team": "The team calling this method was invalid.",
     "feature_not_enabled": "The Admin APIs feature is not enabled for this team.",
     "invalid_email": "Email address was not valid.",
+    "inviter_email_not_verified": "The user whose token is calling this method has not verified the email address on their own account. They must verify it before they can send invites, since the invite email presents that address as theirs.",
     "not_an_admin": "The user token does not have admin privileges.",
     "team_not_found": "`team_id` was not found.",
     "user_disabled": "The user is disabled."
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "admin.users:write",
-        "url": "https://docs.slack.dev/reference/scopes/admin.users.write"
+        "url": "https://docs.slack.dev/reference/scopes/admin.users.write.md"
       }
     ]
   }

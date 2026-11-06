@@ -16,18 +16,17 @@
   "errors": {
     "cannot_complete_others": "Reminders for other team members can't be marked complete.",
     "cannot_complete_recurring": "Recurring reminders can't be marked complete.",
-    "missing_argument": "An argument is missing.",
     "not_found": "That reminder can't be found."
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "reminders:write",
-        "url": "https://docs.slack.dev/reference/scopes/reminders.write"
+        "url": "https://docs.slack.dev/reference/scopes/reminders.write.md"
       }
     ]
   }

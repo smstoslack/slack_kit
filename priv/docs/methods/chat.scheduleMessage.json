@@ -99,6 +99,7 @@
     "msg_too_long": "Message text is too long",
     "no_text": "No message text provided",
     "not_in_channel": "Cannot post user messages to a channel they are not in.",
+    "posting_to_channel_denied": "Files and images, including attachments with `image_url` or `thumb_url` and `image` blocks (such as GIFs), can't be posted to this channel. Remove them and try again.",
     "rate_limited": "Application has posted too many messages, read the Rate Limit documentation for more information",
     "restricted_action": "A workspace preference prevents the authenticated user from posting.",
     "restricted_action_non_threadable_channel": "Cannot post thread replies into a non\\_threadable channel.",
@@ -112,19 +113,19 @@
   },
   "rate_limit": {
     "label": "Tier 3: 50+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "chat:write",
-        "url": "https://docs.slack.dev/reference/scopes/chat.write"
+        "url": "https://docs.slack.dev/reference/scopes/chat.write.md"
       }
     ],
     "user": [
       {
         "name": "chat:write",
-        "url": "https://docs.slack.dev/reference/scopes/chat.write"
+        "url": "https://docs.slack.dev/reference/scopes/chat.write.md"
       }
     ]
   }

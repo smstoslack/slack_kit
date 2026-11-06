@@ -88,6 +88,7 @@
     "invalid_attachments": "The attachments were invalid.",
     "invalid_blocks": "The blocks were invalid for the requesting user.",
     "invalid_blocks_format": "The `blocks` array is not a valid JSON object or doesn't match the Block Kit syntax.",
+    "invalid_channel_id": "Value passed for `channel` was not a valid channel ID.",
     "invalid_metadata_format": "Invalid metadata format provided",
     "invalid_metadata_schema": "Invalid metadata schema provided",
     "is_inactive": "The message cannot be edited within a frozen, archived or deleted channel.",
@@ -100,7 +101,7 @@
     "msg_too_long": "Message text is too long. The `text` field cannot exceed 4,000 characters.",
     "no_dual_broadcast_content_update": "Can't broadcast an old reply and update the content at the same time.",
     "no_text": "No message text provided",
-    "posting_to_channel_denied": "The user does not have permission to share files in this channel.",
+    "posting_to_channel_denied": "Files and images, including attachments with `image_url` or `thumb_url` and `image` blocks (such as GIFs), can't be added to messages in this channel. Remove them and try again.",
     "slack_connect_blocked_file_type": "Files with certain extensions are blocked from being uploaded in all Slack Connect messages.",
     "slack_connect_canvas_sharing_blocked": "Admin has disabled sharing of canvas links in all Slack Connect messages.",
     "slack_connect_clip_sharing_blocked": "Admin has disabled Clip uploads in Slack Connect channels.",
@@ -114,19 +115,19 @@
   },
   "rate_limit": {
     "label": "Tier 3: 50+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "chat:write",
-        "url": "https://docs.slack.dev/reference/scopes/chat.write"
+        "url": "https://docs.slack.dev/reference/scopes/chat.write.md"
       }
     ],
     "user": [
       {
         "name": "chat:write",
-        "url": "https://docs.slack.dev/reference/scopes/chat.write"
+        "url": "https://docs.slack.dev/reference/scopes/chat.write.md"
       }
     ]
   }

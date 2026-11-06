@@ -11,7 +11,7 @@
       "type": "array"
     },
     "user_ids": {
-      "desc": "List of user IDs to allow for `named_entities` visibility.",
+      "desc": "List of user IDs to allow for `named_entities` visibility. _Maximum:_ `200`",
       "example": "['U00000001', 'U00000002', 'U00000003']",
       "required": false,
       "type": "array"
@@ -34,13 +34,13 @@
   },
   "rate_limit": {
     "label": "Tier 3: 50+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "admin.workflows:read",
-        "url": "https://docs.slack.dev/reference/scopes/admin.workflows.read"
+        "url": "https://docs.slack.dev/reference/scopes/admin.workflows.read.md"
       }
     ]
   }

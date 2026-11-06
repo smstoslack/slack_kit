@@ -28,25 +28,24 @@
   "errors": {
     "invalid_cursor": "Value passed for `cursor` was not valid or is no longer valid.",
     "invalid_team": "Cannot find subteam team.",
-    "missing_argument": "A required argument is missing.",
     "plan_upgrade_required": "This workspace does not have access to User Groups, as that feature is only available on Standard and above plans.",
     "users_not_found": "Cannot find users on subteam."
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "usergroups:read",
-        "url": "https://docs.slack.dev/reference/scopes/usergroups.read"
+        "url": "https://docs.slack.dev/reference/scopes/usergroups.read.md"
       }
     ],
     "user": [
       {
         "name": "usergroups:read",
-        "url": "https://docs.slack.dev/reference/scopes/usergroups.read"
+        "url": "https://docs.slack.dev/reference/scopes/usergroups.read.md"
       }
     ]
   }

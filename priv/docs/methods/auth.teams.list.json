@@ -27,8 +27,8 @@
     "invalid_limit": "The value passed for `limit` was not valid."
   },
   "rate_limit": {
-    "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "label": "Tier 3: 50+ per minute",
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {}
 }

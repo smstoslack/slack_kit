@@ -22,23 +22,24 @@
   "errors": {
     "cant_delete_message": "Authenticated user does not have permission to delete this message.",
     "channel_not_found": "Value passed for `channel` was invalid.",
+    "invalid_channel_id": "Value passed for `channel` was not a valid channel ID.",
     "message_not_found": "No message exists with the requested timestamp."
   },
   "rate_limit": {
     "label": "Tier 3: 50+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "chat:write",
-        "url": "https://docs.slack.dev/reference/scopes/chat.write"
+        "url": "https://docs.slack.dev/reference/scopes/chat.write.md"
       }
     ],
     "user": [
       {
         "name": "chat:write",
-        "url": "https://docs.slack.dev/reference/scopes/chat.write"
+        "url": "https://docs.slack.dev/reference/scopes/chat.write.md"
       }
     ]
   }

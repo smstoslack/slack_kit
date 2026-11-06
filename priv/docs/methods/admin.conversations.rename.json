@@ -17,20 +17,22 @@
     "channel_type_not_supported": "The provided `channel_id` was a DM, MPDM, or the 'general' channel.",
     "could_not_rename_channel": "The channel could not be renamed.",
     "default_org_wide_channel": "The default org-wide channel can't be renamed.",
+    "external_channel_migrating": "The channel is an externally shared channel that is currently being migrated and can't be renamed.",
     "feature_not_enabled": "The token provided doesn't have access to this method.",
     "invalid_name_maxlength": "The channel name exceeds the maximum allowed length.",
     "name_taken": "The channel's name is already being used elsewhere.",
+    "not_supported": "This type of channel doesn't support renaming through this method.",
     "restricted_action": "A workspace preference prevents the authenticated user from renaming a channel."
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "admin.conversations:write",
-        "url": "https://docs.slack.dev/reference/scopes/admin.conversations.write"
+        "url": "https://docs.slack.dev/reference/scopes/admin.conversations.write.md"
       }
     ]
   }

@@ -40,18 +40,18 @@
     "bad_image": "The uploaded image could not be processed - try passing a JPG or PNG",
     "bad_title": "The title provided is too long.",
     "bot_user_required": "bot user token is required",
-    "invalid_external_id": "The external\\_id provided is too long.",
+    "invalid_external_id": "The external\\_id provided is too long (over 255 characters) or contains non-ASCII characters.",
     "too_large": "The uploaded image had excessive dimensions"
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "remote_files:write",
-        "url": "https://docs.slack.dev/reference/scopes/remote_files.write"
+        "url": "https://docs.slack.dev/reference/scopes/remote_files.write.md"
       }
     ]
   }

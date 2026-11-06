@@ -1,0 +1,36 @@
+{
+  "args": {
+    "skill_id": {
+      "desc": "Skill to delete.",
+      "required": true,
+      "type": "string"
+    }
+  },
+  "desc": "Deletes a Slackbot skill and its canvas, and removes it from every library, skill set, and the org catalog.",
+  "errors": {
+    "canvas_deleting_disabled": "Deleting canvases is disabled for the caller's team.",
+    "feature_not_enabled": "The Skills API isn't enabled for this organization.",
+    "method_not_supported_for_skill_type": "Only canvas skills can be deleted.",
+    "restricted_action": "The caller isn't allowed to delete this skill.",
+    "skill_not_found": "The skill doesn't exist or the caller can't see it."
+  },
+  "rate_limit": {
+    "label": "Tier 2: 20+ per minute",
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
+  },
+  "scopes": {
+    "bot": [
+      {
+        "name": "skills:write",
+        "url": "https://docs.slack.dev/reference/scopes/skills.write.md"
+      }
+    ],
+    "user": [
+      {
+        "name": "skills:write",
+        "url": "https://docs.slack.dev/reference/scopes/skills.write.md"
+      }
+    ]
+  }
+}
+

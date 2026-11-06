@@ -1,0 +1,31 @@
+{
+  "args": {
+    "user_id": {
+      "desc": "The ID of the user to deactivate.",
+      "example": "W12345678",
+      "required": true,
+      "type": "string"
+    }
+  },
+  "desc": "Deactivate a user from an enterprise organization and all its workspaces.",
+  "errors": {
+    "deactivation_failed": "The deactivation operation failed.",
+    "invalid_user": "The user was not found or is not a valid target for deactivation.",
+    "restricted_action": "The caller does not have permission to perform this action. Must be an org admin or owner.",
+    "user_is_team_primary_owner": "The user is a primary owner of one or more workspaces and cannot be deactivated.",
+    "user_not_found": "The user was not found or does not belong to this enterprise."
+  },
+  "rate_limit": {
+    "label": "Tier 2: 20+ per minute",
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
+  },
+  "scopes": {
+    "user": [
+      {
+        "name": "admin.users:write",
+        "url": "https://docs.slack.dev/reference/scopes/admin.users.write.md"
+      }
+    ]
+  }
+}
+

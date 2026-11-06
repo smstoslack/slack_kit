@@ -1,0 +1,46 @@
+{
+  "args": {
+    "handle": {
+      "desc": "Optional handle used to mention the usergroup in channel, must be unique",
+      "required": false,
+      "type": "string"
+    },
+    "is_visible": {
+      "desc": "Configure whether or not this usergroup should be visible in the client",
+      "example": "true",
+      "required": false,
+      "type": "boolean"
+    },
+    "name": {
+      "desc": "Unique name for the usergroup",
+      "required": true,
+      "type": "string"
+    },
+    "purpose": {
+      "desc": "Optional purpose that describes what the usergroup is about",
+      "required": false,
+      "type": "string"
+    }
+  },
+  "desc": "Create a new organizational usergroup. This method is only available to Enterprise Grid organizations.",
+  "errors": {
+    "feature_not_enabled": "The Admin APIs feature is not enabled for this workspace.",
+    "handle_already_exists": "The handle specified is used by another usergroup or entity and cannot be created.",
+    "name_already_exists": "The name specified is used by another usergroup and cannot be created.",
+    "not_an_enterprise": "The token passed in does not belong to an Enterprise organization.",
+    "restricted_action": "The calling user is not allowed to create usergroups."
+  },
+  "rate_limit": {
+    "label": "Tier 1: 1+ per minute",
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
+  },
+  "scopes": {
+    "user": [
+      {
+        "name": "admin.usergroups:write",
+        "url": "https://docs.slack.dev/reference/scopes/admin.usergroups.write.md"
+      }
+    ]
+  }
+}
+

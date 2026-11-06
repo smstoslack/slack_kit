@@ -19,6 +19,7 @@
   },
   "desc": "Set an expiration for a guest user",
   "errors": {
+    "cannot_modify_external_guest": "The user is an external huddle guest, whose expiration can't be changed.",
     "failed_looking_up_user": "We couldn't find the requested user.",
     "failed_to_set_expiration": "The expiration could not be set for the user.",
     "failed_to_validate_caller": "The token calling this method doesn't have permission to invite a user.",
@@ -34,13 +35,13 @@
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "admin.users:write",
-        "url": "https://docs.slack.dev/reference/scopes/admin.users.write"
+        "url": "https://docs.slack.dev/reference/scopes/admin.users.write.md"
       }
     ]
   }

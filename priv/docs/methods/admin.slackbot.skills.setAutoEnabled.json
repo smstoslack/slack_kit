@@ -1,0 +1,46 @@
+{
+  "args": {
+    "permission_type": {
+      "desc": "Deployment audience. _Acceptable values:_ `everyone` `named_entities` `no_one`",
+      "required": true,
+      "type": "string"
+    },
+    "skill_id": {
+      "desc": "Canvas skill to deploy.",
+      "required": true,
+      "type": "string"
+    },
+    "usergroup_ids": {
+      "desc": "One to 100 user groups for named\\_entities. Duplicates count toward the input limit and are stored once. Omit for other permission types.",
+      "required": false,
+      "type": "array"
+    }
+  },
+  "desc": "Sets who a Slackbot skill is automatically turned on for.",
+  "errors": {
+    "audience_too_large": "Validating this audience requires more than 1,000 member checks across the requested groups. Overlapping members count once per group. Select a smaller audience, or share the canvas org-wide if that access is intended, before retrying.",
+    "feature_not_enabled": "The Skills API is not enabled for this organization or workspace.",
+    "invalid_permission_type": "Use everyone, named\\_entities or no\\_one.",
+    "method_not_supported_for_skill_type": "Only canvas skills can be deployed.",
+    "named_entities_cannot_be_empty": "Provide at least one user group for named\\_entities.",
+    "restricted_action": "The caller must be an org admin or owner with permission to manage skills.",
+    "skill_not_found": "The skill is missing, deleted, no longer a skill, or outside this organization or workspace.",
+    "skill_not_visible_to_audience": "Share the skill first. usergroup\\_ids lists the groups that cannot view it.",
+    "too_many_named_entities": "Provide at most 100 user groups.",
+    "usergroup_ids_not_allowed": "Only named\\_entities accepts usergroup\\_ids.",
+    "usergroup_not_found": "invalid\\_usergroup\\_ids lists missing, deleted or foreign user groups."
+  },
+  "rate_limit": {
+    "label": "Tier 2: 20+ per minute",
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
+  },
+  "scopes": {
+    "user": [
+      {
+        "name": "admin.skills:write",
+        "url": "https://docs.slack.dev/reference/scopes/admin.skills.write.md"
+      }
+    ]
+  }
+}
+

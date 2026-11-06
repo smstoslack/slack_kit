@@ -41,22 +41,25 @@
     }
   },
   "desc": "Lists reactions made by a user.",
-  "errors": { "user_not_found": "Value passed for `user` was invalid." },
+  "errors": {
+    "invalid_cursor": "Value passed for `cursor` was not valid or is no longer valid.",
+    "user_not_found": "Value passed for `user` was invalid."
+  },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "reactions:read",
-        "url": "https://docs.slack.dev/reference/scopes/reactions.read"
+        "url": "https://docs.slack.dev/reference/scopes/reactions.read.md"
       }
     ],
     "user": [
       {
         "name": "reactions:read",
-        "url": "https://docs.slack.dev/reference/scopes/reactions.read"
+        "url": "https://docs.slack.dev/reference/scopes/reactions.read.md"
       }
     ]
   }

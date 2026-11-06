@@ -1,0 +1,39 @@
+{
+  "args": {
+    "file": {
+      "desc": "Csv of users to upload in format member id, email",
+      "required": false
+    },
+    "id": {
+      "desc": "ID of the usergroup to upload users to",
+      "example": "S0604QSJC",
+      "required": true,
+      "type": "string"
+    }
+  },
+  "desc": "Add members to an existing organizational usergroup in bulk via CSV upload. This method is only available to Enterprise Grid organizations.",
+  "errors": {
+    "cannot_modify_role_admin": "The user does not have permission to modify the roles admin role.",
+    "feature_not_enabled": "The Admin APIs feature is not enabled for this workspace.",
+    "invalid_usergroup": "A usergroup with the specified ID does not exist.",
+    "member_count_would_exceed_visible_limit": "The usergroup is visible and the member count would exceed the limit.",
+    "no_valid_users": "There were no valid users provided in the csv.",
+    "not_an_enterprise": "The token passed in does not belong to an Enterprise organization.",
+    "restricted_action": "The calling user cannot modify the specified usergroup, or the usergroup's membership is managed by an identity provider (IdP) and can only be changed through SCIM.",
+    "subteam_limit_exceeded": "A csv upload can only contain at most 15k users.",
+    "unable_to_parse_csv": "Could not parse the uploaded csv."
+  },
+  "rate_limit": {
+    "label": "Tier 2: 20+ per minute",
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
+  },
+  "scopes": {
+    "user": [
+      {
+        "name": "admin.usergroups:write",
+        "url": "https://docs.slack.dev/reference/scopes/admin.usergroups.write.md"
+      }
+    ]
+  }
+}
+

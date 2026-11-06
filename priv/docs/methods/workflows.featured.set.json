@@ -6,7 +6,7 @@
       "type": "string"
     },
     "trigger_ids": {
-      "desc": "Comma-separated array of trigger IDs that will replace any existing featured workflows in the channel; max 15",
+      "desc": "Comma-separated array of trigger IDs that will replace any existing featured workflows in the channel; max 15 _Minimum:_ `1` _Maximum:_ `15`",
       "example": "[\"Ft012345\", \"Ft012346\"]",
       "required": true,
       "type": "array"
@@ -20,19 +20,19 @@
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "bookmarks:write",
-        "url": "https://docs.slack.dev/reference/scopes/bookmarks.write"
+        "url": "https://docs.slack.dev/reference/scopes/bookmarks.write.md"
       }
     ],
     "user": [
       {
         "name": "bookmarks:write",
-        "url": "https://docs.slack.dev/reference/scopes/bookmarks.write"
+        "url": "https://docs.slack.dev/reference/scopes/bookmarks.write.md"
       }
     ]
   }

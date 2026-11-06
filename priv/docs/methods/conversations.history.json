@@ -50,47 +50,48 @@
     "invalid_metadata_filter_keys": "Value passed for `metadata_keys_to_include` was invalid. Must be valid json array of strings.",
     "invalid_ts_latest": "Value passed for `latest` was invalid",
     "invalid_ts_oldest": "Value passed for `oldest` was invalid",
-    "not_in_channel": "The token used does not have access to the proper channel. Only user tokens can access public channels they are not in."
+    "not_in_channel": "The token used does not have access to the proper channel. Only user tokens can access public channels they are not in.",
+    "restricted_action": "User does not have permission to perform this action."
   },
   "rate_limit": {
     "label": "Tier 3: 50+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "channels:history",
-        "url": "https://docs.slack.dev/reference/scopes/channels.history"
+        "url": "https://docs.slack.dev/reference/scopes/channels.history.md"
       },
       {
         "name": "groups:history",
-        "url": "https://docs.slack.dev/reference/scopes/groups.history"
+        "url": "https://docs.slack.dev/reference/scopes/groups.history.md"
       },
       {
         "name": "im:history",
-        "url": "https://docs.slack.dev/reference/scopes/im.history"
+        "url": "https://docs.slack.dev/reference/scopes/im.history.md"
       },
       {
         "name": "mpim:history",
-        "url": "https://docs.slack.dev/reference/scopes/mpim.history"
+        "url": "https://docs.slack.dev/reference/scopes/mpim.history.md"
       }
     ],
     "user": [
       {
         "name": "channels:history",
-        "url": "https://docs.slack.dev/reference/scopes/channels.history"
+        "url": "https://docs.slack.dev/reference/scopes/channels.history.md"
       },
       {
         "name": "groups:history",
-        "url": "https://docs.slack.dev/reference/scopes/groups.history"
+        "url": "https://docs.slack.dev/reference/scopes/groups.history.md"
       },
       {
         "name": "im:history",
-        "url": "https://docs.slack.dev/reference/scopes/im.history"
+        "url": "https://docs.slack.dev/reference/scopes/im.history.md"
       },
       {
         "name": "mpim:history",
-        "url": "https://docs.slack.dev/reference/scopes/mpim.history"
+        "url": "https://docs.slack.dev/reference/scopes/mpim.history.md"
       }
     ]
   }

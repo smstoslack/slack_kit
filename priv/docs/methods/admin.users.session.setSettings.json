@@ -13,7 +13,7 @@
       "type": "integer"
     },
     "user_ids": {
-      "desc": "The list of up to 1,000 user IDs to apply the session settings for",
+      "desc": "The list of up to 1,000 user IDs to apply the session settings for _Minimum:_ `1` _Maximum:_ `1000`",
       "example": "['U12345','U67890']",
       "required": true,
       "type": "array"
@@ -32,13 +32,13 @@
   },
   "rate_limit": {
     "label": "Tier 4: 100+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "admin.users:write",
-        "url": "https://docs.slack.dev/reference/scopes/admin.users.write"
+        "url": "https://docs.slack.dev/reference/scopes/admin.users.write.md"
       }
     ]
   }

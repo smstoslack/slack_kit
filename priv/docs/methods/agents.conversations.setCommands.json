@@ -1,0 +1,41 @@
+{
+  "args": {
+    "channel_id": {
+      "desc": "ID of the code channel to register commands for.",
+      "required": true,
+      "type": "string"
+    },
+    "commands": {
+      "desc": "Full set of commands to register for the calling agent in this channel, replacing that agent's previously registered set. Pass an empty array to clear the agent's commands. At most 10 commands may exist across all agents in the channel; names must be unique within the set and must not collide with builtin Slack commands. _Maximum:_ `10`",
+      "required": true,
+      "type": "array"
+    }
+  },
+  "desc": "Register the set of agent-defined slash commands for the calling agent in a code channel.",
+  "errors": {
+    "agent_required": "The caller is not a bot, so no agent could be determined for the command set.",
+    "channel_not_found": "The specified channel does not exist or is not accessible.",
+    "colliding_with_builtin": "One or more command names collide with a builtin Slack slash command.",
+    "duplicate_command": "Two or more commands in the set share the same name.",
+    "invalid_commands": "One or more commands are malformed (invalid name, missing description, or a field exceeds its length limit).",
+    "no_actions_url": "The calling agent app has no configured request URL (slash command or interactivity), so it could not receive command invocations.",
+    "not_agent_channel": "The specified channel is not a code channel.",
+    "not_authorized": "The caller is not the channel's agent bot.",
+    "properties_update_failed": "The command set could not be persisted to the channel properties.",
+    "too_many_agents": "Registering a new agent would exceed the maximum number of agents with commands in this channel.",
+    "too_many_commands": "Registering this set would exceed the maximum of 10 commands across all agents in the channel."
+  },
+  "rate_limit": {
+    "label": "Special rate limits apply.",
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
+  },
+  "scopes": {
+    "bot": [
+      {
+        "name": "code_channels:manage",
+        "url": "https://docs.slack.dev/reference/scopes/code_channels.manage.md"
+      }
+    ]
+  }
+}
+

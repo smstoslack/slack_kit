@@ -1,0 +1,41 @@
+{
+  "args": {
+    "channel_id": {
+      "desc": "ID of the code channel to remove the view from.",
+      "required": true,
+      "type": "string"
+    },
+    "view_id": {
+      "desc": "Encoded channel tab ID of the view to remove. Provide exactly one of view\\_key or view\\_id. Identify the view by exactly one of `view_key` or `view_id`.",
+      "required": false,
+      "type": "string"
+    },
+    "view_key": {
+      "desc": "Agent-assigned key of the view to remove. Provide exactly one of view\\_key or view\\_id. Identify the view by exactly one of `view_key` or `view_id`.",
+      "required": false,
+      "type": "string"
+    }
+  },
+  "desc": "Remove a view from a code channel.",
+  "errors": {
+    "channel_not_found": "The specified channel does not correspond to a valid channel.",
+    "not_agent_channel": "The specified channel is not a code channel.",
+    "not_authorized": "The caller is not an authorized agent bot or member for this channel.",
+    "not_view_owner": "The view was created by a different agent bot; only its owner may remove it.",
+    "view_not_found": "No agent view matches the supplied view\\_key or view\\_id in this channel.",
+    "view_remove_failed": "The view's tab or channel properties could not be updated. Safe to retry."
+  },
+  "rate_limit": {
+    "label": "Special rate limits apply.",
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
+  },
+  "scopes": {
+    "bot": [
+      {
+        "name": "code_channels:manage",
+        "url": "https://docs.slack.dev/reference/scopes/code_channels.manage.md"
+      }
+    ]
+  }
+}
+

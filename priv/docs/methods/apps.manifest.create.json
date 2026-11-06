@@ -23,7 +23,9 @@
     "failed_creating_app": "Failed to create the app model",
     "failed_datastore_operation": "Failed while managing datastore infrastructure",
     "failed_generating_app_token": "App level token failed to generate.",
+    "feature_not_enabled": "The required feature is not enabled for this workspace.",
     "invalid_app": "An app created from the provided manifest would not be valid.",
+    "invalid_manager_app": "The calling app is not enrolled as a manager app. Ensure the app has `app_configurations:write` in its configured scopes and its home team has manager app support enabled.",
     "invalid_manifest": "The provided manifest file does not validate against schema. Consult the additional errors field to locate specific issues.",
     "invalid_team_id": "The provided team ID is not valid",
     "managed_app_limit_reached": "The manager app has reached the maximum number of managed apps it can create.",
@@ -34,7 +36,7 @@
   },
   "rate_limit": {
     "label": "Tier 1: 1+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {}
 }

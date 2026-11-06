@@ -34,6 +34,7 @@
     "invalid_email": "At least one email address provided is invalid.",
     "invite_lookup_error": "An error occurred while attempting to look for existing invites.",
     "invite_not_found": "An error occurred while inviting users.",
+    "inviter_email_not_verified": "The inviting user has not verified the email address on their own account. They must verify it before they can send Slack Connect invites, since the invite presents that address as theirs.",
     "legacy_connection_limit_exceeded": "You cannot share a legacy ESC channel with a third team",
     "member_limit_exceeded": "This channel that has hit the limit of members",
     "message_too_long": "The provided message was longer than 560 characters.",
@@ -52,13 +53,13 @@
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "conversations.connect:write",
-        "url": "https://docs.slack.dev/reference/scopes/conversations.connect.write"
+        "url": "https://docs.slack.dev/reference/scopes/conversations.connect.write.md"
       }
     ]
   }

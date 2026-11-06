@@ -32,6 +32,7 @@
   },
   "desc": "Accepts an invitation to a Slack Connect channel.",
   "errors": {
+    "accepter_email_not_verified": "The accepting user has not verified the email address on their account. They must verify it before accepting.",
     "channel_conversion_in_progress": "Unable to create a channel connection while a channel conversion is in progress",
     "connection_limit_exceeded": "This channel has hit the limit of external connections.",
     "email_does_not_match": "User's email does not match the email in the invite.",
@@ -66,13 +67,13 @@
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "conversations.connect:write",
-        "url": "https://docs.slack.dev/reference/scopes/conversations.connect.write"
+        "url": "https://docs.slack.dev/reference/scopes/conversations.connect.write.md"
       }
     ]
   }

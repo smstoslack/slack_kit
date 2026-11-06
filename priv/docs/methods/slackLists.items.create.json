@@ -20,35 +20,46 @@
   },
   "desc": "Add a new item to an existing List.",
   "errors": {
+    "channel_not_found": "The channel cannot be found.",
     "duplicated_item_not_found": "The item to duplicate cannot be found.",
     "file_not_found": "The attachment file could not be found.",
     "invalid_args": "The provided arguments are invalid.",
+    "invalid_attachment": "Invalid attachment provided.",
     "invalid_column_id": "The column ID provided does not exist in the List.",
+    "invalid_date": "Date supplied is invalid.",
+    "invalid_email": "Email supplied is invalid.",
     "invalid_input_type": "The field value type does not match the column type.",
+    "invalid_message": "Invalid message provided.",
     "invalid_option_id": "Option ID provided does not match column definition.",
+    "invalid_phone_number": "Invalid phone number provided.",
+    "invalid_reference": "Invalid reference provided; a reference cell holds one record or message.",
+    "invalid_text_block": "Rich text payload supplied is invalid.",
+    "invalid_timestamp": "Timestamp supplied is invalid.",
     "invalid_vote_value": "Invalid value provided for a vote column.",
     "list_not_found": "The List was not found.",
     "over_cell_fields_limit": "Too many values provided for a single field.",
     "over_row_maximum": "Cannot create more items over the maximum.",
+    "permission_denied": "The user does not have permission to perform this action (for example, frontline members cannot create List items).",
+    "restricted_action": "A team preference prevents this action.",
     "team_not_found": "The team cannot be found.",
     "uneditable_column": "Initial values provided for an uneditable column.",
     "user_not_found": "The user cannot be found."
   },
   "rate_limit": {
     "label": "Tier 3: 50+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "lists:write",
-        "url": "https://docs.slack.dev/reference/scopes/lists.write"
+        "url": "https://docs.slack.dev/reference/scopes/lists.write.md"
       }
     ],
     "user": [
       {
         "name": "lists:write",
-        "url": "https://docs.slack.dev/reference/scopes/lists.write"
+        "url": "https://docs.slack.dev/reference/scopes/lists.write.md"
       }
     ]
   }

@@ -1,0 +1,28 @@
+{
+  "args": {
+    "channel_id": {
+      "desc": "ID of the code channel to list views for.",
+      "required": true,
+      "type": "string"
+    }
+  },
+  "desc": "List the views currently attached to a code channel.",
+  "errors": {
+    "channel_not_found": "The specified channel does not correspond to a valid channel.",
+    "not_agent_channel": "The specified channel is not a code channel.",
+    "not_authorized": "The caller is not an authorized agent bot or member for this channel."
+  },
+  "rate_limit": {
+    "label": "Special rate limits apply.",
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
+  },
+  "scopes": {
+    "bot": [
+      {
+        "name": "code_channels:manage",
+        "url": "https://docs.slack.dev/reference/scopes/code_channels.manage.md"
+      }
+    ]
+  }
+}
+

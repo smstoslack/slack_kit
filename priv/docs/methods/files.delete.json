@@ -12,23 +12,24 @@
     "delete_not_allowed": "Error returned when the requested file does not support deletion; for example, when attempting to delete a canvas template.",
     "file_deleted": "The file has already been deleted.",
     "file_deleting_disabled": "This functionality is disabled.",
-    "file_not_found": "The file does not exist, or is not visible to the calling user."
+    "file_not_found": "The file does not exist, or is not visible to the calling user.",
+    "use_skills_api": "This file is a Slackbot skill. Use slackbot.skills.delete with skill\\_id and a user OAuth token carrying skills:write."
   },
   "rate_limit": {
     "label": "Tier 3: 50+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "files:write",
-        "url": "https://docs.slack.dev/reference/scopes/files.write"
+        "url": "https://docs.slack.dev/reference/scopes/files.write.md"
       }
     ],
     "user": [
       {
         "name": "files:write",
-        "url": "https://docs.slack.dev/reference/scopes/files.write"
+        "url": "https://docs.slack.dev/reference/scopes/files.write.md"
       }
     ]
   }

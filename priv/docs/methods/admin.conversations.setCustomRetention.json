@@ -19,21 +19,23 @@
     "channel_type_not_supported": "Value given for `channel_id` was a group dm, direct message, or #general channel.",
     "could_not_set_retention": "The retention policy could not be set.",
     "default_org_wide_channel": "The channel given is a default org-wide channel.",
+    "external_channel_migrating": "The channel is an externally shared channel that is currently being migrated.",
     "feature_not_enabled": "The Admin APIs feature is not enabled for this team.",
     "invalid_duration": "Retention `duration_days` must be an integer greater than 0 days and less than 36500 days (100 years).",
     "not_an_admin": "The token provided is not associated with an admin.",
+    "not_supported": "This type of channel isn't supported by this method.",
     "restricted_action": "A team preference prevents the authenticated user from modifying the retention policy of this channel.",
     "retention_override_not_allowed": "The current retention policy disallows modifying the retention policy of this channel."
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "admin.conversations:write",
-        "url": "https://docs.slack.dev/reference/scopes/admin.conversations.write"
+        "url": "https://docs.slack.dev/reference/scopes/admin.conversations.write.md"
       }
     ]
   }

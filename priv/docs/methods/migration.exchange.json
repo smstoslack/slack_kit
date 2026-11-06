@@ -11,7 +11,7 @@
       "type": "boolean"
     },
     "users": {
-      "desc": "A comma-separated list of user ids, up to 400 per request",
+      "desc": "A comma-separated list of user ids, up to 400 per request _Maximum:_ `400`",
       "required": true,
       "type": "array"
     }
@@ -23,19 +23,19 @@
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "tokens.basic",
-        "url": "https://docs.slack.dev/reference/scopes/tokens.basic"
+        "url": "https://docs.slack.dev/reference/scopes/tokens.basic.md"
       }
     ],
     "user": [
       {
         "name": "tokens.basic",
-        "url": "https://docs.slack.dev/reference/scopes/tokens.basic"
+        "url": "https://docs.slack.dev/reference/scopes/tokens.basic.md"
       }
     ]
   }

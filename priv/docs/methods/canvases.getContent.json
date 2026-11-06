@@ -1,0 +1,40 @@
+{
+  "args": {
+    "canvas_id": {
+      "desc": "Encoded ID of the canvas",
+      "example": "F1234ABCD",
+      "required": true
+    },
+    "content_type": {
+      "default": "markdown",
+      "desc": "Format in which to return the canvas content. Defaults to markdown.",
+      "example": "markdown",
+      "required": false,
+      "type": "string"
+    }
+  },
+  "desc": "Get the content of a canvas as markdown (default) or HTML.",
+  "errors": {
+    "canvas_disabled_user_team": "Canvas is disabled on user's team",
+    "canvas_not_found": "The canvas does not exist, or is not visible to the calling user."
+  },
+  "rate_limit": {
+    "label": "Tier 3: 50+ per minute",
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
+  },
+  "scopes": {
+    "bot": [
+      {
+        "name": "canvases:read",
+        "url": "https://docs.slack.dev/reference/scopes/canvases.read.md"
+      }
+    ],
+    "user": [
+      {
+        "name": "canvases:read",
+        "url": "https://docs.slack.dev/reference/scopes/canvases.read.md"
+      }
+    ]
+  }
+}
+

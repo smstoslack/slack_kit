@@ -1,14 +1,14 @@
 {
   "args": {
     "cells": {
-      "desc": "Cells to update.",
+      "desc": "Cells to update. _Minimum:_ `1` _Maximum:_ `100`",
       "example": "[{\"row_id\":\"Rec014K005UQJ\",\"column_id\":\"Col014K005UQJ\",\"user\":[\"U01284PCR98\", \"U0137181B5H\"]}]",
       "required": true,
       "type": "array"
     },
     "list_id": {
       "desc": "ID of the List to add or update cells.",
-      "example": "F01ABCDE2FG",
+      "example": "F0123ABC456",
       "required": true,
       "type": "string"
     }
@@ -43,19 +43,19 @@
   },
   "rate_limit": {
     "label": "Tier 3: 50+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "lists:write",
-        "url": "https://docs.slack.dev/reference/scopes/lists.write"
+        "url": "https://docs.slack.dev/reference/scopes/lists.write.md"
       }
     ],
     "user": [
       {
         "name": "lists:write",
-        "url": "https://docs.slack.dev/reference/scopes/lists.write"
+        "url": "https://docs.slack.dev/reference/scopes/lists.write.md"
       }
     ]
   }

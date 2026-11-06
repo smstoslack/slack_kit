@@ -1,5 +1,9 @@
 # Changelog
 
+## Next
+
+- Regenerate Slack Web API docs on 2026-11-06.
+
 ## v1.0.0-alpha.0
 
 ## v0.25.0-alpha.0

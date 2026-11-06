@@ -31,25 +31,26 @@
     "list_not_found": "The List was not found.",
     "missing_arguments": "No arguments were provided to update the List.",
     "over_title_length_maximum": "Title can not exceed defined length.",
+    "permission_denied": "The user does not have permission to perform this action.",
     "team_not_found": "The team cannot be found.",
     "unexpected_description_blocks_arg": "Unexpected description blocks argument.",
     "user_not_found": "The user cannot be found."
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "lists:write",
-        "url": "https://docs.slack.dev/reference/scopes/lists.write"
+        "url": "https://docs.slack.dev/reference/scopes/lists.write.md"
       }
     ],
     "user": [
       {
         "name": "lists:write",
-        "url": "https://docs.slack.dev/reference/scopes/lists.write"
+        "url": "https://docs.slack.dev/reference/scopes/lists.write.md"
       }
     ]
   }

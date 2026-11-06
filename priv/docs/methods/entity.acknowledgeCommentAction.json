@@ -1,0 +1,35 @@
+{
+  "args": {
+    "comment": {
+      "desc": "The full comment data. Required for edit and post actions. See the comment schema for the full list of properties.",
+      "required": false,
+      "type": "object"
+    },
+    "error": {
+      "desc": "Error message if the action failed in the app. When present, signals that the mutation could not be completed. Pass back the `trigger_id` from the `view_submission` or `block_actions` payload, along with the persisted comment (for a post or edit) or an `error` message.",
+      "required": false,
+      "type": "string"
+    },
+    "trigger_id": {
+      "desc": "A reference to the original user action that initiated the comment mutation. Pass back the `trigger_id` from the `view_submission` or `block_actions` payload, along with the persisted comment (for a post or edit) or an `error` message.",
+      "required": true,
+      "type": "string"
+    }
+  },
+  "desc": "Acknowledge a comment mutation (edit, delete, or post) on a work object entity. Apps call this endpoint to confirm they have processed a comment action, and the backend emits a dedicated RTM event to the user.",
+  "errors": {
+    "invalid_action": "The comment data does not match the original trigger context (e.g., comment\\_id or thread\\_root\\_id mismatch)",
+    "invalid_app_id": "App ID is not a valid format",
+    "invalid_sender_schema": "The sender field could not be transformed to a valid user schema",
+    "invalid_trigger_id": "Trigger id is not valid",
+    "method_not_found": "when the API isn't available to the caller",
+    "missing_comment_data": "Required comment fields are missing for the given action type",
+    "not_allowed": "User is not enrolled in comment syncing"
+  },
+  "rate_limit": {
+    "label": "Tier 3: 50+ per minute",
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
+  },
+  "scopes": {}
+}
+

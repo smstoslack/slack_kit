@@ -10,7 +10,7 @@
       "type": "string"
     },
     "ids": {
-      "desc": "items' ids",
+      "desc": "items' ids _Minimum:_ `1` _Maximum:_ `25`",
       "example": "[\"7c6dd137\", \"c7d6d731\"]",
       "required": true,
       "type": "array"
@@ -31,13 +31,13 @@
   },
   "rate_limit": {
     "label": "Tier 3: 50+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "datastore:read",
-        "url": "https://docs.slack.dev/reference/scopes/datastore.read"
+        "url": "https://docs.slack.dev/reference/scopes/datastore.read.md"
       }
     ]
   }

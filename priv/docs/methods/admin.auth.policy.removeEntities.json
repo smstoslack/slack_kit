@@ -1,7 +1,7 @@
 {
   "args": {
     "entity_ids": {
-      "desc": "Encoded IDs of the entities you'd like to remove from the policy.",
+      "desc": "Encoded IDs of the entities you'd like to remove from the policy. _Minimum:_ `1` _Maximum:_ `1000`",
       "example": "['U1234']",
       "required": true,
       "type": "array"
@@ -26,13 +26,13 @@
   },
   "rate_limit": {
     "label": "Tier 4: 100+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "admin.users:write",
-        "url": "https://docs.slack.dev/reference/scopes/admin.users.write"
+        "url": "https://docs.slack.dev/reference/scopes/admin.users.write.md"
       }
     ]
   }

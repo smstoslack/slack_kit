@@ -6,13 +6,13 @@
       "required": true
     },
     "channel_ids": {
-      "desc": "List of channels you wish to update access for",
+      "desc": "List of channels you wish to update access for _Minimum:_ `1` _Maximum:_ `1`",
       "example": "[\"C1234ABCD\"]",
       "required": false,
       "type": "array"
     },
     "user_ids": {
-      "desc": "List of users you wish to update access for",
+      "desc": "List of users you wish to update access for _Minimum:_ `1` _Maximum:_ `1`",
       "example": "[\"U1234ABCD\"]",
       "required": false,
       "type": "array"
@@ -29,19 +29,19 @@
   },
   "rate_limit": {
     "label": "Tier 3: 50+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "canvases:write",
-        "url": "https://docs.slack.dev/reference/scopes/canvases.write"
+        "url": "https://docs.slack.dev/reference/scopes/canvases.write.md"
       }
     ],
     "user": [
       {
         "name": "canvases:write",
-        "url": "https://docs.slack.dev/reference/scopes/canvases.write"
+        "url": "https://docs.slack.dev/reference/scopes/canvases.write.md"
       }
     ]
   }

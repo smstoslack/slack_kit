@@ -38,18 +38,17 @@
     "cannot_add_profile_only_user": "Reminders can't be sent to profile only users.",
     "cannot_add_slackbot": "Reminders can't be sent to Slackbot.",
     "cannot_parse": "The phrasing of the timing for this reminder is unclear. You must include a complete time description. Some examples that work: `1458678068`, `20`, `in 5 minutes`, `tomorrow`, `at 3:30pm`, `on Tuesday`, or `next week`.",
-    "missing_argument": "An argument is missing.",
     "user_not_found": "That user can't be found."
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "reminders:write",
-        "url": "https://docs.slack.dev/reference/scopes/reminders.write"
+        "url": "https://docs.slack.dev/reference/scopes/reminders.write.md"
       }
     ]
   }

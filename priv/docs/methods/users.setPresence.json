@@ -11,19 +11,19 @@
   "errors": { "invalid_presence": "Value passed for `presence` was invalid." },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "users:write",
-        "url": "https://docs.slack.dev/reference/scopes/users.write"
+        "url": "https://docs.slack.dev/reference/scopes/users.write.md"
       }
     ],
     "user": [
       {
         "name": "users:write",
-        "url": "https://docs.slack.dev/reference/scopes/users.write"
+        "url": "https://docs.slack.dev/reference/scopes/users.write.md"
       }
     ]
   }

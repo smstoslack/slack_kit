@@ -1,0 +1,28 @@
+{
+  "args": {
+    "skill_ids": {
+      "desc": "One to 50 skill IDs. Successful items are not rolled back if other items fail. _Minimum:_ `1` _Maximum:_ `50`",
+      "required": true,
+      "type": "array"
+    }
+  },
+  "desc": "Publishes Slackbot skills to an organization's catalog.",
+  "errors": {
+    "failed_for_some_skills": "Some skills failed. `failed_skills` lists each distinct failed skill ID and its error: `skill_not_found`, `method_not_supported_for_skill_type`, `restricted_action`, or `internal_error`. Missing, deleted, non-skill, and other organizations' files all return `skill_not_found`.",
+    "feature_not_enabled": "The Skills API is not enabled for this organization or workspace.",
+    "restricted_action": "The caller must be an org admin or owner with permission to manage skills, and must be able to edit and share any canvas that needs org-wide access."
+  },
+  "rate_limit": {
+    "label": "Tier 2: 20+ per minute",
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
+  },
+  "scopes": {
+    "user": [
+      {
+        "name": "admin.skills:write",
+        "url": "https://docs.slack.dev/reference/scopes/admin.skills.write.md"
+      }
+    ]
+  }
+}
+

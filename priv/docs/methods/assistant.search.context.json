@@ -111,7 +111,7 @@
       "type": "string"
     },
     "term_clauses": {
-      "desc": "A list of term clauses. A term clause is a string with search terms. Search results returned will match every term clause specified (i.e., conjunctive normal form).",
+      "desc": "A list of term clauses. A term clause is a string with search terms. Search results returned will match every term clause specified (i.e., conjunctive normal form). _Minimum:_ `1` _Maximum:_ `5`",
       "required": false,
       "type": "array"
     }
@@ -121,55 +121,56 @@
     "assistant_search_context_disabled": "We're having issues returning your search results. Please wait and try again.",
     "context_channel_not_found": "Specified `context_channel_id` is invalid or the user lacks permission to view it.",
     "feature_not_enabled": "The feature is not available on the current workspace.",
-    "invalid_action_token": "The `action_token` provided is not valid.",
+    "invalid_action_token": "The `action_token` provided is not valid, has expired, or was not issued to the app whose token accompanies it.",
     "invalid_cursor": "The cursormark provided is not valid.",
     "missing_query": "Missing query.",
     "query_too_long": "Query too long.",
-    "rate_limited": "Rate limited."
+    "rate_limited": "Rate limited.",
+    "restricted_action": "The calling user is a guest, or is not an active member of the workspace."
   },
   "rate_limit": {
     "label": "Special rate limits apply.",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "search:read.files",
-        "url": "https://docs.slack.dev/reference/scopes/search.read.files"
+        "url": "https://docs.slack.dev/reference/scopes/search.read.files.md"
       },
       {
         "name": "search:read.public",
-        "url": "https://docs.slack.dev/reference/scopes/search.read.public"
+        "url": "https://docs.slack.dev/reference/scopes/search.read.public.md"
       },
       {
         "name": "search:read.users",
-        "url": "https://docs.slack.dev/reference/scopes/search.read.users"
+        "url": "https://docs.slack.dev/reference/scopes/search.read.users.md"
       }
     ],
     "user": [
       {
         "name": "search:read.files",
-        "url": "https://docs.slack.dev/reference/scopes/search.read.files"
+        "url": "https://docs.slack.dev/reference/scopes/search.read.files.md"
       },
       {
         "name": "search:read.im",
-        "url": "https://docs.slack.dev/reference/scopes/search.read.im"
+        "url": "https://docs.slack.dev/reference/scopes/search.read.im.md"
       },
       {
         "name": "search:read.mpim",
-        "url": "https://docs.slack.dev/reference/scopes/search.read.mpim"
+        "url": "https://docs.slack.dev/reference/scopes/search.read.mpim.md"
       },
       {
         "name": "search:read.private",
-        "url": "https://docs.slack.dev/reference/scopes/search.read.private"
+        "url": "https://docs.slack.dev/reference/scopes/search.read.private.md"
       },
       {
         "name": "search:read.public",
-        "url": "https://docs.slack.dev/reference/scopes/search.read.public"
+        "url": "https://docs.slack.dev/reference/scopes/search.read.public.md"
       },
       {
         "name": "search:read.users",
-        "url": "https://docs.slack.dev/reference/scopes/search.read.users"
+        "url": "https://docs.slack.dev/reference/scopes/search.read.users.md"
       }
     ]
   }

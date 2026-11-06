@@ -1,0 +1,74 @@
+{
+  "args": {
+    "category": {
+      "desc": "One of the skill categories. Send an empty string to clear. _Acceptable values:_ `communication` `customer_support` `data_and_analytics` `engineering` `product_management` `productivity` `professional_development` `project_management` `sales` `system` `team_management` `other`",
+      "required": false,
+      "type": "string"
+    },
+    "description": {
+      "desc": "When Slackbot should use the skill. Max 400 characters. Send an empty string to clear.",
+      "required": false,
+      "type": "string"
+    },
+    "display_name": {
+      "desc": "Human-readable label. Max 255 characters.",
+      "required": false,
+      "type": "string"
+    },
+    "example_prompt": {
+      "desc": "Max 200 characters. May contain `{skill}`. Send an empty string to clear.",
+      "required": false,
+      "type": "string"
+    },
+    "instructions": {
+      "desc": "Markdown that replaces the whole document. Sending `instructions` replaces the whole document, and sending `mcp_servers` replaces the whole list.",
+      "required": false,
+      "type": "string"
+    },
+    "mcp_servers": {
+      "desc": "Apps the skill needs. Replaces the whole list; send `[]` to clear. Sending `instructions` replaces the whole document, and sending `mcp_servers` replaces the whole list.",
+      "required": false,
+      "type": "array"
+    },
+    "skill_id": {
+      "desc": "Skill to change.",
+      "required": true,
+      "type": "string"
+    }
+  },
+  "desc": "Changes a Slackbot skill's instructions or metadata. Only the inputs you send are changed; a call that changes nothing succeeds without writing.",
+  "errors": {
+    "canvas_editing_failed": "The skill's instructions or display name couldn't be saved.",
+    "canvas_editing_locked": "Another edit to the skill is in progress. Retry the request.",
+    "description_too_long": "`description` is longer than 400 characters.",
+    "display_name_too_long": "`display_name` is longer than 255 characters.",
+    "example_prompt_too_long": "`example_prompt` is longer than 200 characters.",
+    "feature_not_enabled": "The Skills API isn't enabled for this organization.",
+    "instructions_too_large": "`instructions` is larger than 500,000 bytes.",
+    "invalid_category": "`category` isn't one of the skill categories.",
+    "mcp_server_not_found": "One or more declared apps don't exist or aren't available to the caller. `invalid_mcp_servers` lists them.",
+    "method_not_supported_for_skill_type": "Only canvas skills can be changed.",
+    "restricted_action": "The caller isn't allowed to change this skill.",
+    "skill_not_found": "The skill doesn't exist or the caller can't see it.",
+    "too_many_mcp_servers": "More apps were declared than the caller can enable at once."
+  },
+  "rate_limit": {
+    "label": "Tier 3: 50+ per minute",
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
+  },
+  "scopes": {
+    "bot": [
+      {
+        "name": "skills:write",
+        "url": "https://docs.slack.dev/reference/scopes/skills.write.md"
+      }
+    ],
+    "user": [
+      {
+        "name": "skills:write",
+        "url": "https://docs.slack.dev/reference/scopes/skills.write.md"
+      }
+    ]
+  }
+}
+

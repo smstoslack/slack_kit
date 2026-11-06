@@ -6,7 +6,7 @@
       "type": "boolean"
     },
     "user_ids": {
-      "desc": "The list of up to 1,000 user IDs to wipe sessions for",
+      "desc": "The list of up to 1,000 user IDs to wipe sessions for _Minimum:_ `1` _Maximum:_ `1000`",
       "example": "[\"W12345678\", \"W98765432\"]",
       "required": true,
       "type": "array"
@@ -32,13 +32,13 @@
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "admin.users:write",
-        "url": "https://docs.slack.dev/reference/scopes/admin.users.write"
+        "url": "https://docs.slack.dev/reference/scopes/admin.users.write.md"
       }
     ]
   }

@@ -1,7 +1,7 @@
 {
   "args": {
     "entity_ids": {
-      "desc": "Array of IDs to assign to the policy.",
+      "desc": "Array of IDs to assign to the policy. _Minimum:_ `1` _Maximum:_ `1000`",
       "example": "['U12345','U27345']",
       "required": true,
       "type": "array"
@@ -29,13 +29,13 @@
   },
   "rate_limit": {
     "label": "Tier 4: 100+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "admin.users:write",
-        "url": "https://docs.slack.dev/reference/scopes/admin.users.write"
+        "url": "https://docs.slack.dev/reference/scopes/admin.users.write.md"
       }
     ]
   }

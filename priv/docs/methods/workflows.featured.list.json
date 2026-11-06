@@ -1,7 +1,7 @@
 {
   "args": {
     "channel_ids": {
-      "desc": "Comma-separated array of channel IDs to list featured workflows for.",
+      "desc": "Comma-separated array of channel IDs to list featured workflows for. _Minimum:_ `1` _Maximum:_ `100`",
       "example": "[\"C012345678\", \"C987654321\"]",
       "required": true,
       "type": "array"
@@ -16,19 +16,19 @@
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "bookmarks:read",
-        "url": "https://docs.slack.dev/reference/scopes/bookmarks.read"
+        "url": "https://docs.slack.dev/reference/scopes/bookmarks.read.md"
       }
     ],
     "user": [
       {
         "name": "bookmarks:read",
-        "url": "https://docs.slack.dev/reference/scopes/bookmarks.read"
+        "url": "https://docs.slack.dev/reference/scopes/bookmarks.read.md"
       }
     ]
   }

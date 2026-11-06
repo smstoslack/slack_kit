@@ -23,7 +23,7 @@
       "type": "string"
     },
     "unfurls": {
-      "desc": "URL-encoded JSON map with keys set to URLs featured in the the message, pointing to their unfurl blocks or message attachments. Required for public channels. The first time this method is executed with a particular `ts` and `channel` (or `unfurl_id` and `source`) combination, the valid `unfurls` attachments you provide will be attached to the message.",
+      "desc": "URL-encoded JSON map with keys set to URLs featured in the message, pointing to their unfurl blocks or message attachments. Required for public channels. The first time this method is executed with a particular `ts` and `channel` (or `unfurl_id` and `source`) combination, the valid `unfurls` attachments you provide will be attached to the message.",
       "required": false,
       "type": "string"
     },
@@ -69,19 +69,19 @@
   },
   "rate_limit": {
     "label": "Tier 3: 50+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "links:write",
-        "url": "https://docs.slack.dev/reference/scopes/links.write"
+        "url": "https://docs.slack.dev/reference/scopes/links.write.md"
       }
     ],
     "user": [
       {
         "name": "links:write",
-        "url": "https://docs.slack.dev/reference/scopes/links.write"
+        "url": "https://docs.slack.dev/reference/scopes/links.write.md"
       }
     ]
   }

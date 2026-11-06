@@ -27,19 +27,20 @@
     "not_an_admin": "The calling user cannot update the specified usergroup.",
     "not_an_enterprise": "The token passed in does not belong to an Enterprise organization.",
     "team_not_found": "The workspace provided was not found.",
+    "user_channel_limit_exceeded": "Adding these channels would cause one or more members to exceed their channel limit.",
     "usergroup_not_found": "The IDP group provided was not found.",
     "usergroup_not_linked_to_team": "The IDP group provided is not linked to the workspace.",
     "usergroup_team_not_provisioned": "The IDP group provided is linked to a workspace that has auto-provision disabled."
   },
   "rate_limit": {
     "label": "Tier 1: 1+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "admin.usergroups:write",
-        "url": "https://docs.slack.dev/reference/scopes/admin.usergroups.write"
+        "url": "https://docs.slack.dev/reference/scopes/admin.usergroups.write.md"
       }
     ]
   }

@@ -7,25 +7,22 @@
     }
   },
   "desc": "List bookmark for the channel.",
-  "errors": {
-    "channel_not_found": "Channel cannot be found.",
-    "not_implemented": "bookmarking not available for the user."
-  },
+  "errors": { "channel_not_found": "Channel cannot be found." },
   "rate_limit": {
     "label": "Tier 3: 50+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "bookmarks:read",
-        "url": "https://docs.slack.dev/reference/scopes/bookmarks.read"
+        "url": "https://docs.slack.dev/reference/scopes/bookmarks.read.md"
       }
     ],
     "user": [
       {
         "name": "bookmarks:read",
-        "url": "https://docs.slack.dev/reference/scopes/bookmarks.read"
+        "url": "https://docs.slack.dev/reference/scopes/bookmarks.read.md"
       }
     ]
   }

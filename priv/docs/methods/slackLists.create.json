@@ -43,6 +43,8 @@
     "invalid_copy_and_schema_args": "Cannot provide both `copy_from_list_id` and `schema`.",
     "invalid_primary_column": "Missing or more than one primary column.",
     "invalid_schema": "The schema was invalid.",
+    "invalid_view_metadata": "A view on the List to copy has settings that cannot be read, so the List cannot be copied.",
+    "list_not_found": "The List was not found.",
     "missing_arg_copy_from_list_id": "Missing argument `copy_from_list_id`.",
     "over_column_maximum": "Cannot create List with more than allowed column count.",
     "over_list_file_maximum": "Cannot create any more List files.",
@@ -53,19 +55,19 @@
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "lists:write",
-        "url": "https://docs.slack.dev/reference/scopes/lists.write"
+        "url": "https://docs.slack.dev/reference/scopes/lists.write.md"
       }
     ],
     "user": [
       {
         "name": "lists:write",
-        "url": "https://docs.slack.dev/reference/scopes/lists.write"
+        "url": "https://docs.slack.dev/reference/scopes/lists.write.md"
       }
     ]
   }

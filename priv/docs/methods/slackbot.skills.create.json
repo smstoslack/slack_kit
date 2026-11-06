@@ -1,0 +1,77 @@
+{
+  "args": {
+    "canvas_id": {
+      "desc": "Canvas the caller owns to turn into a skill. Send exactly one of `instructions` or `canvas_id`. One, and only one, of `instructions` and `canvas_id` is required.",
+      "required": false
+    },
+    "category": {
+      "desc": "One of the skill categories. _Acceptable values:_ `communication` `customer_support` `data_and_analytics` `engineering` `product_management` `productivity` `professional_development` `project_management` `sales` `system` `team_management` `other`",
+      "required": false,
+      "type": "string"
+    },
+    "description": {
+      "desc": "When Slackbot should use the skill. Max 400 characters.",
+      "required": false,
+      "type": "string"
+    },
+    "display_name": {
+      "desc": "Human-readable label. Max 255 characters; not unique.",
+      "required": true,
+      "type": "string"
+    },
+    "example_prompt": {
+      "desc": "Max 200 characters. May contain `{skill}`, which becomes the skill mention.",
+      "required": false,
+      "type": "string"
+    },
+    "instructions": {
+      "desc": "Markdown body of the skill. Send exactly one of `instructions` or `canvas_id`. One, and only one, of `instructions` and `canvas_id` is required.",
+      "required": false,
+      "type": "string"
+    },
+    "mcp_servers": {
+      "desc": "Apps the skill needs, capped at the caller's MCP server limit. Declaring an app doesn't grant access to it.",
+      "required": false,
+      "type": "array"
+    }
+  },
+  "desc": "Creates a skill from markdown instructions, or turns an existing canvas the caller owns into a skill.",
+  "errors": {
+    "already_a_skill": "The canvas is already a skill. Use `slackbot.skills.update` to change it.",
+    "canvas_creation_failed": "The skill's canvas couldn't be created.",
+    "canvas_disabled_user_team": "Canvases are disabled for the caller's team.",
+    "canvas_editing_locked": "Another edit to the canvas is in progress. Retry the request.",
+    "canvas_not_found": "The canvas doesn't exist or the caller can't see it.",
+    "description_too_long": "`description` is longer than 400 characters.",
+    "display_name_too_long": "`display_name` is longer than 255 characters.",
+    "example_prompt_too_long": "`example_prompt` is longer than 200 characters.",
+    "feature_not_enabled": "The Skills API isn't enabled for this organization.",
+    "free_teams_cannot_create_standalone_canvases": "Free teams can't create standalone canvases.",
+    "instructions_too_large": "`instructions` is larger than 500,000 bytes.",
+    "invalid_category": "`category` isn't one of the skill categories.",
+    "is_a_template": "Canvas templates can't be turned into skills.",
+    "mcp_server_not_found": "One or more declared apps don't exist or aren't available to the caller. `invalid_mcp_servers` lists them.",
+    "not_canvas_owner": "Only the canvas owner can turn it into a skill.",
+    "restricted_action": "The caller isn't allowed to author skills.",
+    "too_many_mcp_servers": "More apps were declared than the caller can enable at once."
+  },
+  "rate_limit": {
+    "label": "Tier 2: 20+ per minute",
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
+  },
+  "scopes": {
+    "bot": [
+      {
+        "name": "skills:write",
+        "url": "https://docs.slack.dev/reference/scopes/skills.write.md"
+      }
+    ],
+    "user": [
+      {
+        "name": "skills:write",
+        "url": "https://docs.slack.dev/reference/scopes/skills.write.md"
+      }
+    ]
+  }
+}
+

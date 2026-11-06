@@ -33,6 +33,7 @@
     "could_not_set_teams_for_channel": "The requested `channel_id` has not been shared with the target workspace.",
     "default_org_wide_channel": "Default org wide channel cannot be unshared from a workspace.",
     "externally_shared_or_disconnected_channel": "The channel is or was externally shared.",
+    "insufficient_permissions_to_share_channel": "The authenticated user isn't an org admin or owner and tried to add or remove an unlisted workspace that isn't visible to them. Ask an org admin or owner with permission to manage the channel to make this change.",
     "invalid_channel_id": "`channel_id` was invalid.",
     "invalid_target_team": "Target workspace is invalid.",
     "managed_channel_not_supported": "Cannot unshare a managed channel",
@@ -45,13 +46,13 @@
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "admin.conversations:write",
-        "url": "https://docs.slack.dev/reference/scopes/admin.conversations.write"
+        "url": "https://docs.slack.dev/reference/scopes/admin.conversations.write.md"
       }
     ]
   }

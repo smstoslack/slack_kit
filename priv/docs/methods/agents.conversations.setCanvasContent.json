@@ -1,0 +1,42 @@
+{
+  "args": {
+    "canvas_id": {
+      "desc": "Encoded ID of the canvas whose content to replace.",
+      "required": true
+    },
+    "channel": {
+      "desc": "ID of the agent session channel the canvas is attached to.",
+      "required": true,
+      "type": "string"
+    },
+    "content": {
+      "desc": "The full new canvas content as markdown. The server diffs this against the current content and applies only the changed sections.",
+      "required": true,
+      "type": "string"
+    }
+  },
+  "desc": "Replace the full markdown content of a plan canvas attached to a code channel.",
+  "errors": {
+    "canvas_content_fetch_failed": "The canvas's current content could not be read to compute the diff.",
+    "canvas_content_update_failed": "The canvas content could not be updated.",
+    "canvas_not_found": "The specified canvas\\_id does not correspond to a canvas you can access.",
+    "channel_not_found": "The specified channel does not correspond to a valid channel.",
+    "content_too_large": "The provided content exceeds the maximum canvas size.",
+    "not_agent_channel": "The specified channel is not an agent session channel.",
+    "not_authorized": "The caller is not an authorized agent bot for this channel.",
+    "too_many_sections": "The provided content or the existing canvas has too many sections to diff. Reduce the number of distinct blocks (paragraphs, headings, code fences) in the document."
+  },
+  "rate_limit": {
+    "label": "Tier 3: 50+ per minute",
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
+  },
+  "scopes": {
+    "bot": [
+      {
+        "name": "code_channels:manage",
+        "url": "https://docs.slack.dev/reference/scopes/code_channels.manage.md"
+      }
+    ]
+  }
+}
+

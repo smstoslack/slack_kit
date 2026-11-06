@@ -1,0 +1,30 @@
+{
+  "args": {
+    "id": {
+      "desc": "ID of the usergroup to fetch",
+      "example": "S0604QSJC",
+      "required": true,
+      "type": "string"
+    }
+  },
+  "desc": "Fetch an organizational usergroup.",
+  "errors": {
+    "feature_not_enabled": "The Admin APIs feature is not enabled for this workspace.",
+    "invalid_usergroup": "A usergroup with the specified ID does not exist.",
+    "not_an_enterprise": "The token passed in does not belong to an Enterprise organization.",
+    "restricted_action": "The calling user is not allowed to view the specified usergroup."
+  },
+  "rate_limit": {
+    "label": "Tier 1: 1+ per minute",
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
+  },
+  "scopes": {
+    "user": [
+      {
+        "name": "admin.usergroups:read",
+        "url": "https://docs.slack.dev/reference/scopes/admin.usergroups.read.md"
+      }
+    ]
+  }
+}
+

@@ -4,13 +4,13 @@
   "errors": { "not_in_dnd": "The auth'd user isn't in DND mode." },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "dnd:write",
-        "url": "https://docs.slack.dev/reference/scopes/dnd.write"
+        "url": "https://docs.slack.dev/reference/scopes/dnd.write.md"
       }
     ]
   }

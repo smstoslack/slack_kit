@@ -1,0 +1,35 @@
+{
+  "args": {
+    "reason": {
+      "desc": "Optional explanation for the access change.",
+      "required": false,
+      "type": "string"
+    },
+    "user_ids": {
+      "desc": "IDs of frontline members in the authenticated organization. Valid users are queued; rejected IDs are returned in invalid\\_users. _Minimum:_ `1` _Maximum:_ `1000`",
+      "required": true,
+      "type": "array"
+    }
+  },
+  "desc": "Pause access across the organization for up to 1,000 frontline members. Success means the request was queued, not that all updates have completed.",
+  "errors": {
+    "failed_for_all_users": "No valid users were found. Nothing was queued. invalid\\_users lists the rejected IDs and reasons.",
+    "failed_for_some_users": "Valid users were queued, but some users were rejected. invalid\\_users lists the rejected IDs and reasons. Correct and retry only those IDs.",
+    "failed_job_enqueue": "The access change could not be queued. Retry the request.",
+    "feature_not_enabled": "Frontline access management is not enabled for this organization.",
+    "restricted_action": "Only organization admins and owners can perform this action."
+  },
+  "rate_limit": {
+    "label": "Tier 2: 20+ per minute",
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
+  },
+  "scopes": {
+    "user": [
+      {
+        "name": "admin.users:write",
+        "url": "https://docs.slack.dev/reference/scopes/admin.users.write.md"
+      }
+    ]
+  }
+}
+

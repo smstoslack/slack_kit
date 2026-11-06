@@ -31,16 +31,16 @@
     }
   },
   "desc": "Listed a user's saved items, formerly known as stars.",
-  "errors": { "missing_argument": "A required argument is missing." },
+  "errors": {},
   "rate_limit": {
     "label": "Tier 3: 50+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "stars:read",
-        "url": "https://docs.slack.dev/reference/scopes/stars.read"
+        "url": "https://docs.slack.dev/reference/scopes/stars.read.md"
       }
     ]
   }

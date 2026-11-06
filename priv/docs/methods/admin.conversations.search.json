@@ -20,7 +20,7 @@
       "type": "integer"
     },
     "query": {
-      "desc": "Name of the the channel to query by.",
+      "desc": "Name of the channel to query by.",
       "example": "announcement",
       "required": false,
       "type": "string"
@@ -59,7 +59,7 @@
   },
   "desc": "Search for public or private channels in an Enterprise organization.",
   "errors": {
-    "connected_team_passed_in_is_not_top_level_team": "One of the orgs provided in the external connected teams filter is not a top level team.",
+    "connected_team_passed_in_is_not_top_level_team": "One of the orgs provided in the external connected teams filter is not a top level team. Pass the connected org’s top-level ID.",
     "external_team_not_connected_to_this_org": "One of the teams provided in the external connected teams filter is not connected to the org.",
     "feature_not_enabled": "The token provided doesn't have access to this method.",
     "invalid_cursor": "The provided cursor is not valid, often due to not urlencoding query parameters.",
@@ -69,17 +69,18 @@
     "not_allowed": "The authenticated user does not have the permission to call this method.",
     "not_an_admin": "The token provided is not associated with an Org Admin or Owner.",
     "not_an_enterprise": "This endpoint can only be called by an Enterprise organization.",
+    "target_team_not_on_org": "The specified target\\_team is not part of the organization.",
     "team_not_found": "One of the workspaces provided in the list wasn't found."
   },
   "rate_limit": {
     "label": "Tier 2: 20+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "user": [
       {
         "name": "admin.conversations:read",
-        "url": "https://docs.slack.dev/reference/scopes/admin.conversations.read"
+        "url": "https://docs.slack.dev/reference/scopes/admin.conversations.read.md"
       }
     ]
   }

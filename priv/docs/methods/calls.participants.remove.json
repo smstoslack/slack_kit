@@ -18,25 +18,24 @@
     "bad_users": "At least one specified user is not part of the Call.",
     "inactive_call": "The Call has been already ended.",
     "invalid_call_id": "The specified Call wasn't found.",
-    "missing_argument": "A required argument is missing.",
     "not_implemented": "This method is not available.",
     "user_not_found": "At least one specified user wasn't found."
   },
   "rate_limit": {
     "label": "Tier 3: 50+ per minute",
-    "url": "https://docs.slack.dev/apis/web-api/rate-limits"
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
   },
   "scopes": {
     "bot": [
       {
         "name": "calls:write",
-        "url": "https://docs.slack.dev/reference/scopes/calls.write"
+        "url": "https://docs.slack.dev/reference/scopes/calls.write.md"
       }
     ],
     "user": [
       {
         "name": "calls:write",
-        "url": "https://docs.slack.dev/reference/scopes/calls.write"
+        "url": "https://docs.slack.dev/reference/scopes/calls.write.md"
       }
     ]
   }

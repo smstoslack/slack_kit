@@ -1,0 +1,40 @@
+{
+  "args": {
+    "channel_id": {
+      "desc": "ID of the code channel to archive.",
+      "required": true,
+      "type": "string"
+    },
+    "summary_message_ts": {
+      "desc": "Timestamp of a message in the code channel to share back as a thread reply on the origin message. Requires the channel to have an `origin_link` set.",
+      "example": "1234567890.123456",
+      "required": false,
+      "type": "string"
+    }
+  },
+  "desc": "Archive a code channel.",
+  "errors": {
+    "already_archived": "The channel has already been archived.",
+    "channel_not_found": "The specified channel\\_id does not correspond to a valid channel.",
+    "no_origin_link": "summary\\_message\\_ts was provided but the code channel has no origin\\_link set.",
+    "not_agent_channel": "The specified channel is not a code channel.",
+    "not_authorized": "The caller is not an authorized agent bot for this channel.",
+    "origin_channel_not_found": "The origin channel referenced by the code channel is no longer accessible.",
+    "origin_message_not_found": "The origin message referenced by the code channel's origin\\_link could not be found.",
+    "restricted_action": "The workspace does not allow the bot to archive channels.",
+    "summary_message_not_found": "The specified summary\\_message\\_ts does not correspond to a message in the code channel."
+  },
+  "rate_limit": {
+    "label": "Special rate limits apply.",
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
+  },
+  "scopes": {
+    "bot": [
+      {
+        "name": "code_channels:manage",
+        "url": "https://docs.slack.dev/reference/scopes/code_channels.manage.md"
+      }
+    ]
+  }
+}
+

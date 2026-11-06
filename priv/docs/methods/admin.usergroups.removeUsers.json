@@ -1,0 +1,38 @@
+{
+  "args": {
+    "id": {
+      "desc": "ID of the usergroup to remove users from",
+      "example": "S0604QSJC",
+      "required": true,
+      "type": "string"
+    },
+    "users": {
+      "desc": "The encoded user IDs to remove from the usergroup, provided as a JSON array or a comma-separated string. _Maximum:_ `15000`",
+      "example": "U060R4BJ4,U060RNRCZ",
+      "required": true,
+      "type": "array"
+    }
+  },
+  "desc": "Remove members from an existing organizational usergroup. This method is only available to Enterprise Grid organizations.",
+  "errors": {
+    "feature_not_enabled": "The Admin APIs feature is not enabled for this workspace.",
+    "invalid_usergroup": "A usergroup with the specified ID does not exist.",
+    "invalid_users": "One or more users provided can not be removed from the usergroup.",
+    "not_an_enterprise": "The token passed in does not belong to an Enterprise organization.",
+    "restricted_action": "The calling user cannot modify the specified usergroup, or the usergroup's membership is managed by an identity provider (IdP) and can only be changed through SCIM.",
+    "user_not_found": "One or more users provided are invalid or are not a member of the organization."
+  },
+  "rate_limit": {
+    "label": "Tier 2: 20+ per minute",
+    "url": "https://docs.slack.dev/apis/web-api/rate-limits.md"
+  },
+  "scopes": {
+    "user": [
+      {
+        "name": "admin.usergroups:write",
+        "url": "https://docs.slack.dev/reference/scopes/admin.usergroups.write.md"
+      }
+    ]
+  }
+}
+
